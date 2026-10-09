@@ -1,5 +1,7 @@
 # 02 — AI Code Reviewer
 
+![AI Code Reviewer: fluxo local de revisão de código com Git diff, .NET e Ollama](assets/ai-code-reviewer-banner.png)
+
 Um revisor de código local, pequeno e direto: pega um diff do Git, envia para o Ollama e pede uma revisão focada em bugs, segurança e regressões. A resposta aparece no terminal; nenhum arquivo é alterado.
 
 ## Como funciona
