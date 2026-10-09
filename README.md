@@ -1,6 +1,6 @@
 # KISS AI Labs
 
-![Mapa dos KISS AI Labs e fluxo do RAG local sem banco vetorial](assets/kiss-ai-labs-rag-local.svg)
+![Capa KISS AI Labs: projetos existentes e próximos laboratórios RAG](assets/kiss_ai_lab.png)
 
 Pequenos experimentos em **.NET 11** para estudar:
 
