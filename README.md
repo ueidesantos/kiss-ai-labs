@@ -1,5 +1,7 @@
 # KISS AI Labs
 
+![Diagrama dos exemplos KISS AI Labs: Ollama e MCP Spotify](assets/kiss-ai-labs-diagram.png)
+
 Pequenos experimentos em **.NET 11** para estudar:
 
 - LLMs locais rodando via **Ollama**
