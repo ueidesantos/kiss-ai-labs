@@ -1,0 +1,103 @@
+Lendo 3 documentos Markdown...
+
+=== Top-K solicitado: 1; documentos recuperados: 1 ===
+Documentos recuperados (mesmo ranking em todas as rodadas):
+  seguranca.md (cosseno: 0,695)
+Contexto enviado (411 caracteres UTF-16, não tokens):
+[S1] [Documento: seguranca.md]
+# Segurança de credenciais
+
+Credenciais não devem ser armazenadas no código-fonte nem em arquivos versionados. Use variáveis de ambiente ou um gerenciador de segredos para fornecer tokens durante a execução.
+
+Ao suspeitar de exposição, revogue o token afetado, emita uma nova credencial e revise os logs de acesso. Não inclua valores de segredo em mensagens de erro ou logs.
+
+
+Resposta:
+A resposta é armazenar credenciais em variáveis de ambiente ou um gerenciador de segredos.
+
+Fontes recuperadas:
+[S1] seguranca.md — # Segurança de credenciais Credenciais não devem ser armazenadas no código-fonte nem em arquivos versionados. Use variáveis de ambiente ou um gerenciador de segredos para fornecer tokens durante a execução. Ao suspeitar…
+
+=== Top-K solicitado: 3; documentos recuperados: 3 ===
+Documentos recuperados (mesmo ranking em todas as rodadas):
+  seguranca.md (cosseno: 0,695)
+  implantacao.md (cosseno: 0,589)
+  retencao.md (cosseno: 0,583)
+Contexto enviado (1244 caracteres UTF-16, não tokens):
+[S1] [Documento: seguranca.md]
+# Segurança de credenciais
+
+Credenciais não devem ser armazenadas no código-fonte nem em arquivos versionados. Use variáveis de ambiente ou um gerenciador de segredos para fornecer tokens durante a execução.
+
+Ao suspeitar de exposição, revogue o token afetado, emita uma nova credencial e revise os logs de acesso. Não inclua valores de segredo em mensagens de erro ou logs.
+
+
+---
+
+[S2] [Documento: implantacao.md]
+# Implantação de serviços
+
+Antes de uma implantação, confirme que a revisão de código terminou, as verificações aplicáveis passaram e existe um plano de reversão. Implantações de alto impacto devem ser acompanhadas por uma pessoa responsável.
+
+Após a implantação, verifique os indicadores de saúde e registre o resultado. Se houver regressão, interrompa a expansão e reverta para a versão estável anterior.
+
+
+---
+
+[S3] [Documento: retencao.md]
+# Retenção de dados
+
+Registros operacionais devem ser mantidos pelo período necessário para suporte e auditoria. Remova ou anonimize dados pessoais quando o prazo de retenção terminar.
+
+Backups seguem o mesmo prazo de retenção dos dados originais. Uma exclusão deve considerar as cópias de backup dentro do ciclo de expiração documentado.
+
+
+Resposta:
+Segundo o documento [S1], credenciais não devem ser armazenadas no código-fonte nem em arquivos versionados. Em vez disso, é recomendado usar variáveis de ambiente ou um gerenciador de segredos para fornecer tokens durante a execução.
+
+Fontes recuperadas:
+[S1] seguranca.md — # Segurança de credenciais Credenciais não devem ser armazenadas no código-fonte nem em arquivos versionados. Use variáveis de ambiente ou um gerenciador de segredos para fornecer tokens durante a execução. Ao suspeitar…
+[S2] implantacao.md — # Implantação de serviços Antes de uma implantação, confirme que a revisão de código terminou, as verificações aplicáveis passaram e existe um plano de reversão. Implantações de alto impacto devem ser acompanhadas por um…
+[S3] retencao.md — # Retenção de dados Registros operacionais devem ser mantidos pelo período necessário para suporte e auditoria. Remova ou anonimize dados pessoais quando o prazo de retenção terminar. Backups seguem o mesmo prazo de rete…
+
+=== Top-K solicitado: 5; documentos recuperados: 3 ===
+Documentos recuperados (mesmo ranking em todas as rodadas):
+  seguranca.md (cosseno: 0,695)
+  implantacao.md (cosseno: 0,589)
+  retencao.md (cosseno: 0,583)
+Contexto enviado (1244 caracteres UTF-16, não tokens):
+[S1] [Documento: seguranca.md]
+# Segurança de credenciais
+
+Credenciais não devem ser armazenadas no código-fonte nem em arquivos versionados. Use variáveis de ambiente ou um gerenciador de segredos para fornecer tokens durante a execução.
+
+Ao suspeitar de exposição, revogue o token afetado, emita uma nova credencial e revise os logs de acesso. Não inclua valores de segredo em mensagens de erro ou logs.
+
+
+---
+
+[S2] [Documento: implantacao.md]
+# Implantação de serviços
+
+Antes de uma implantação, confirme que a revisão de código terminou, as verificações aplicáveis passaram e existe um plano de reversão. Implantações de alto impacto devem ser acompanhadas por uma pessoa responsável.
+
+Após a implantação, verifique os indicadores de saúde e registre o resultado. Se houver regressão, interrompa a expansão e reverta para a versão estável anterior.
+
+
+---
+
+[S3] [Documento: retencao.md]
+# Retenção de dados
+
+Registros operacionais devem ser mantidos pelo período necessário para suporte e auditoria. Remova ou anonimize dados pessoais quando o prazo de retenção terminar.
+
+Backups seguem o mesmo prazo de retenção dos dados originais. Uma exclusão deve considerar as cópias de backup dentro do ciclo de expiração documentado.
+
+
+Resposta:
+Segundo o documento [S1], credenciais não devem ser armazenadas no código-fonte nem em arquivos versionados. Em vez disso, é recomendado usar variáveis de ambiente ou um gerenciador de segredos para fornecer tokens durante a execução.
+
+Fontes recuperadas:
+[S1] seguranca.md — # Segurança de credenciais Credenciais não devem ser armazenadas no código-fonte nem em arquivos versionados. Use variáveis de ambiente ou um gerenciador de segredos para fornecer tokens durante a execução. Ao suspeitar…
+[S2] implantacao.md — # Implantação de serviços Antes de uma implantação, confirme que a revisão de código terminou, as verificações aplicáveis passaram e existe um plano de reversão. Implantações de alto impacto devem ser acompanhadas por um…
+[S3] retencao.md — # Retenção de dados Registros operacionais devem ser mantidos pelo período necessário para suporte e auditoria. Remova ou anonimize dados pessoais quando o prazo de retenção terminar. Backups seguem o mesmo prazo de rete…

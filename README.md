@@ -34,7 +34,7 @@ Esses exercícios ajudam a praticar decisões que aparecem no trabalho com IA: q
 
 ## Trilha de aprendizado
 
-Siga a sequência **00 → 01 → 02 → 03**. Cada laboratório é independente e tem seu próprio guia.
+Siga a sequência **00 → 01 → 02 → 03 → 04**. Cada laboratório é independente e tem seu próprio guia.
 
 | Etapa | Laboratório | O que você constrói | Tecnologias e pré-requisitos específicos |
 |---|---|---|---|
@@ -42,8 +42,9 @@ Siga a sequência **00 → 01 → 02 → 03**. Cada laboratório é independente
 | 01 — Ferramentas | [MCP Spotify](01-mcp-spotify/README.md) | Servidor com ferramentas para buscar músicas e consultar a reprodução atual | .NET 11, JSON-RPC/stdio, acesso à Spotify Web API e token |
 | 02 — Aplicação prática | [AI Code Reviewer](02-ai-code-reviewer/README.md) | Revisor de diffs que sugere possíveis problemas no terminal | .NET 11, Git, Ollama e modelo de geração |
 | 03 — Conhecimento local | [RAG Local](03-rag-local-memory/README.md) | Consulta semântica a Markdown, com Top-K e listagem de fontes | .NET 11, Ollama, modelos de embedding e geração; vetores em memória |
+| 04 — Contexto e ruído | [RAG com Top-K Configurável](04-rag-top-k/README.md) | Comparação de vários valores de K com os mesmos embeddings e ranking | .NET 11, Ollama, documentos Markdown pequenos |
 
-**Comece pelo 00** para conhecer a API do Ollama. **Explore o 03** para uma demonstração completa de perguntas sobre documentos. O lab 01 é o exemplo com integração externa; os labs 00, 02 e 03 podem usar modelos executados na sua máquina.
+**Comece pelo 00** para conhecer a API do Ollama. **Explore o 03** para uma demonstração completa de perguntas sobre documentos. O lab 01 é o exemplo com integração externa; os labs 00, 02, 03 e 04 podem usar modelos executados na sua máquina.
 
 ## Comece aqui
 
@@ -51,7 +52,7 @@ Siga a sequência **00 → 01 → 02 → 03**. Cada laboratório é independente
 
 - Git para clonar o repositório e executar o revisor de diffs.
 - [.NET SDK](https://dotnet.microsoft.com/download) com suporte a `net11.0`, o framework usado nos projetos.
-- [Ollama](https://ollama.com/) instalado e em execução para os labs 00, 02 e 03.
+- [Ollama](https://ollama.com/) instalado e em execução para os labs 00, 02, 03 e 04.
 - Espaço em disco e memória compatíveis com os modelos escolhidos. O tempo de resposta depende do modelo e do hardware.
 - Para o lab 01, configure o token do Spotify conforme o [guia do MCP Spotify](01-mcp-spotify/README.md).
 
@@ -98,7 +99,7 @@ Compare a mesma pergunta recuperando mais documentos:
 dotnet run --project 03-rag-local-memory/src -- --question "Como protegemos credenciais?" --top-k 3
 ```
 
-O que mudou no contexto enviado ao modelo? Os documentos adicionais ajudaram ou trouxeram informação irrelevante? Esse experimento torna o efeito do Top-K visível.
+O que mudou no contexto enviado ao modelo? Os documentos adicionais ajudaram ou trouxeram informação irrelevante? Esse experimento torna o efeito do Top-K visível. Para comparar `1,3,5` na mesma execução e inspecionar todo o contexto enviado, siga o [lab 04 — RAG com Top-K Configurável](04-rag-top-k/README.md).
 
 Para usar seus próprios arquivos Markdown:
 
@@ -139,9 +140,10 @@ dotnet build 00-hello-ollama/src/HelloOllama.csproj
 dotnet build 01-mcp-spotify/src/McpSpotifyServer/McpSpotifyServer.csproj
 dotnet build 02-ai-code-reviewer/src/AiCodeReviewer.csproj
 dotnet build 03-rag-local-memory/src/RagLocalMemory.csproj
+dotnet build 04-rag-top-k/src/RagTopK.csproj
 ```
 
-Compilar não exige modelos carregados nem token do Spotify; executar cada cenário exige seus pré-requisitos. O repositório ainda não possui pipeline de CI nem suíte de testes automatizados. Esses itens estão no roadmap abaixo.
+Compilar não exige modelos carregados nem token do Spotify; executar cada cenário exige seus pré-requisitos. O lab 04 inclui um teste de integração HTTP sem modelos: `pwsh -File 04-rag-top-k/tests/validate.ps1`. O repositório ainda não possui pipeline de CI nem testes abrangendo todos os labs.
 
 ## Roadmap
 
@@ -150,7 +152,7 @@ O [backlog de RAG](BACKLOG.md) reúne as nove propostas e suas dependências. O 
 | Estado | Entrega | Próximo aprendizado |
 |---|---|---|
 | Disponível no lab 03 | RAG em memória, Top-K configurável e listagem de fontes | Entender o fluxo completo e conferir o contexto recuperado |
-| Planejado | Aprofundar citações e a comparação de Top-K | Associar trechos à resposta e avaliar relevância e ruído |
+| Disponível no [lab 04](04-rag-top-k/README.md) | Comparação de Top-K na mesma execução, com contexto completo e fontes | Avaliar relevância e ruído com embeddings reutilizados |
 | Planejado | RAG sobre código-fonte em C#/.NET | Localizar regras, classes e validações em arquivos `.cs` |
 | Planejado | Persistência com Python e SQLite-vec | Reutilizar embeddings em uma base local |
 | Planejado | Chunking e filtro de similaridade em Python | Comparar granularidade e descartar resultados fracos |
