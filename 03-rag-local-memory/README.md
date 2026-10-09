@@ -1,6 +1,6 @@
 # 03 — RAG Local sem Vector Database
 
-Um RAG didático: o programa lê Markdown, cria embeddings com Ollama, compara vetores usando similaridade de cosseno em memória e passa os documentos mais relevantes a um modelo de chat.
+Um RAG didático: o programa lê Markdown, cria embeddings com Ollama, compara vetores usando similaridade de cosseno em memória e passa os documentos mais relevantes a um modelo de chat. A resposta pede IDs de citação e o terminal lista arquivo e trecho de cada fonte recuperada.
 
 ## Pré-requisitos
 
@@ -38,9 +38,9 @@ Markdown local ──▶ Ollama /embed ──▶ embeddings em memória
                                              │
 Pergunta ──▶ Ollama /embed ──▶ cosseno ──▶ Top-K documentos
                                              │
-Terminal ◀── resposta ◀── Ollama /generate ◀─┘
+Terminal ◀── resposta + fontes [S1] ◀── Ollama /generate ◀─┘
 ```
 
-O exemplo mantém explícita a etapa de ranking, sem banco vetorial ou framework de RAG. Os documentos ficam no processo local; texto da pergunta, documentos selecionados e geração passam pelo endpoint Ollama configurado.
+O exemplo mantém explícita a etapa de ranking, sem banco vetorial ou framework de RAG. Cada resposta termina com as fontes recuperadas, seus IDs, o caminho do arquivo e uma prévia do trecho. Como o ID é incluído no contexto enviado ao modelo, a citação textual gerada pelo LLM deve ser conferida com a lista de fontes exibida pelo programa. Os documentos ficam no processo local; texto da pergunta, documentos selecionados e geração passam pelo endpoint Ollama configurado.
 
 Veja [`SPEC.md`](SPEC.md) para o escopo e os critérios de aceite.

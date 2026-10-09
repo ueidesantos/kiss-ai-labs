@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="820" viewBox="0 0 1440 820" role="img" aria-labelledby="title desc">
   <title id="title">KISS AI Labs — RAG local</title>
-  <desc id="desc">Fluxo de recuperação aumentada por geração local: arquivos Markdown, embeddings Ollama, similaridade por cosseno em memória, Top-K e resposta local. Visão geral dos quatro laboratórios KISS.</desc>
+  <desc id="desc">Fluxo de recuperação aumentada por geração local: arquivos Markdown, embeddings Ollama, similaridade por cosseno em memória, Top-K, fontes citadas e resposta local. Visão geral dos quatro laboratórios KISS.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101a2d"/><stop offset="1" stop-color="#172f40"/></linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#32d6a0"/><stop offset="1" stop-color="#5bd6ed"/></linearGradient>
@@ -42,16 +42,16 @@
   <g transform="translate(1094 270)" fill="none" stroke="#ceadff" stroke-width="3">
     <path d="M4 15h112v18H4zM4 43h112v18H4zM4 71h112v18H4z"/><circle cx="18" cy="24" r="3" fill="#ceadff"/><circle cx="18" cy="52" r="3" fill="#ceadff"/><circle cx="18" cy="80" r="3" fill="#ceadff"/><path d="M33 24h68M33 52h52M33 80h39"/>
   </g>
-  <text x="1090" y="372" class="label">4 · Top-K + resposta</text><text x="1090" y="402" class="small muted">Contexto relevante ao modelo</text>
+  <text x="1090" y="372" class="label">4 · Top-K + citações</text><text x="1090" y="402" class="small muted">Resposta com arquivo e trecho</text>
 
   <rect x="80" y="470" width="1275" height="105" rx="17" fill="#102331" stroke="#2b4557"/>
   <text x="110" y="509" class="eyebrow">A PERGUNTA SEGUE O MESMO CAMINHO</text>
-  <text x="110" y="548" class="mono">“Como protegemos credenciais?”  →  embedding  →  similaridade  →  documentos relevantes  →  resposta</text>
+  <text x="110" y="548" class="mono">“Como protegemos credenciais?”  →  embedding  →  cosseno  →  [S1] arquivo + trecho  →  resposta</text>
 
   <text x="84" y="644" class="eyebrow">REPOSITÓRIO DE LABORATÓRIOS</text>
   <g>
     <rect x="80" y="673" width="293" height="86" rx="14" class="pill"/><text x="101" y="710" class="label">00–02</text><text x="101" y="738" class="small">Ollama · MCP · AI Code Reviewer</text>
-    <rect x="390" y="673" width="293" height="86" rx="14" class="pill"/><text x="411" y="710" class="label">03 · RAG mais KISS</text><text x="411" y="738" class="small">.NET 11 · Ollama · vetor em memória</text>
+    <rect x="390" y="673" width="293" height="86" rx="14" class="pill"/><text x="411" y="710" class="label">03 · RAG KISS + fontes</text><text x="411" y="738" class="small">.NET 11 · Ollama · citações verificáveis</text>
     <rect x="700" y="673" width="293" height="86" rx="14" class="pill"/><text x="721" y="710" class="label">BACKLOG · 9 ideias</text><text x="721" y="738" class="small">Do protótipo ao RAG sobre PDFs</text>
     <rect x="1010" y="673" width="345" height="86" rx="14" class="pill"/><text x="1031" y="710" class="label">PRINCÍPIO KISS</text><text x="1031" y="738" class="small">Código direto para entender cada etapa</text>
   </g>
