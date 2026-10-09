@@ -1,6 +1,6 @@
 # KISS AI Labs
 
-![Diagrama dos exemplos KISS AI Labs: Ollama e MCP Spotify](assets/kiss-ai-labs-diagram.png)
+![Diagrama dos exemplos KISS AI Labs: Ollama e MCP Spotify](assets/ChatGPT Image Oct 9, 2026, 03_16_57 AM.png)
 
 Pequenos experimentos em **.NET 11** para estudar:
 
