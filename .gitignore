@@ -1,0 +1,54 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.nuget.props
+*.nuget.targets
+
+# User secrets
+secrets.json
+
+# Environment files (nunca versionar .env com tokens reais)
+.env
+.env.local
+.env.*.local
+
+# Node (caso algum dia adicione frontends)
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+
+# Tooling
+.ionide/
+.paket/
+fake/
+.build/
