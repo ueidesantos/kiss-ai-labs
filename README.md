@@ -1,6 +1,6 @@
 # KISS AI Labs
 
-![Capa KISS AI Labs: projetos existentes e próximos laboratórios RAG](assets/kiss_ai_lab.png)
+![KISS AI Labs: Ollama, MCP Spotify, AI Code Reviewer e RAG LOCAL](assets/kiss_ai_lab.png)
 
 Pequenos experimentos em **.NET 11** para estudar:
 

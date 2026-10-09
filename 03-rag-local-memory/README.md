@@ -1,5 +1,7 @@
 # 03 — RAG Local sem Vector Database
 
+![KISS AI Labs: painel RAG LOCAL com Markdown, embeddings, cosseno em memória e fontes](../assets/kiss_ai_lab.png)
+
 Um RAG didático: o programa lê Markdown, cria embeddings com Ollama, compara vetores usando similaridade de cosseno em memória e passa os documentos mais relevantes a um modelo de chat. A resposta pede IDs de citação e o terminal lista arquivo e trecho de cada fonte recuperada.
 
 ## Pré-requisitos
