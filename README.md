@@ -20,6 +20,7 @@ Pequenos experimentos em **.NET 11** para estudar:
 |--------------------------|-------------------------------|----------------------------------------------|
 | `00-hello-ollama/`       | .NET 11, Ollama, `HttpClient` | App Console conversando com LLM local via HTTP direto |
 | `01-mcp-spotify/`        | .NET 11, MCP, Spotify Web API | Servidor MCP mínimo com 2 tools (search + now playing) |
+| `02-ai-code-reviewer/`  | .NET 11, Ollama, Git          | Revisor local de diffs que aponta possíveis bugs sem alterar arquivos |
 
 ## Como usar
 
@@ -38,6 +39,9 @@ cd 00-hello-ollama/src
 dotnet build
 
 cd ../../01-mcp-spotify/src/McpSpotifyServer
+dotnet build
+
+cd ../../../02-ai-code-reviewer/src
 dotnet build
 ```
 
