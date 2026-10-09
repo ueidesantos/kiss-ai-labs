@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="820" viewBox="0 0 1440 820" role="img" aria-labelledby="title desc">
+  <title id="title">KISS AI Labs — RAG local</title>
+  <desc id="desc">Fluxo de recuperação aumentada por geração local: arquivos Markdown, embeddings Ollama, similaridade por cosseno em memória, Top-K e resposta local. Visão geral dos quatro laboratórios KISS.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101a2d"/><stop offset="1" stop-color="#172f40"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#32d6a0"/><stop offset="1" stop-color="#5bd6ed"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#06101c" flood-opacity=".38"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#67d9c2"/></marker>
+    <style>
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#eef6fb}.muted{fill:#a8bac9}.eyebrow{font-size:15px;font-weight:700;letter-spacing:3px;fill:#55d8af}.heading{font-size:42px;font-weight:750}.sub{font-size:19px}.card{fill:#1c3042;stroke:#314c5d;stroke-width:1.5}.label{font-size:17px;font-weight:700}.small{font-size:14px}.mono{font-family:Consolas,monospace;font-size:14px;fill:#c7d8e2}.pill{fill:#153d3b;stroke:#26896f;stroke-width:1}
+    </style>
+  </defs>
+  <rect width="1440" height="820" rx="30" fill="url(#bg)"/>
+  <circle cx="1290" cy="110" r="210" fill="#42d5a3" opacity=".045"/><circle cx="85" cy="730" r="270" fill="#59c9ea" opacity=".035"/>
+  <text x="86" y="75" class="eyebrow">KISS AI LABS · ESTUDO PRÁTICO DE IA LOCAL</text>
+  <text x="84" y="136" class="heading">RAG local, sem caixa-preta</text>
+  <text x="86" y="176" class="sub muted">Recuperação semântica explícita. Modelos locais. Nenhum banco vetorial.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="226" width="280" height="205" rx="19" class="card"/>
+    <rect x="405" y="226" width="280" height="205" rx="19" class="card"/>
+    <rect x="730" y="226" width="280" height="205" rx="19" class="card"/>
+    <rect x="1055" y="226" width="300" height="205" rx="19" class="card"/>
+  </g>
+  <path d="M365 325h33M690 325h33M1015 325h33" stroke="#67d9c2" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g transform="translate(110 263)" fill="none" stroke="#52d9af" stroke-width="3">
+    <path d="M0 15q0-9 9-9h39l18 18v54q0 8-8 8H9q-9 0-9-9z"/><path d="M48 6v19h18M13 42h39M13 56h39M13 70h29"/>
+  </g>
+  <text x="110" y="372" class="label">1 · Markdown local</text><text x="110" y="402" class="small muted">Arquivos pequenos e legíveis</text>
+
+  <g transform="translate(438 270)" fill="none" stroke="#5bd6ed" stroke-width="3">
+    <circle cx="34" cy="32" r="27"/><path d="M34 5v54M7 32h54M15 13l38 38M53 13 15 51"/><circle cx="34" cy="32" r="7" fill="#5bd6ed" stroke="none"/>
+  </g>
+  <text x="435" y="372" class="label">2 · Embeddings Ollama</text><text x="435" y="402" class="small muted">Representação vetorial local</text>
+
+  <g transform="translate(775 270)" fill="none" stroke="#ffc875" stroke-width="3">
+    <path d="M0 57h27V40h27V23h27"/><circle cx="11" cy="15" r="7"/><circle cx="47" cy="15" r="7"/><circle cx="83" cy="15" r="7"/><path d="m11 24 23 15m13-15L12 57m36-18 20 0"/>
+  </g>
+  <text x="760" y="372" class="label">3 · Cosseno em memória</text><text x="760" y="402" class="small muted">Ranking transparente dos textos</text>
+
+  <g transform="translate(1094 270)" fill="none" stroke="#ceadff" stroke-width="3">
+    <path d="M4 15h112v18H4zM4 43h112v18H4zM4 71h112v18H4z"/><circle cx="18" cy="24" r="3" fill="#ceadff"/><circle cx="18" cy="52" r="3" fill="#ceadff"/><circle cx="18" cy="80" r="3" fill="#ceadff"/><path d="M33 24h68M33 52h52M33 80h39"/>
+  </g>
+  <text x="1090" y="372" class="label">4 · Top-K + resposta</text><text x="1090" y="402" class="small muted">Contexto relevante ao modelo</text>
+
+  <rect x="80" y="470" width="1275" height="105" rx="17" fill="#102331" stroke="#2b4557"/>
+  <text x="110" y="509" class="eyebrow">A PERGUNTA SEGUE O MESMO CAMINHO</text>
+  <text x="110" y="548" class="mono">“Como protegemos credenciais?”  →  embedding  →  similaridade  →  documentos relevantes  →  resposta</text>
+
+  <text x="84" y="644" class="eyebrow">REPOSITÓRIO DE LABORATÓRIOS</text>
+  <g>
+    <rect x="80" y="673" width="293" height="86" rx="14" class="pill"/><text x="101" y="710" class="label">00–02</text><text x="101" y="738" class="small">Ollama · MCP · AI Code Reviewer</text>
+    <rect x="390" y="673" width="293" height="86" rx="14" class="pill"/><text x="411" y="710" class="label">03 · RAG mais KISS</text><text x="411" y="738" class="small">.NET 11 · Ollama · vetor em memória</text>
+    <rect x="700" y="673" width="293" height="86" rx="14" class="pill"/><text x="721" y="710" class="label">BACKLOG · 9 ideias</text><text x="721" y="738" class="small">Do protótipo ao RAG sobre PDFs</text>
+    <rect x="1010" y="673" width="345" height="86" rx="14" class="pill"/><text x="1031" y="710" class="label">PRINCÍPIO KISS</text><text x="1031" y="738" class="small">Código direto para entender cada etapa</text>
+  </g>
+</svg>

@@ -27,6 +27,12 @@ artifacts/
 *.nuget.props
 *.nuget.targets
 
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
 # User secrets
 secrets.json
 

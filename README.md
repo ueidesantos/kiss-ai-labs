@@ -1,12 +1,13 @@
 # KISS AI Labs
 
-![Diagrama dos exemplos KISS AI Labs: Ollama e MCP Spotify](assets/kiss_ai_lab.png)
+![Mapa dos KISS AI Labs e fluxo do RAG local sem banco vetorial](assets/kiss-ai-labs-rag-local.svg)
 
 Pequenos experimentos em **.NET 11** para estudar:
 
 - LLMs locais rodando via **Ollama**
 - **Model Context Protocol (MCP)** com integrações externas (Spotify)
 - Integração de IA com .NET sem overengineering
+- RAG local com embeddings e busca vetorial em memória
 - **Spec-Driven Development** (cada exercício tem sua `SPEC.md`)
 
 > **Princípio KISS**: Keep It Simple, Stupid.
@@ -21,6 +22,9 @@ Pequenos experimentos em **.NET 11** para estudar:
 | `00-hello-ollama/`       | .NET 11, Ollama, `HttpClient` | App Console conversando com LLM local via HTTP direto |
 | `01-mcp-spotify/`        | .NET 11, MCP, Spotify Web API | Servidor MCP mínimo com 2 tools (search + now playing) |
 | `02-ai-code-reviewer/`  | .NET 11, Ollama, Git          | Revisor local de diffs que aponta possíveis bugs sem alterar arquivos |
+| `03-rag-local-memory/` | .NET 11, Ollama, embeddings  | RAG de Markdown com similaridade de cosseno em memória, sem vector database |
+
+O backlog das nove ideias de RAG está em [`BACKLOG.md`](BACKLOG.md).
 
 ## Como usar
 
@@ -42,6 +46,9 @@ cd ../../01-mcp-spotify/src/McpSpotifyServer
 dotnet build
 
 cd ../../../02-ai-code-reviewer/src
+dotnet build
+
+cd ../../03-rag-local-memory/src
 dotnet build
 ```
 
