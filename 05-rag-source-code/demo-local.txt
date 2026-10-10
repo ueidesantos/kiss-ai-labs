@@ -1,0 +1,45 @@
+Lendo 3 arquivos C#...
+
+=== Top-K solicitado: 2; documentos recuperados: 2 ===
+Documentos recuperados:
+  DiscountPolicy.cs (cosseno: 0,632)
+  OrderService.cs (cosseno: 0,605)
+Contexto enviado (914 caracteres UTF-16, não tokens):
+[S1] [Arquivo: DiscountPolicy.cs:1-12]
+namespace SampleShop;
+
+// Regra de negócio: desconto permitido de zero até 20 por cento.
+public static class DiscountPolicy
+{
+    public static void Validate(decimal discountPercent)
+    {
+        if (discountPercent < 0 || discountPercent > 20)
+            throw new ArgumentOutOfRangeException(nameof(discountPercent),
+                "O desconto deve estar entre 0 e 20 por cento.");
+    }
+}
+
+
+---
+
+[S2] [Arquivo: OrderService.cs:1-12]
+namespace SampleShop;
+
+public sealed class OrderService
+{
+    // A regra de desconto é aplicada antes de calcular o total do pedido.
+    public decimal CalculateTotal(decimal subtotal, decimal discountPercent)
+    {
+        if (subtotal < 0) throw new ArgumentOutOfRangeException(nameof(subtotal));
+        DiscountPolicy.Validate(discountPercent);
+        return subtotal * (1 - discountPercent / 100);
+    }
+}
+
+
+Resposta:
+A regra de desconto é aplicada antes de calcular o total do pedido, de acordo com o método CalculateTotal da classe OrderService.
+
+Fontes recuperadas:
+[S1] DiscountPolicy.cs:1-12 — namespace SampleShop; // Regra de negócio: desconto permitido de zero até 20 por cento. public static class DiscountPolicy { public static void Validate(decimal discountPercent) { if (discountPercent < 0 || discountPerce…
+[S2] OrderService.cs:1-12 — namespace SampleShop; public sealed class OrderService { // A regra de desconto é aplicada antes de calcular o total do pedido. public decimal CalculateTotal(decimal subtotal, decimal discountPercent) { if (subtotal < 0)…

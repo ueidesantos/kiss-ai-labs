@@ -7,7 +7,7 @@ Sequência sugerida: começar com o menor fluxo que torne a recuperação semân
 | 1 | **RAG Local sem Vector Database** | C#, .NET 11, Ollama, embeddings | Perguntar sobre Markdown; gerar embeddings, ranquear por cosseno em memória e responder com contexto recuperado. | — | Concluído em `03-rag-local-memory/` |
 | 2 | **RAG com Citação da Fonte** | C#, .NET 11, Ollama, embeddings | Exibir arquivo e trecho usados para responder. | 1 | Incorporado ao `03-rag-local-memory/` |
 | 3 | **RAG com Top-K Configurável** | C#, .NET 11, Ollama | Variar a quantidade de trechos recuperados e observar contexto, precisão e ruído. | 1 | Concluído em `04-rag-top-k/` |
-| 4 | **RAG sobre Código-Fonte** | C#, .NET 11, Ollama, embeddings | Indexar `.cs` e localizar regras, classes e validações. | 1, 2 | Pendente |
+| 4 | **RAG sobre Código-Fonte** | C#, .NET 11, Ollama, embeddings | Indexar `.cs` e localizar regras, classes e validações. | 1, 2 | Concluído em `05-rag-source-code/` |
 | 5 | **RAG Local com SQLite-vec** | Python, Ollama, SQLite-vec | Persistir embeddings localmente para indexação reproduzível sem serviço externo. | Conceitos do 1 | Pendente |
 | 6 | **RAG com Chunking KISS** | Python, Ollama, NumPy | Comparar documento inteiro e divisão por tamanho na recuperação. | Conceitos do 1 | Pendente |
 | 7 | **RAG com Filtro de Similaridade** | Python, Ollama, embeddings | Descartar contexto abaixo de um limiar antes da geração. | Conceitos do 1 | Pendente |
