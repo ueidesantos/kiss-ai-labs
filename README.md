@@ -1,5 +1,7 @@
 # KISS AI Labs
 
+[**Visite a página do projeto →**](https://ueidesantos.github.io/kiss-ai-labs/) — apresentação, laboratórios e histórico de evolução.
+
 ![KISS AI Labs: destaque Figma MCP, SDD e agents; labs 00 a 08](assets/kiss-ai-labs-figma-mcp.png)
 
 **Laboratório prático de IA local em .NET e Python: da primeira chamada a um LLM à recuperação semântica sobre seus documentos.**
