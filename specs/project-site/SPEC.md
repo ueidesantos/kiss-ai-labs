@@ -20,4 +20,15 @@ Publicação confirmada: GitHub Pages em main /docs, build 8239f6e concluído co
 
 ## Sobre mim
 
-REQ-6: seção Sobre mim após os laboratórios e antes do histórico, com nome Ueide Santos, botão para https://ueidesantos.github.io/ueide-santos-cv-web/ e âncora na navegação. Sem biografia presumida.
+REQ-6: seção Sobre mim como última seção após o histórico e último item do menu, depois de GitHub, com nome Ueide Santos, botão para https://ueidesantos.github.io/ueide-santos-cv-web/ e âncora na navegação. Sem biografia presumida.
+
+## Revisão adversarial de Marketing e Vendas — 2026-10-11
+
+Papéis: UX e implementação frontend. Escopo autorizado: melhorar clareza, navegação e conversão para leitura dos labs e currículo, preservando identidade e evidências reais.
+
+- REQ-7: comunicar público desenvolvedor .NET/Python, problemas de aplicação e conteúdo entregue, sem métricas ou provas sociais inventadas.
+- REQ-8: oferecer três pontos de entrada: modelo local (00), busca em documentos/código (03–05) e especificação/delegação (07–08).
+- REQ-9: explicar acrônimos e dependências; distinguir experimentos de soluções de produção; expor limitações de 06, 07 e 08 junto dos cards.
+- REQ-10: manter nove cards, capa intacta, CTA principal para escolher trilha, secundário para lab 00, links de evidência e metadados coerentes.
+
+Aceite: Sobre mim é último link do menu e última seção de main; três rotas de entrada; nove cards; âncoras e assets válidos; sem overflow em 320/390/768/1440 px; teclado e movimento reduzido preservados. Evidências em MARKETING-REVIEW.md. Deploy verificado pelo coordenador.
