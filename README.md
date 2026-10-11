@@ -1,6 +1,6 @@
 # KISS AI Labs
 
-![KISS AI Labs: Ollama, MCP Spotify, AI Code Reviewer, RAG Local e Top-K Configurável](assets/kiss-ai-labs-top-k.png)
+![KISS AI Labs: 00 Hello Ollama, 01 MCP Spotify, 02 AI Code Reviewer, 03 RAG Local, 04 Top-K Configurável e 05 RAG sobre Código-Fonte](assets/kiss-ai-labs-projects.png)
 
 **Laboratório prático de IA local em .NET: da primeira chamada a um LLM à recuperação semântica sobre seus documentos.**
 
