@@ -18,3 +18,7 @@
 4. Conferir gates e publicar os commits com hash remoto confirmado.
 
 Veja [convergence.md](../specs/lab-08-figma-mcp/convergence.md). Não tratar fixture como substituto desses requisitos.
+
+## Atualização do link e alternativa de entrega — 2026-10-11
+
+Link da comunidade confirmado pelo usuário e incluído nos READMEs principal e interno. Usuário aceitou publicar com o link quando o acesso não for possível. Nesta tentativa, nenhuma ferramenta Figma estava exposta e a consulta web à cópia Design retornou inacessível. Não há evidência para atribuir a falha à assinatura. Alteração documental, sem mudança no código; JSONs e diff verificados.

@@ -4,7 +4,7 @@
 
 **Figma faz parte obrigatória da entrega.** Ele define a especificação visual; documentos de negócio definem as regras; o TL combina as duas fontes e delega Front/Back. Stack .NET11/C#, sem pacotes externos.
 
-O arquivo alvo fornecido pelo usuário é [KissProject4Codex](https://www.figma.com/design/ZUseBZLMJIIEN5HjFBB0fu/KissProject-4-Codex--Community-?node-id=0-1). Os links recebidos e a procedência estão em [figma.source.json](figma.source.json). **Conteúdo ainda não lido nem alterado por este agent.** Contexto real, frames e conformidade visual permanecem pendentes; a imagem acima explica a arquitetura e não é uma captura do Figma.
+O design de referência está no [Figma — KissProject 4 Codex](https://www.figma.com/community/file/1691245874203095002/kissproject-4-codex?fuid=999015154036575904). Este é o link principal confirmado pelo usuário; a [cópia editável](https://www.figma.com/design/L9IkL9GoyMixBb3bbUXihp/KissProject-4-Codex--Community-?node-id=0-1) e a procedência estão em [figma.source.json](figma.source.json). O usuário aceitou a entrega com o link quando o acesso não estiver disponível. **Conteúdo e integração MCP real ainda não validados.** A imagem acima explica a arquitetura e não é uma captura do Figma. Não foi confirmado que a falta de assinatura seja a causa da limitação.
 
 ## Demanda KISS
 

@@ -14,7 +14,7 @@ Aprenda construindo aplicações pequenas em C#/.NET 11 e Python: converse com m
 
 ## Destaque: Figma como especificação
 
-O [lab 08](08-sdd-figma-mcp/README.md) conecta design, documentação de negócio e desenvolvimento guiado por SPEC. O TL usa contexto Figma via MCP e RAG para delegar Front/Back. Inclui cliente .NET 11, kit detalhado e demonstração offline; o arquivo Figma real e a conformidade visual permanecem pendentes. O [lab 07](07-sdd-agents-business-rag/README.md) fornece a aplicação funcional e o fluxo de coordenação.
+O [lab 08](08-sdd-figma-mcp/README.md) conecta design, documentação de negócio e desenvolvimento guiado por SPEC. O TL usa contexto Figma via MCP e RAG para delegar Front/Back. Inclui cliente .NET 11, kit detalhado e demonstração offline; o [design está disponível no Figma](https://www.figma.com/community/file/1691245874203095002/kissproject-4-codex?fuid=999015154036575904), com entrega por link aceita pelo usuário. A captura MCP e a conformidade visual ainda não foram validadas. O [lab 07](07-sdd-agents-business-rag/README.md) fornece a aplicação funcional e o fluxo de coordenação.
 
 ## Para quem é
 
@@ -177,7 +177,7 @@ O [backlog](BACKLOG.md) reúne os laboratórios mantidos na trilha e suas depend
 | Disponível no [lab 05](05-rag-source-code/README.md) | RAG sobre código-fonte em C#/.NET | Localizar regras, classes e validações em arquivos `.cs` |
 | Implementado; validação e publicação pendentes | [Persistência com Python e SQLite-vec — lab 06](06-rag-sqlite-vec/README.md) | Reutilizar embeddings em uma base local |
 | Núcleo testado; integração real/publicação pendentes | [SDD + agents + RAG — lab 07](07-sdd-agents-business-rag/README.md) | Especificar, delegar e validar uma demanda KISS com rastreabilidade |
-| Integração MCP testada; arquivo Figma real pendente | [Figma como especificação — lab 08](08-sdd-figma-mcp/README.md) | Derivar requisitos visuais do design e coordenar Front/Back |
+| Cliente MCP testado com mocks; design disponível por link | [Figma como especificação — lab 08](08-sdd-figma-mcp/README.md) | Derivar requisitos visuais do design e coordenar Front/Back |
 
 ### Evolução do repositório
 

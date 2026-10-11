@@ -55,3 +55,7 @@ TL: consultar MCP e negócio, emitir SPEC candidata rastreável, definir contrat
 ## Gates
 
 G1: escopo definido. G2 técnico: contrato MCP e API definidos. G2 visual: pendente de arquivo real e contexto de alta fidelidade. G3/G4: código de integração testado com mock, sem confundir mock com Figma conectado. Entrega final requer criação/captura no Figma, verificação visual e publicação.
+
+## Ajuste de entrega autorizado pelo usuário — 2026-10-11
+
+O usuário confirmou como referência principal o [arquivo da comunidade](https://www.figma.com/community/file/1691245874203095002/kissproject-4-codex?fuid=999015154036575904) e autorizou manter pelo menos o link quando o acesso não for possível. A cópia Design mais recente é `L9IkL9GoyMixBb3bbUXihp`, nó informado `0:1`, sem conteúdo inspecionado. A entrega documental pode seguir com esse link; captura MCP e conformidade visual continuam sem validação e não devem ser declaradas concluídas. Essa exceção substitui a exigência de acesso real como bloqueio para publicar a documentação. A hipótese de limitação por assinatura não foi confirmada.

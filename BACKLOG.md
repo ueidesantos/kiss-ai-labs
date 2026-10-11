@@ -17,7 +17,7 @@ Adicionados por solicitação direta do usuário. Os itens retirados do roadmap 
 | Lab | Entrega | Estado |
 |---|---|---|
 | 07 | SDD + agents + RAG de negócio; kit completo e simulador .NET 11 | Núcleo/testes aprovados; integração real e publicação pendentes |
-| 08 | Especificação pelo Figma via MCP + TL/Front/Back + RAG | Cliente e replay implementados; acesso/criação no Figma e gate visual obrigatórios pendentes |
+| 08 | Especificação pelo Figma via MCP + TL/Front/Back + RAG | Cliente e replay implementados; link Figma entregue como alternativa aceita; captura MCP e revisão visual não validadas |
 
 ## Critérios comuns de conclusão
 
