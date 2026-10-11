@@ -1,0 +1,13 @@
+{
+  "mode": "offline-fixture",
+  "endpoint": null,
+  "nodeId": null,
+  "note": "FICTÍCIO. Criado para testar o fluxo sem Figma. Não é exportação, captura ou design real.",
+  "metadata": {
+    "content": [{"type":"text","text":"FIXTURE FICTÍCIA: simulador de desconto com estados Inicial, Calculando, Sucesso, Erro e Mobile. Não possui IDs reais."}]
+  },
+  "designContext": {
+    "content": [{"type":"text","text":"INSTRUÇÕES FICTÍCIAS PARA DEMO: formulário vertical com labels Valor do pedido (R$) e Desconto (%); botão Simular; estado Calculando desabilita botão; sucesso mostra total; erro mostra mensagem e oculta resultado antigo. Stack ASP.NET Core .NET11 + HTML/JS. Os valores finais de design devem vir do Figma real."}]
+  },
+  "screenshot": {"content": [], "note":"Sem screenshot. Gate visual pendente."}
+}

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador de desconto · KISS AI Lab 07</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; font: 1rem/1.5 system-ui, sans-serif; color: #172b36; background: #f1f5f7; }
+    main { max-width: 560px; margin: 32px auto; padding: 28px; border-radius: 16px; background: white; }
+    h1 { margin-top: 0; line-height: 1.2; }
+    label { display: block; margin-top: 20px; font-weight: 600; }
+    input, button { width: 100%; padding: 12px; font: inherit; border-radius: 6px; }
+    input { margin-top: 6px; border: 1px solid #73818b; }
+    button { margin-top: 24px; border: 0; color: white; background: #165c72; cursor: pointer; }
+    button:disabled { opacity: .65; cursor: wait; }
+    :focus-visible { outline: 3px solid #bd6800; outline-offset: 3px; }
+    .note { color: #475966; }
+    #status { min-height: 1.5em; }
+    #error { color: #a01919; }
+    dl { padding: 16px; background: #eef7f5; border-radius: 8px; }
+    dt { font-weight: 600; }
+    dd { margin: 0 0 12px; }
+    dd:last-child { margin-bottom: 0; font-size: 1.4rem; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="note">KISS AI Lab 07 · SDD, agents e RAG de negócio</p>
+    <h1>Simulador de desconto</h1>
+    <p>Informe o valor do pedido e um desconto de até 20%. Esta simulação não grava pedidos nem realiza cobranças.</p>
+    <form id="discount-form">
+      <label for="amount">Valor do pedido (R$)</label>
+      <input id="amount" name="amount" type="number" min="0" step="any" value="100" required>
+      <label for="discount">Desconto (%)</label>
+      <input id="discount" name="discount" type="number" min="0" max="20" step="any" value="10" required aria-describedby="discount-help">
+      <small id="discount-help">Limite da política de negócio: de 0 a 20%.</small>
+      <button id="submit" type="submit">Simular</button>
+    </form>
+    <p id="status" role="status" aria-live="polite"></p>
+    <p id="error" role="alert" hidden></p>
+    <section id="result" aria-label="Resultado da simulação" aria-live="polite" hidden>
+      <dl>
+        <dt>Valor original</dt><dd id="original"></dd>
+        <dt>Desconto</dt><dd id="percentage"></dd>
+        <dt>Valor final</dt><dd id="total"></dd>
+      </dl>
+    </section>
+  </main>
+  <script>
+    // REQ-3: contrato compartilhado com a API ASP.NET Core; valores monetários vêm da API.
+    const form = document.getElementById('discount-form');
+    const submit = document.getElementById('submit');
+    const status = document.getElementById('status');
+    const error = document.getElementById('error');
+    const result = document.getElementById('result');
+    // Compara decimais escritos, sem expandir expoentes nem arredondar dinheiro.
+    function decimalIdentity(text) {
+      const match = String(text).trim().match(/^([+-]?)(\d*)(?:\.(\d*))?(?:e([+-]?\d+))?$/i);
+      if (!match || !(match[2] || match[3])) return null;
+      let digits = (match[2] + (match[3] || '')).replace(/^0+/, '');
+      if (!digits) return '0';
+      let exponent = BigInt(match[4] || '0') - BigInt((match[3] || '').length);
+      const trailing = digits.match(/0+$/);
+      if (trailing) {
+        digits = digits.slice(0, -trailing[0].length);
+        exponent += BigInt(trailing[0].length);
+      }
+      return (match[1] === '-' ? '-' : '') + digits + 'e' + exponent;
+    }
+    function formatMoney(text) {
+      const [whole, cents] = text.split('.');
+      return 'R$ ' + whole.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + cents;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (submit.disabled || !form.reportValidity()) return;
+      result.hidden = true;
+      error.hidden = true;
+      status.textContent = '';
+      const amount = Number(form.elements.amount.value);
+      const discount = Number(form.elements.discount.value);
+      if (!Number.isFinite(amount) || amount <= 0 || !Number.isFinite(discount) || discount < 0 || discount > 20) {
+        error.textContent = 'Informe um valor maior que zero e um desconto entre 0 e 20%.';
+        error.hidden = false;
+        return;
+      }
+      if (decimalIdentity(form.elements.amount.value) !== decimalIdentity(amount.toString()) ||
+          decimalIdentity(form.elements.discount.value) !== decimalIdentity(discount.toString())) {
+        error.textContent = 'A precisão informada não pode ser preservada pelo navegador. Use um valor representável sem perda de dígitos.';
+        error.hidden = false;
+        return;
+      }
+      submit.disabled = true;
+      form.setAttribute('aria-busy', 'true');
+      status.textContent = 'Calculando…';
+      try {
+        const response = await fetch('/api/discount', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount, discount })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : 'Não foi possível calcular o desconto.');
+        if (![data.original, data.total].every(value => typeof value === 'string' && /^\d+\.\d{2}$/.test(value)) ||
+            typeof data.discount !== 'string' || !/^\d+(?:\.\d+)?$/.test(data.discount) || Number(data.discount) > 20) {
+          throw new Error('O servidor retornou um resultado inválido.');
+        }
+        document.getElementById('original').textContent = formatMoney(data.original);
+        document.getElementById('percentage').textContent = data.discount.replace('.', ',') + '%';
+        document.getElementById('total').textContent = formatMoney(data.total);
+        result.hidden = false;
+        status.textContent = 'Simulação concluída.';
+      } catch (failure) {
+        error.textContent = failure instanceof TypeError || failure instanceof SyntaxError
+          ? 'Não foi possível consultar o servidor. Verifique se a aplicação está em execução e tente novamente.'
+          : failure.message;
+        error.hidden = false;
+        status.textContent = '';
+      } finally {
+        submit.disabled = false;
+        form.removeAttribute('aria-busy');
+      }
+    });
+  </script>
+</body>
+</html>

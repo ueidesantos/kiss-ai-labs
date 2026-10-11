@@ -1,6 +1,6 @@
 # Backlog — KISS AI Labs
 
-Sequência sugerida: começar com o menor fluxo que torne a recuperação semântica observável e adicionar persistência, fontes e filtros depois.
+Trilha atual: recuperação semântica em memória, fontes, comparação de Top-K, consulta a código-fonte e persistência local.
 
 | Ordem | Laboratório | Stack | Resultado esperado | Dependência | Estado |
 |---:|---|---|---|---|---|
@@ -9,10 +9,15 @@ Sequência sugerida: começar com o menor fluxo que torne a recuperação semân
 | 3 | **RAG com Top-K Configurável** | C#, .NET 11, Ollama | Variar a quantidade de trechos recuperados e observar contexto, precisão e ruído. | 1 | Concluído em `04-rag-top-k/` |
 | 4 | **RAG sobre Código-Fonte** | C#, .NET 11, Ollama, embeddings | Indexar `.cs` e localizar regras, classes e validações. | 1, 2 | Concluído em `05-rag-source-code/` |
 | 5 | **RAG Local com SQLite-vec** | Python, Ollama, SQLite-vec | Persistir embeddings localmente para indexação reproduzível sem serviço externo. | Conceitos do 1 | Implementado em `06-rag-sqlite-vec/`; validação nativa e publicação pendentes |
-| 6 | **RAG com Chunking KISS** | Python, Ollama, NumPy | Comparar documento inteiro e divisão por tamanho na recuperação. | Conceitos do 1 | Pendente |
-| 7 | **RAG com Filtro de Similaridade** | Python, Ollama, embeddings | Descartar contexto abaixo de um limiar antes da geração. | Conceitos do 1 | Pendente |
-| 8 | **RAG Local sobre PDFs** | Python, Ollama, PyMuPDF | Extrair texto local, criar chunks e consultar sem enviar arquivos a serviços externos. | 6, 7 | Pendente |
-| 9 | **RAG Local com .NET** | C#, .NET 11, Ollama, Microsoft.Extensions.AI | Reimplementar consultas a Markdown usando as abstrações de IA do ecossistema .NET. | 1, 2 | Pendente |
+
+## SDD, agents e design
+
+Adicionados por solicitação direta do usuário. Os itens retirados do roadmap permanecem fora da trilha.
+
+| Lab | Entrega | Estado |
+|---|---|---|
+| 07 | SDD + agents + RAG de negócio; kit completo e simulador .NET 11 | Núcleo/testes aprovados; integração real e publicação pendentes |
+| 08 | Especificação pelo Figma via MCP + TL/Front/Back + RAG | Cliente e replay implementados; acesso/criação no Figma e gate visual obrigatórios pendentes |
 
 ## Critérios comuns de conclusão
 
@@ -23,4 +28,4 @@ Sequência sugerida: começar com o menor fluxo que torne a recuperação semân
 
 ## Entrega pendente de validação/publicação
 
-O lab 06 já tem código, documentação e testes preparados. Conclua os testes com SQLite-vec instalado e a demo com Ollama antes de publicar e avançar ao próximo item. Consulte `06-rag-sqlite-vec/VALIDATION.md`.
+O lab 06 já tem código, documentação e testes preparados. Conclua os testes com SQLite-vec instalado e a demo com Ollama antes de declarar esse lab concluído. Consulte `06-rag-sqlite-vec/VALIDATION.md`.

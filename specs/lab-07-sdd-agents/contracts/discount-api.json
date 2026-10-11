@@ -1,0 +1,24 @@
+{
+  "spec": "../SPEC.md",
+  "endpoint": { "method": "POST", "path": "/api/discount", "contentType": "application/json" },
+  "request": {
+    "type": "object",
+    "required": ["amount", "discount"],
+    "additionalProperties": false,
+    "properties": {
+      "amount": { "type": "number", "exclusiveMinimum": 0 },
+      "discount": { "type": "number", "minimum": 0, "maximum": 20 }
+    },
+    "example": { "amount": 100, "discount": 10 }
+  },
+  "success": {
+    "status": 200,
+    "example": { "original": "100.00", "discount": "10", "total": "90.00" },
+    "fields": { "original": "decimal string, two places", "discount": "decimal string", "total": "decimal string, two places" }
+  },
+  "invalid": { "status": 400, "example": { "error": "O desconto deve estar entre 0 e 20%." } },
+  "numericImplementation": "System.Decimal; values outside the decimal representation are rejected",
+  "rounding": "MidpointRounding.AwayFromZero; HALF_UP for positive monetary amounts",
+  "page": { "method": "GET", "path": "/", "contentType": "text/html; charset=utf-8" },
+  "sideEffects": "No order persistence or payment"
+}

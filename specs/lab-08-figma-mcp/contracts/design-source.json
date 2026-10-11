@@ -1,0 +1,21 @@
+{
+  "purpose": "Document the provenance expected from a Figma design source; not a fabricated capture",
+  "realCaptureFields": ["mode", "endpoint", "nodeId", "time", "protocolVersion", "metadata", "designContext", "screenshot"],
+  "realMode": "figma-mcp",
+  "workflowRealSource": "FIGMA",
+  "workflowFixtureSource": "FIGMA-FIXTURE",
+  "endpoint": "http://127.0.0.1:3845/mcp",
+  "protocolVersionRequested": "2025-06-18",
+  "requiredTools": ["get_metadata", "get_design_context", "get_screenshot"],
+  "fileRequired": true,
+  "fileUrl": "https://www.figma.com/design/ZUseBZLMJIIEN5HjFBB0fu/KissProject-4-Codex--Community-?node-id=0-1",
+  "framesToCreate": [
+    { "name": "01 Inicial", "width": 1440, "height": 900, "nodeId": null },
+    { "name": "02 Calculando", "width": 1440, "height": 900, "nodeId": null },
+    { "name": "03 Sucesso", "width": 1440, "height": 900, "nodeId": null },
+    { "name": "04 Erro", "width": 1440, "height": 900, "nodeId": null },
+    { "name": "05 Mobile", "width": 390, "height": 844, "nodeId": null }
+  ],
+  "status": "user-provided-file-not-read; frame-creation-and-capture-pending",
+  "acceptance": "Actual file URL, node IDs, original MCP evidence and visual review required; mocks do not satisfy this gate"
+}

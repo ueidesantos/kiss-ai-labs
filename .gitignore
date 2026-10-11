@@ -63,3 +63,5 @@ fake/
 06-rag-sqlite-vec/*.sqlite3
 06-rag-sqlite-vec/*.sqlite3-*
 06-rag-sqlite-vec/.venv-deps/
+07-sdd-agents-business-rag/runs/
+08-sdd-figma-mcp/runs/

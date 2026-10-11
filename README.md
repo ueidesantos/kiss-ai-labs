@@ -1,6 +1,6 @@
 # KISS AI Labs
 
-![KISS AI Labs: 00 Hello Ollama, 01 MCP Spotify, 02 AI Code Reviewer, 03 RAG Local, 04 Top-K Configurável, 05 RAG sobre Código-Fonte e 06 SQLite-vec](assets/kiss-ai-labs-sqlite-vec.png)
+![KISS AI Labs: destaque Figma MCP, SDD e agents; labs 00 a 08](assets/kiss-ai-labs-figma-mcp.png)
 
 **Laboratório prático de IA local em .NET e Python: da primeira chamada a um LLM à recuperação semântica sobre seus documentos.**
 
@@ -11,6 +11,10 @@ Aprenda construindo aplicações pequenas em C#/.NET 11 e Python: converse com m
 > **Fábrica de software com agents:** o repositório inclui um fluxo de desenvolvimento guiado por especificações (SDD), os papéis da equipe e templates reutilizáveis. Consulte [AGENTS.md](AGENTS.md) e [templates/sdd](templates/sdd/).
 
 > **KISS — Keep It Simple, Stupid.** Exemplos pequenos, chamadas HTTP explícitas e poucas peças para entender cada etapa. A complexidade deve servir ao conceito que o laboratório ensina.
+
+## Destaque: Figma como especificação
+
+O [lab 08](08-sdd-figma-mcp/README.md) conecta design, documentação de negócio e desenvolvimento guiado por SPEC. O TL usa contexto Figma via MCP e RAG para delegar Front/Back. Inclui cliente .NET 11, kit detalhado e demonstração offline; o arquivo Figma real e a conformidade visual permanecem pendentes. O [lab 07](07-sdd-agents-business-rag/README.md) fornece a aplicação funcional e o fluxo de coordenação.
 
 ## Para quem é
 
@@ -36,7 +40,7 @@ Esses exercícios ajudam a praticar decisões que aparecem no trabalho com IA: q
 
 ## Trilha de aprendizado
 
-Siga a sequência **00 → 01 → 02 → 03 → 04 → 05 → 06**. Cada laboratório é independente e tem seu próprio guia.
+Siga a sequência **00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08**. Cada laboratório é independente e tem seu próprio guia.
 
 | Etapa | Laboratório | O que você constrói | Tecnologias e pré-requisitos específicos |
 |---|---|---|---|
@@ -47,6 +51,8 @@ Siga a sequência **00 → 01 → 02 → 03 → 04 → 05 → 06**. Cada laborat
 | 04 — Contexto e ruído | [RAG com Top-K Configurável](04-rag-top-k/README.md) | Comparação de vários valores de K com os mesmos embeddings e ranking | .NET 11, Ollama, documentos Markdown pequenos |
 | 05 — Código-fonte | [RAG sobre Código-Fonte](05-rag-source-code/README.md) | Busca semântica de regras e classes em `.cs`, com arquivos e linhas como fontes | .NET 11, Ollama, embeddings em memória |
 | 06 — Persistência | [RAG Local com SQLite-vec](06-rag-sqlite-vec/README.md) | Indexação e consulta separadas, com vetores persistidos em SQLite; validação nativa pendente | Python, Ollama, SQLite-vec |
+| 07 — Fábrica KISS | [SDD + agents + RAG](07-sdd-agents-business-rag/README.md) | Kit completo da demanda, TL delegando Front/Back e simulador de descontos | .NET 11, ASP.NET Core, HTML/JS, Ollama opcional |
+| 08 — Design como especificação | [Figma MCP + SDD + agents](08-sdd-figma-mcp/README.md) | Capturar especificação no Figma, combinar negócio e delegar; gate Figma real pendente | .NET 11, MCP, Figma, RAG e agents |
 
 **Comece pelo 00** para conhecer a API do Ollama. **Explore o 03** para uma demonstração completa de perguntas sobre documentos. O lab 01 é o exemplo com integração externa; os labs 00, 02, 03, 04 e 05 podem usar modelos executados na sua máquina.
 
@@ -152,6 +158,8 @@ dotnet build 03-rag-local-memory/src/RagLocalMemory.csproj
 dotnet build 04-rag-top-k/src/RagTopK.csproj
 dotnet build 05-rag-source-code/src/RagSourceCode.csproj
 python -m py_compile 06-rag-sqlite-vec/src/rag.py 06-rag-sqlite-vec/tests/test_rag.py
+dotnet build 07-sdd-agents-business-rag/tests/LabTests.csproj
+dotnet build 08-sdd-figma-mcp/tests/McpTests.csproj
 ```
 
 Compilar não exige modelos carregados nem token do Spotify; executar cada cenário exige seus pré-requisitos. O lab 04 inclui um teste de integração HTTP sem modelos: `pwsh -File 04-rag-top-k/tests/validate.ps1`. O lab 05 também possui teste HTTP: `pwsh -File 05-rag-source-code/tests/validate.ps1`. O repositório ainda não possui pipeline de CI nem testes abrangendo todos os labs.
@@ -160,7 +168,7 @@ O lab 06 tem uma suíte offline com SQLite-vec real: `python 06-rag-sqlite-vec/t
 
 ## Roadmap
 
-O [backlog de RAG](BACKLOG.md) reúne as nove propostas e suas dependências. O estado atual e as evoluções planejadas são:
+O [backlog](BACKLOG.md) reúne os laboratórios mantidos na trilha e suas dependências. O estado atual é:
 
 | Estado | Entrega | Próximo aprendizado |
 |---|---|---|
@@ -168,9 +176,8 @@ O [backlog de RAG](BACKLOG.md) reúne as nove propostas e suas dependências. O 
 | Disponível no [lab 04](04-rag-top-k/README.md) | Comparação de Top-K na mesma execução, com contexto completo e fontes | Avaliar relevância e ruído com embeddings reutilizados |
 | Disponível no [lab 05](05-rag-source-code/README.md) | RAG sobre código-fonte em C#/.NET | Localizar regras, classes e validações em arquivos `.cs` |
 | Implementado; validação e publicação pendentes | [Persistência com Python e SQLite-vec — lab 06](06-rag-sqlite-vec/README.md) | Reutilizar embeddings em uma base local |
-| Planejado | Chunking e filtro de similaridade em Python | Comparar granularidade e descartar resultados fracos |
-| Planejado | PDFs locais com Python e PyMuPDF | Extrair texto e consultar documentos |
-| Planejado | RAG com `Microsoft.Extensions.AI` | Explorar as abstrações de IA do ecossistema .NET |
+| Núcleo testado; integração real/publicação pendentes | [SDD + agents + RAG — lab 07](07-sdd-agents-business-rag/README.md) | Especificar, delegar e validar uma demanda KISS com rastreabilidade |
+| Integração MCP testada; arquivo Figma real pendente | [Figma como especificação — lab 08](08-sdd-figma-mcp/README.md) | Derivar requisitos visuais do design e coordenar Front/Back |
 
 ### Evolução do repositório
 
