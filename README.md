@@ -8,6 +8,8 @@ Aprenda construindo aplicações pequenas em C#/.NET 11 e Python: converse com m
 
 [Começar agora](#comece-aqui) · [Trilha de aprendizado](#trilha-de-aprendizado) · [Demo RAG](#demonstração-principal-rag-local) · [Roadmap](#roadmap) · [Contribuir](#como-contribuir)
 
+> **Fábrica de software com agents:** o repositório inclui um fluxo de desenvolvimento guiado por especificações (SDD), os papéis da equipe e templates reutilizáveis. Consulte [AGENTS.md](AGENTS.md) e [templates/sdd](templates/sdd/).
+
 > **KISS — Keep It Simple, Stupid.** Exemplos pequenos, chamadas HTTP explícitas e poucas peças para entender cada etapa. A complexidade deve servir ao conceito que o laboratório ensina.
 
 ## Para quem é
@@ -137,6 +139,8 @@ NN-nome-do-lab/
 ├── README.md   # Setup, execução e conceitos do exercício
 └── src/        # Código-fonte da aplicação
 ```
+
+Para mudanças que envolvam mais de um laboratório ou uma funcionalidade nova, a fábrica SDD define papéis, gates e rastreabilidade em [AGENTS.md](AGENTS.md). Crie uma pasta `specs/<id-do-trabalho>/` usando os arquivos de [templates/sdd](templates/sdd/); para mudanças pequenas nos labs, mantenha o `SPEC.md` junto ao laboratório.
 
 Alguns labs também incluem `assets/` e documentos de exemplo. Para compilar todos os projetos, execute na raiz:
 
