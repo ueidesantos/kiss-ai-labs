@@ -8,7 +8,7 @@ Sequência sugerida: começar com o menor fluxo que torne a recuperação semân
 | 2 | **RAG com Citação da Fonte** | C#, .NET 11, Ollama, embeddings | Exibir arquivo e trecho usados para responder. | 1 | Incorporado ao `03-rag-local-memory/` |
 | 3 | **RAG com Top-K Configurável** | C#, .NET 11, Ollama | Variar a quantidade de trechos recuperados e observar contexto, precisão e ruído. | 1 | Concluído em `04-rag-top-k/` |
 | 4 | **RAG sobre Código-Fonte** | C#, .NET 11, Ollama, embeddings | Indexar `.cs` e localizar regras, classes e validações. | 1, 2 | Concluído em `05-rag-source-code/` |
-| 5 | **RAG Local com SQLite-vec** | Python, Ollama, SQLite-vec | Persistir embeddings localmente para indexação reproduzível sem serviço externo. | Conceitos do 1 | Pendente |
+| 5 | **RAG Local com SQLite-vec** | Python, Ollama, SQLite-vec | Persistir embeddings localmente para indexação reproduzível sem serviço externo. | Conceitos do 1 | Implementado em `06-rag-sqlite-vec/`; validação nativa e publicação pendentes |
 | 6 | **RAG com Chunking KISS** | Python, Ollama, NumPy | Comparar documento inteiro e divisão por tamanho na recuperação. | Conceitos do 1 | Pendente |
 | 7 | **RAG com Filtro de Similaridade** | Python, Ollama, embeddings | Descartar contexto abaixo de um limiar antes da geração. | Conceitos do 1 | Pendente |
 | 8 | **RAG Local sobre PDFs** | Python, Ollama, PyMuPDF | Extrair texto local, criar chunks e consultar sem enviar arquivos a serviços externos. | 6, 7 | Pendente |
@@ -20,3 +20,7 @@ Sequência sugerida: começar com o menor fluxo que torne a recuperação semân
 - Endpoint e modelos podem ser configurados; os pré-requisitos e falhas comuns são descritos.
 - O exemplo explica o que fica local e quais dados são enviados ao modelo configurado.
 - O código mantém o fluxo explícito e evita abstrações não necessárias ao conceito ensinado.
+
+## Entrega pendente de validação/publicação
+
+O lab 06 já tem código, documentação e testes preparados. Conclua os testes com SQLite-vec instalado e a demo com Ollama antes de publicar e avançar ao próximo item. Consulte `06-rag-sqlite-vec/VALIDATION.md`.

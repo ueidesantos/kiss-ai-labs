@@ -58,3 +58,8 @@ TestResults/
 .paket/
 fake/
 .build/
+
+# Local RAG data and dependency installation attempts
+06-rag-sqlite-vec/*.sqlite3
+06-rag-sqlite-vec/*.sqlite3-*
+06-rag-sqlite-vec/.venv-deps/
