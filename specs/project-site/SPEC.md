@@ -17,3 +17,7 @@ Aceite: links internos e assets resolvem; nove cards; histórico após catálogo
 Revisão independente de QA: data inicial corrigida para 09/10 conforme commits. Navegador Edge headless em 1440 e 390 px: nove cards, imagem carregada, âncoras válidas, histórico abaixo do catálogo e ausência de overflow horizontal. Primeiro foco de teclado é o link para pular ao conteúdo. Screenshot mobile inspecionado. Publicação será confirmada pela resposta HTTP pública.
 
 Publicação confirmada: GitHub Pages em main /docs, build 8239f6e concluído com sucesso; URL pública respondeu HTTP 200 com conteúdo e ordem esperados. Link adicionado ao campo About do repositório.
+
+## Sobre mim
+
+REQ-6: seção Sobre mim após os laboratórios e antes do histórico, com nome Ueide Santos, botão para https://ueidesantos.github.io/ueide-santos-cv-web/ e âncora na navegação. Sem biografia presumida.
