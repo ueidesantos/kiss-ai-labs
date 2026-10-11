@@ -1,0 +1,16 @@
+{
+  "contract": "lab-09-discount-rules",
+  "version": 1,
+  "currency": "BRL",
+  "profiles": {
+    "standard": { "label": "Padrão", "minimumDiscountPercent": 0, "maximumDiscountPercent": 10 },
+    "vip": { "label": "VIP", "minimumDiscountPercent": 0, "maximumDiscountPercent": 20 }
+  },
+  "amount": { "type": "decimal", "exclusiveMinimum": 0, "maximum": 1000000000 },
+  "rounding": { "decimalPlaces": 2, "mode": "AwayFromZero" },
+  "overLimit": "reject",
+  "maximumBackCorrections": 1,
+  "qaCanOverrideTests": false,
+  "generatedCode": "controlled-templates-from-validated-data",
+  "publication": "opt-in-draft-pull-request-no-automatic-merge"
+}
