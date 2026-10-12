@@ -1,44 +1,39 @@
 # Executar e verificar
 
-Todos os comandos partem da raiz do repositório. Instale o SDK .NET 11. O offline não precisa de Ollama, credenciais ou banco de dados.
+Pré-requisito: SDK .NET 11. Comandos na raiz do repositório. Consulte [README](../../09-ai-squad/README.md) para visão do fluxo.
 
-## 1. Execute a demonstração
+## Demonstração reproduzível
 
 ```powershell
 dotnet run --project 09-ai-squad/runner -- --offline --out 09-ai-squad/runs/demo
-```
-
-Confira os artefatos em `09-ai-squad/runs/demo`. O erro Padrão=20% é preparado; os testes devem reprovar a proposta inicial. A correção preparada para 10% deve ser verificada novamente. Use um novo caminho de saída ao repetir.
-
-## 2. Abra o simulador e o painel
-
-```powershell
 $env:SQUAD_RUN = (Resolve-Path 09-ai-squad/runs/demo).Path
 dotnet run --project 09-ai-squad/app
 ```
 
-Abra http://127.0.0.1:8089. `SQUAD_RUN` aceita o diretório de execução ou o caminho de `report.json`. Sem relatório, a interface deve explicar a ausência de uma execução. O simulador de referência continua disponível.
+Abra http://127.0.0.1:8089. `SQUAD_RUN` aceita diretório ou `report.json`. Use nova pasta de saída por execução. Padrão 100/10% resulta 90; Padrão 100/15% é recusado; VIP 100/15% resulta 85.
 
-Experimente Padrão com 10%, Padrão com 15% e VIP com 15%. Os resultados esperados são aceitação, rejeição e aceitação. Para R$ 100 com VIP e 15%, o total deve ser R$ 85,00.
+Propostas e revisões offline são preparadas. A proposta inicial 20% para Padrão é reprovada por testes reais; a correção 10% é testada e revisada novamente. Sem `SQUAD_RUN`, o simulador de referência funciona e o painel informa ausência de evidência.
 
-## 3. Use propostas de um modelo real
+## Dois modelos locais
 
-Com Ollama ativo e `llama3.2` já instalado:
-
-```powershell
-dotnet run --project 09-ai-squad/runner -- --model llama3.2 --out 09-ai-squad/runs/ollama
-```
-
-Este comando exercita uma integração externa local. Falha de conexão ou resposta inválida não pode gerar uma alegação de sucesso nem acionar replay. A evidência deve identificar o modelo e o modo.
-
-## 4. Revise antes de publicar
-
-Leia fontes, plano, SPEC candidata, diff e testes. Uma rodada de correção pode ocorrer; depois disso, falha encerra o ciclo. A aprovação de um modelo não substitui os testes.
-
-Para solicitar a publicação de uma execução aprovada, com GitHub CLI autenticado, Git e Python:
+Com Ollama em localhost:11434 e dois modelos instalados:
 
 ```powershell
-python 09-ai-squad/scripts/publish.py --run 09-ai-squad/runs/demo
+dotnet run --project 09-ai-squad/runner -- --model MODELO_DESENVOLVEDOR --review-model MODELO_REVISOR --out 09-ai-squad/runs/real
 ```
 
-A publicação opcional cria draft PR, sem merge. Falta de autenticação ou falha de rede deve ser reportada; não presumir publicação. O [registro de convergência](convergence.md) contém o estado de verificação desta entrega.
+Substitua os identificadores. Nomes e digests precisam ser diferentes; aliases de um mesmo modelo são recusados. O modo real não faz replay offline. Ele é uma integração Ollama, não um adaptador das APIs Claude ou Codex. O parâmetro opcional `--lab` identifica o diretório do laboratório.
+
+## Inspeção e publicação opcional
+
+Leia `report.json`, `changes.diff`, `build.log`, `PR.md` e `candidate`. Verifique fontes, modelos, revisões, testes e estado final. Sem testes aprovados e resolução de achados high/critical, o gate permanece fechado. A correção única sempre exige nova revisão.
+
+Com Git, Python e `gh` autenticado:
+
+```powershell
+python 09-ai-squad/scripts/publish.py --run 09-ai-squad/runs/demo --repo SEU_USUARIO/SEU_REPOSITORIO
+```
+
+O script confere gate/manifesto, cria clone temporário, publica branch e abre draft PR. Nenhum merge automático. URL de PR somente é evidência quando retornada por uma publicação concluída.
+
+[Convergência](convergence.md) separa testes de integração preparados e chamadas reais aos modelos.

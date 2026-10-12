@@ -1,14 +1,14 @@
 # Checklist de entrega
 
-- [ ] REQ-1: modo real chama Ollama e não faz fallback silencioso; offline está rotulado.
-- [ ] REQ-2: fontes têm caminho, trecho e SHA256 conferíveis.
-- [ ] REQ-3: propostas JSON são validadas e não executam código livre.
-- [ ] REQ-4: harness verifica limites, dinheiro e inválidos; falha bloqueia gate; segunda falha encerra.
-- [ ] REQ-5: candidata, plano, SPEC, diff, testes e eventos são produzidos; painel diferencia modos.
-- [ ] REQ-6: demo identifica o erro preparado e executa testes reais antes/depois.
-- [ ] REQ-7: publicação é opt-in, em branch e draft PR; reprovação impede publicação.
-- [ ] REQ-8: capa preserva o protagonismo do lab 08 e não simula captura do Figma.
-- [ ] Comandos documentados foram executados ou têm limitação explícita.
-- [ ] Revisão independente e achados foram registrados.
+- [ ] REQ-1: modelos/digests distintos no modo real; offline explicitamente preparado.
+- [ ] REQ-2: fontes com caminho, trecho e SHA256.
+- [ ] REQ-3: contratos delimitados e templates sem executar código de modelo.
+- [ ] REQ-4: testes e achados high/critical bloqueiam; correção única exige nova revisão.
+- [ ] REQ-5: candidata, plano, SPEC, diff, build, testes, revisões e eventos presentes.
+- [ ] REQ-6: offline demonstra reprovação/correção com testes reais e revisão preparada.
+- [ ] REQ-7: publicação opt-in verifica gate e manifesto; draft sem merge.
+- [ ] REQ-8: lab 09 principal; preservar fundo; Figma sem captura simulada.
+- [ ] Limitações de testes preparados e integração real documentadas.
+- [ ] Revisão independente registrada.
 
-Marcar somente com evidência real no [registro de convergência](../convergence.md). Integrações não exercitadas permanecem identificadas como não validadas.
+Marcar com evidência em [convergence.md](../convergence.md). Modo implementado não equivale a chamada real de modelo comprovada.

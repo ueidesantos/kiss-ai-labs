@@ -10,7 +10,7 @@ REQ-2 reutiliza a recuperação lexical do lab 07 sobre poucos Markdown. Não pr
 
 ## Testes antes da opinião do QA
 
-REQ-4 separa avaliação determinística de comentário do modelo. Os testes verificam entradas, dinheiro e limites definidos na SPEC. O QA recebe evidências para explicar riscos; sua resposta não muda o resultado do gate.
+REQ-4 separa avaliação determinística de comentário do modelo. Os testes verificam entradas, dinheiro e limites definidos na SPEC. O QA recebe evidências para explicar riscos; sua aprovação não supera testes; seus achados high/critical podem bloquear uma candidata que passou nos testes.
 
 ## Uma correção e parada
 
@@ -23,3 +23,7 @@ REQ-6 torna o primeiro contato reproduzível sem Ollama. A proposta Padrão=20 �
 ## PR separado
 
 REQ-7 usa publicação opt-in em branch própria e draft PR. A evidência local não equivale a revisão humana e não autoriza merge automático.
+
+## Revisão por outro modelo
+
+REQ-1/4 separam desenvolvedor e revisor via identidades e digests do Ollama. O revisor aponta evidência e correção; achados high/critical bloqueiam junto com os testes. O custo é uma chamada adicional por candidata e a possibilidade de desacordo. Uma correção exige nova revisão. Dois modelos não garantem independência; este é um controle complementar, não prova de ausência de falhas. Claude/Codex são exemplos conceituais, sem adaptadores comerciais implementados.

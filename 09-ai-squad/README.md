@@ -1,12 +1,12 @@
 # Lab 09 — KISS AI Squad
 
-**Uma mudança de negócio, quatro papéis de IA e evidências para revisar.** Evolua o simulador de desconto: Padrão até 10%, VIP até 20%. Acompanhe o TL, as propostas Front/Back, os testes e a revisão QA — incluindo uma correção quando necessária.
+**Uma IA desenvolve. Outra tenta encontrar o que passou despercebido.** Uma mudança pequena de negócio percorre SDD, RAG, propostas Front/Back, testes e revisão adversarial por um segundo modelo.
 
-O diferencial é verificar a entrega: fontes de negócio, SPEC candidata, aplicação, diff e resultados de teste ficam disponíveis. Um agente dizer “aprovado” não supera um teste reprovado.
+A demanda: Padrão pode simular até 10% de desconto; VIP até 20%. O interesse está na entrega verificável: fontes, SPEC candidata, aplicação, diff, achados e testes. A aprovação de uma IA não supera um teste reprovado nem um achado grave.
 
 ## Experimente sem modelo
 
-Pré-requisito: SDK **.NET 11**. Na raiz do repositório:
+Na raiz do repositório, com SDK **.NET 11**:
 
 ```powershell
 dotnet run --project 09-ai-squad/runner -- --offline --out 09-ai-squad/runs/demo
@@ -14,51 +14,57 @@ $env:SQUAD_RUN = (Resolve-Path 09-ai-squad/runs/demo).Path
 dotnet run --project 09-ai-squad/app
 ```
 
-Abra **http://127.0.0.1:8089**. O simulador funciona sem um relatório; `SQUAD_RUN` conecta o painel à execução. Use outro diretório de saída para cada experimento.
+Abra **http://127.0.0.1:8089**. Use uma pasta de saída nova por execução. O simulador funciona sem relatório; `SQUAD_RUN` conecta o painel às evidências.
 
-No offline, as propostas são **preparadas**: Back começa com Padrão=20%, os testes reais reprovam a regra e uma correção preparada troca o limite para 10%. É uma demonstração reproduzível de verificação, não uma descoberta autônoma de IA.
+Offline usa **propostas e revisões preparadas, sem IA**. Back começa com Padrão=20%; testes reais reprovam a regra; a correção preparada para 10% passa novamente por verificação. Não é uma descoberta espontânea de um modelo.
 
-## Execute com Ollama
+## Desenvolvedor e revisor distintos
 
-Com o Ollama em execução e o modelo instalado:
+Com Ollama ativo e dois modelos diferentes instalados, substitua os nomes abaixo pelos seus:
 
 ```powershell
-dotnet run --project 09-ai-squad/runner -- --model llama3.2 --out 09-ai-squad/runs/ollama
+dotnet run --project 09-ai-squad/runner -- --model MODELO_DESENVOLVEDOR --review-model MODELO_REVISOR --out 09-ai-squad/runs/real
 ```
 
-O modo real pede propostas ao modelo. Ele não garante uma falha inicial e não cai silenciosamente em offline. Modelo ausente, resposta inválida ou erro de conexão é falha da execução. Consulte o registro de [convergência](../specs/lab-09-ai-squad/convergence.md) para distinguir integrações exercitadas das disponíveis no código.
+O runner verifica nomes e digests no Ollama: dois aliases da mesma instalação não atendem ao contrato. Modelo ausente, resposta inválida ou falha de conexão encerra a execução, sem fallback para demo.
 
-## Quem faz o quê
+**“Claude desenvolve, Codex revisa” é o exemplo do conceito.** O código deste lab integra dois modelos via Ollama; não implementa APIs Claude/Codex. Identidades distintas reduzem a repetição da mesma revisão, mas não garantem independência ou correção.
 
-| Papel | Trabalho delimitado |
+| Papel | Responsabilidade |
 |---|---|
-| TL | Consulta regras via RAG, organiza o plano e a SPEC candidata |
-| Dev Front | Propõe textos da interface por contrato JSON |
-| Dev Back | Propõe os limites da política por contrato JSON |
-| QA | Revisa evidências e explica riscos; não altera os testes |
+| TL · modelo desenvolvedor | Usa contexto recuperado para planejar a mudança |
+| Front · modelo desenvolvedor | Propõe textos por contrato JSON |
+| Back · modelo desenvolvedor | Propõe limites da política por contrato JSON |
+| QA adversarial · modelo revisor | Procura falhas, registra evidência/severidade/correção e revisa a nova candidata |
+| Testes determinísticos | Verificam a regra sem depender da opinião dos modelos |
 
-O runner coordena etapas sequenciais. O RAG é lexical: TF-IDF e similaridade de cosseno sobre Markdown, reutilizando o lab 07. As fontes registram caminho, trecho e SHA256.
+O RAG é lexical, com TF-IDF e cosseno reutilizados do lab 07, e registra caminho, trecho e SHA256. Templates controlados materializam a aplicação: os agentes geram dados estruturados, **não código arbitrário executável**.
 
-**Limite intencional:** os agentes fornecem dados estruturados; templates controlados materializam a candidata. Este lab não executa código arbitrário retornado pelo LLM. Uma rodada de correção Back é o máximo; uma nova reprovação encerra o fluxo.
+## Como uma entrega é liberada
 
-## Da execução ao PR
+1. Materializar a proposta e executar build/testes.
+2. Pedir revisão adversarial ao segundo modelo.
+3. Se testes falharem ou houver achado `high`/`critical`, permitir uma correção Back.
+4. Reexecutar build/testes e revisão. Persistindo o bloqueio, reprovar.
+5. Somente uma execução aprovada pode seguir para publicação opcional.
 
-Plano, propostas, fontes, diff, testes e eventos formam a evidência da execução. O painel apresenta o modo, os resultados e informações de modelo quando disponíveis. Não inventa métricas de uso para o modo offline.
+Os artefatos incluem `report.json`, `policy.json`, `front.json`, `plan.md`, `SPEC.md`, `changes.diff`, `build.log`, `PR.md`, `manifest.json` e a pasta `candidate`. Relatório e revisões preservam o histórico da execução.
 
-A publicação da candidata é separada e opt-in, com Git, GitHub CLI autenticado e Python disponíveis:
+## Draft PR opcional
+
+Com Git, Python e GitHub CLI (`gh`) autenticado:
 
 ```powershell
-python 09-ai-squad/scripts/publish.py --run 09-ai-squad/runs/demo
+python 09-ai-squad/scripts/publish.py --run 09-ai-squad/runs/demo --repo SEU_USUARIO/SEU_REPOSITORIO
 ```
 
-O script publica em branch e abre **draft PR** somente para uma execução aprovada. Revise os artefatos antes de executar. Nenhum merge é automático. Publicar o código deste laboratório em `main` não significa que um PR de demonstração já foi criado.
+Revise os artefatos primeiro. O script verifica aprovação e integridade, usa clone temporário, publica branch e abre **draft PR**. Não faz merge. Uma demo é identificada como preparada também na entrega. Publicar este laboratório em `main` não significa que um PR de demonstração foi criado.
 
-## Entenda e evolua
+## Kit SDD e evidências
 
-- [Demanda KISS](DEMAND.md) e [SPEC canônica](../specs/lab-09-ai-squad/SPEC.md).
-- [Kit SDD explicado](SPECKIT.md), [plano](../specs/lab-09-ai-squad/plan.md), [tarefas](../specs/lab-09-ai-squad/tasks.md) e [quickstart](../specs/lab-09-ai-squad/quickstart.md).
-- [Regras de negócio](business/descontos.md), [cálculo](business/simulacao.md) e [evidências](business/entrega.md).
-- [Checklist](../specs/lab-09-ai-squad/checklists/requirements.md) e [convergência](../specs/lab-09-ai-squad/convergence.md).
-- [Lab 08 — Figma como especificação](../08-sdd-figma-mcp/README.md): referência visual complementar. O lab 09 não simula captura ou acesso ao Figma.
+- [Demanda](DEMAND.md), [SPEC canônica](../specs/lab-09-ai-squad/SPEC.md) e [kit explicado](SPECKIT.md).
+- [Plano](../specs/lab-09-ai-squad/plan.md), [tarefas](../specs/lab-09-ai-squad/tasks.md), [quickstart](../specs/lab-09-ai-squad/quickstart.md) e [checklist](../specs/lab-09-ai-squad/checklists/requirements.md).
+- [Regras](business/descontos.md), [cálculo](business/simulacao.md) e [convergência/limitações](../specs/lab-09-ai-squad/convergence.md).
+- [Lab 08 — Figma como especificação](../08-sdd-figma-mcp/README.md), referência complementar; não há captura Figma neste lab.
 
-Dados e regras são fictícios. Selecionar VIP é uma opção do simulador, sem autenticação, pagamento ou dados de clientes.
+Dados fictícios. Selecionar VIP não autentica clientes, efetua pagamentos ou concede uma autorização comercial.

@@ -2,7 +2,7 @@
 
 [**Visite a página do projeto →**](https://ueidesantos.github.io/kiss-ai-labs/) — apresentação, laboratórios e histórico de evolução.
 
-![KISS AI Labs: destaque Figma MCP, SDD e agents; labs 00 a 08](assets/kiss-ai-labs-figma-mcp.png)
+![KISS AI Labs: lab 09 em destaque — uma IA desenvolve, outra revisa](assets/kiss-ai-labs-ai-squad.png)
 
 **Laboratório prático de IA local em .NET e Python: da primeira chamada a um LLM à recuperação semântica sobre seus documentos.**
 
@@ -14,7 +14,13 @@ Aprenda construindo aplicações pequenas em C#/.NET 11 e Python: converse com m
 
 > **KISS — Keep It Simple, Stupid.** Exemplos pequenos, chamadas HTTP explícitas e poucas peças para entender cada etapa. A complexidade deve servir ao conceito que o laboratório ensina.
 
-## Destaque: Figma como especificação
+## Destaque: Lab 09 — uma IA desenvolve, outra revisa
+
+O [KISS AI Squad](09-ai-squad/README.md) combina SDD, RAG de negócio e propostas Front/Back com **revisão adversarial por outro modelo**. Testes determinísticos e achados graves bloqueiam a entrega; uma rodada de correção permite reavaliar a candidata. Inclui painel, demonstração offline identificada e publicação opcional em draft PR. Os agentes trabalham com propostas estruturadas e templates controlados.
+
+[Executar o lab 09](09-ai-squad/README.md) · [Entender o Spec Kit](09-ai-squad/SPECKIT.md) · [Consultar validações](09-ai-squad/VALIDATION.md)
+
+### Lab 08: Figma como especificação
 
 O [lab 08](08-sdd-figma-mcp/README.md) conecta design, documentação de negócio e desenvolvimento guiado por SPEC. O TL usa contexto Figma via MCP e RAG para delegar Front/Back. Inclui cliente .NET 11, kit detalhado e demonstração offline; o [design está disponível no Figma](https://www.figma.com/community/file/1691245874203095002/kissproject-4-codex?fuid=999015154036575904), com entrega por link aceita pelo usuário. A captura MCP e a conformidade visual ainda não foram validadas. O [lab 07](07-sdd-agents-business-rag/README.md) fornece a aplicação funcional e o fluxo de coordenação.
 
@@ -42,7 +48,7 @@ Esses exercícios ajudam a praticar decisões que aparecem no trabalho com IA: q
 
 ## Trilha de aprendizado
 
-Siga a sequência **00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08**. Cada laboratório é independente e tem seu próprio guia.
+Siga a sequência **00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09**. Cada laboratório é independente e tem seu próprio guia.
 
 | Etapa | Laboratório | O que você constrói | Tecnologias e pré-requisitos específicos |
 |---|---|---|---|
@@ -55,6 +61,8 @@ Siga a sequência **00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08**
 | 06 — Persistência | [RAG Local com SQLite-vec](06-rag-sqlite-vec/README.md) | Indexação e consulta separadas, com vetores persistidos em SQLite; validação nativa pendente | Python, Ollama, SQLite-vec |
 | 07 — Fábrica KISS | [SDD + agents + RAG](07-sdd-agents-business-rag/README.md) | Kit completo da demanda, TL delegando Front/Back e simulador de descontos | .NET 11, ASP.NET Core, HTML/JS, Ollama opcional |
 | 08 — Design como especificação | [Figma MCP + SDD + agents](08-sdd-figma-mcp/README.md) | Capturar especificação no Figma, combinar negócio e delegar; gate Figma real pendente | .NET 11, MCP, Figma, RAG e agents |
+
+| 09 — Revisão independente | [KISS AI Squad](09-ai-squad/README.md) | Um modelo propõe, outro revisa; testes, correção e draft PR | .NET 11; dois modelos Ollama distintos ou demo offline |
 
 **Comece pelo 00** para conhecer a API do Ollama. **Explore o 03** para uma demonstração completa de perguntas sobre documentos. O lab 01 é o exemplo com integração externa; os labs 00, 02, 03, 04 e 05 podem usar modelos executados na sua máquina.
 
@@ -180,6 +188,8 @@ O [backlog](BACKLOG.md) reúne os laboratórios mantidos na trilha e suas depend
 | Implementado; validação e publicação pendentes | [Persistência com Python e SQLite-vec — lab 06](06-rag-sqlite-vec/README.md) | Reutilizar embeddings em uma base local |
 | Núcleo testado; integração real/publicação pendentes | [SDD + agents + RAG — lab 07](07-sdd-agents-business-rag/README.md) | Especificar, delegar e validar uma demanda KISS com rastreabilidade |
 | Cliente MCP testado com mocks; design disponível por link | [Figma como especificação — lab 08](08-sdd-figma-mcp/README.md) | Derivar requisitos visuais do design e coordenar Front/Back |
+
+| Implementado; consulte as evidências | [KISS AI Squad — lab 09](09-ai-squad/README.md) | Separar desenvolvimento e revisão adversarial entre modelos e validar a candidata |
 
 ### Evolução do repositório
 

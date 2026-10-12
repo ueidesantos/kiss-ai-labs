@@ -17,3 +17,5 @@ REQ-1 e REQ-6 exigem rótulos de modo nos eventos e relatórios. REQ-3 exige exp
 ## Limites de cobertura
 
 Testes fixos demonstram os casos previstos, não ausência de todos os defeitos. Executar a demo não comprova compatibilidade com um modelo específico do Ollama. Build não comprova acessibilidade visual nem operação do GitHub. Essas verificações devem aparecer separadas no registro final.
+
+A revisão de outro modelo acrescenta um gate adversarial. Não equiparar dois aliases a dois modelos nem apresentar o modo preparado como revisão real. A identidade é verificável; a independência de raciocínio não é garantida. Após mudança da candidata, a revisão anterior deixa de valer: a correção passa por nova rodada.

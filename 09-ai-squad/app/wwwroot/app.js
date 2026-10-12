@@ -30,7 +30,7 @@ $('discount-form').addEventListener('submit', async event => {
     const response = await request('/api/discount', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ amount, discount, customerType }) });
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || 'Não foi possível calcular o desconto.');
-    result.textContent = `Original: ${money(data.original)}\nDesconto: ${money(data.discount)}\nTotal: ${money(data.total)}`;
+    result.textContent = `Original: ${money(data.original)}\nDesconto: ${String(data.discount).replace(".", ",")}%\nTotal: ${money(data.total)}`;
   } catch (error) {
     result.classList.add('error');
     result.textContent = error.name === 'AbortError' ? 'A consulta demorou demais. Tente novamente.' : error.message;
@@ -59,7 +59,16 @@ function render(report) {
   }, 'Nenhum evento registrado.');
   replaceList('tests', report.tests || [], test => node('li', `${test.passed ? 'PASSOU' : 'FALHOU'} · ${test.name}${test.detail ? ' — ' + test.detail : ''}`, test.passed ? 'passed' : 'failed'), 'Nenhum teste registrado.');
   replaceList('sources', report.sources || [], source => details(`${source.id} · ${source.path}`, source.text, `SHA256: ${source.sha256 || 'não informado'} · Similaridade: ${source.score ?? 'não informada'}`), 'Nenhuma fonte registrada.');
-  replaceList('proposals', report.proposals || [], proposal => details(proposal.role, proposal.content), 'Nenhuma proposta registrada.');
+  $('model-identities').textContent = `Desenvolvedor: ${report.developerModel || 'não informado'} · Revisor: ${report.reviewerModel || 'não informado'}`;
+  replaceList('reviews', report.reviews || [], review => {
+    const section = document.createElement('section');
+    section.append(node('h4', `Tentativa ${review.attempt} · ${review.model}`), node('p', review.summary));
+    const findings = review.findings || [];
+    if (!findings.length) section.append(node('p', 'Nenhum achado registrado nesta revisão.'));
+    for (const finding of findings) section.append(details(`${finding.severity} · ${finding.id}`, `Evidência: ${finding.evidence}\nCorreção sugerida: ${finding.fix}`));
+    return section;
+  }, 'Nenhuma revisão registrada.');
+  replaceList('proposals', report.proposals || [], proposal => details(`${proposal.role} · ${proposal.model || "modelo não informado"}`, proposal.content), 'Nenhuma proposta registrada.');
   $('run-content').hidden = false;
 }
 let loading = false, lastReport = '', hadReport = false;
@@ -74,7 +83,7 @@ async function refresh() {
       replaceList('tests', [], null, 'Nenhum relatório carregado.');
       replaceList('sources', [], null, 'Nenhuma fonte carregada.');
       replaceList('proposals', [], null, 'Nenhuma proposta carregada.');
-      lastReport = ''; hadReport = false; return;
+      replaceList('reviews', [], null, 'Nenhuma revisão carregada.'); $("model-identities").textContent = 'Identidades ainda não disponíveis.'; lastReport = ''; hadReport = false; return;
     }
     if (!response.ok) throw new Error('Falha ao consultar o relatório.');
     const report = await response.json();
@@ -90,3 +99,18 @@ $('refresh').addEventListener('click', refresh);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
 setInterval(refresh, 2000);
 refresh();
+
+async function loadUi() {
+  try {
+    const response = await request('/api/ui');
+    if (!response.ok) throw new Error('Textos indisponíveis');
+    const ui = await response.json();
+    for (const [id, key] of [['sim-title', 'title'], ['sim-help', 'help'], ['standard-label', 'standardLabel'], ['vip-label', 'vipLabel']]) {
+      if (typeof ui[key] === 'string') $(id).textContent = ui[key];
+    }
+  } catch { $('sim-help').textContent += ' Não foi possível carregar os textos desta execução.'; }
+}
+loadUi();
+
+
+

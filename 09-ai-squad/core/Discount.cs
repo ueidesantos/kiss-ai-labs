@@ -32,7 +32,7 @@ public static class Discount
     // Immutable acceptance oracle; models cannot modify these cases.
     public static List<Check> Verify(Policy policy)
     {
-        var results = new List<Check>();
+        var results = new List<Check> { new("Limite Padrão exato", policy.StandardMax == 10m, "Esperado: 10%"), new("Limite VIP exato", policy.VipMax == 20m, "Esperado: 20%") };
         void Case(string name, string json, string? expected)
         {
             try
@@ -60,3 +60,4 @@ public static class Discount
         return results;
     }
 }
+

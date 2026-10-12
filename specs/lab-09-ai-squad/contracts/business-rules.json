@@ -1,16 +1,42 @@
 {
   "contract": "lab-09-discount-rules",
-  "version": 1,
+  "version": 2,
   "currency": "BRL",
   "profiles": {
-    "standard": { "label": "Padrão", "minimumDiscountPercent": 0, "maximumDiscountPercent": 10 },
-    "vip": { "label": "VIP", "minimumDiscountPercent": 0, "maximumDiscountPercent": 20 }
+    "standard": {
+      "label": "PadrÃ£o",
+      "minimumDiscountPercent": 0,
+      "maximumDiscountPercent": 10
+    },
+    "vip": {
+      "label": "VIP",
+      "minimumDiscountPercent": 0,
+      "maximumDiscountPercent": 20
+    }
   },
-  "amount": { "type": "decimal", "exclusiveMinimum": 0, "maximum": 1000000000 },
-  "rounding": { "decimalPlaces": 2, "mode": "AwayFromZero" },
+  "amount": {
+    "type": "decimal",
+    "exclusiveMinimum": 0,
+    "maximum": 1000000000
+  },
+  "rounding": {
+    "decimalPlaces": 2,
+    "mode": "AwayFromZero"
+  },
   "overLimit": "reject",
   "maximumBackCorrections": 1,
   "qaCanOverrideTests": false,
   "generatedCode": "controlled-templates-from-validated-data",
-  "publication": "opt-in-draft-pull-request-no-automatic-merge"
+  "publication": "opt-in-draft-pull-request-no-automatic-merge",
+  "adversarialReview": {
+    "provider": "ollama",
+    "differentModelNames": true,
+    "differentModelDigests": true,
+    "blockingSeverities": [
+      "high",
+      "critical"
+    ],
+    "reviewAfterCorrection": true,
+    "offlineReview": "prepared-no-ai"
+  }
 }

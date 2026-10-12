@@ -1,15 +1,16 @@
-# Esclarecimentos da demanda
+# Esclarecimentos
 
 | Questão | Decisão |
 |---|---|
-| O agente pode implementar qualquer demanda? | Não. O escopo é a mudança fixa de desconto por perfil. |
-| Padrão e VIP representam clientes reais? | Não. São opções de simulação, sem autenticação. |
-| Os agentes escrevem código livre? | Não. Produzem JSON delimitado; templates controlados materializam a candidata. |
-| O RAG é semântico com embeddings? | Não. Reutiliza recuperação lexical TF-IDF e cosseno do lab 07. |
-| A demo descobre um bug sozinha? | Não. Uma proposta errada é preparada; os testes executados detectam a violação. |
-| QA pode liberar uma falha? | Não. O resultado determinístico prevalece. |
-| Quantas tentativas são permitidas? | Proposta inicial e, se necessária, uma correção Back. |
-| Figma é obrigatório neste lab? | Não. Pode ser referência visual por link; não há alegação de captura MCP. |
-| O fluxo publica em main? | Não. Publicar o lab é diferente de criar um draft PR com a candidata. |
-
-O recorte foi definido na SPEC. Novas regras, perfis ou geração livre de código exigem revisar requisitos e testes antes de expandir o fluxo.
+| Demanda arbitrária? | Não; simulador fixo Padrão10/VIP20. |
+| O que o desenvolvedor gera? | Propostas JSON de plano/textos/política, materializadas por templates. |
+| Claude e Codex integrados? | Não; exemplo conceitual. Implementação usa dois modelos Ollama distintos. |
+| Nomes diferentes bastam? | Não; digests também devem diferir para rejeitar aliases. |
+| Dois modelos garantem independência? | Não. Podem compartilhar vieses; testes continuam obrigatórios. |
+| Como a revisão bloqueia? | Achado high/critical ou teste reprovado fecha gate. |
+| Quantas correções? | Uma Back, seguida de build/testes e nova revisão. Persistência encerra reprovado. |
+| Offline usa IA? | Não. Propostas e revisões preparadas; testes executados de verdade. |
+| RAG usa embeddings? | Não; TF-IDF e cosseno lexical reutilizados do lab 07. |
+| Figma obrigatório? | Não; somente referência complementar, sem alegar captura. |
+| Entrega em main? | Lab em main; candidata em draft PR opt-in separado. |
+| Qual capa? | Pedido mais recente: lab 09 principal, lab 08 secundário; preservar cenário. |

@@ -1,16 +1,16 @@
 # Tarefas e rastreabilidade
 
-| ID | Responsável | Trabalho | Requisito | Evidência esperada |
+| ID | Responsável | Entrega | Requisito | Evidência |
 |---|---|---|---|---|
-| T01 | Coordenador | Fixar demanda, SPEC e kit | REQ-1..8 | Revisão de coerência |
-| T02 | Back | Implementar regra decimal e limites por perfil | REQ-4 | Harness com limites e entradas inválidas |
-| T03 | Front | Construir simulador e painel acessível | REQ-5 | Verificação de estados, navegação e responsividade |
-| T04 | Coordenador/Back | Recuperar fontes e registrar integridade | REQ-2 | Caminho, trecho e SHA256 na execução |
-| T05 | Back | Orquestrar papéis Ollama com JSON restrito | REQ-1, REQ-3 | Contratos válidos e falhas explícitas |
-| T06 | Back/QA | Materializar candidata e executar testes fixos | REQ-3, REQ-4 | Diff, build e resultados reais |
-| T07 | QA | Verificar reprovação, correção única e parada | REQ-4, REQ-6 | Execução offline identificada e gate negativo |
-| T08 | Coordenador | Preparar publicação opt-in | REQ-7 | Recusa de execução reprovada; draft quando solicitado |
-| T09 | UX/Coordenador | Atualizar capa mantendo destaque 08 | REQ-8 | Revisão visual |
-| T10 | QA/Coordenador | Consolidar evidências e limitações | REQ-1..8 | Convergência e validação publicáveis |
+| T01 | Coordenador | Demanda e kit SDD alinhados | REQ-1..8 | Coerência documental |
+| T02 | Back | Domínio decimal, limites e inválidos | REQ-4 | Testes determinísticos |
+| T03 | Front/UX | Simulador e painel | REQ-5 | Estados desktop/mobile |
+| T04 | Back | Fontes RAG com integridade | REQ-2 | Fontes no relatório |
+| T05 | Back | Dois modelos e contratos restritos | REQ-1,3 | Identidade distinta e falhas fechadas |
+| T06 | Back/QA | Build/testes da candidata | REQ-3,4 | Logs e resultados |
+| T07 | QA | Revisão adversarial, correção e nova revisão | REQ-4,6 | Histórico, gate grave e parada |
+| T08 | Coordenador | Publicador opt-in com manifesto | REQ-7 | Recusa de gate/integridade inválidos |
+| T09 | UX | Lab09 principal na capa | REQ-8 | Inspeção visual |
+| T10 | Coordenador/QA | Consolidar evidências | REQ-1..8 | Convergência com limitações |
 
-Esta tabela registra o plano de responsabilidade. A conclusão depende das evidências do [registro de convergência](convergence.md), não apenas da existência de arquivos.
+Conclusão depende de evidência em [convergence.md](convergence.md), não apenas da existência dos arquivos.

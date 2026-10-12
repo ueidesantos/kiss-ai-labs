@@ -20,6 +20,10 @@ A SPEC canônica foi definida antes da implementação e é a fonte de aceite. A
 
 ## Delegar não é perder o controle
 
-O TL planeja; Front propõe textos; Back propõe limites; QA comenta riscos e resultados. Os contratos reduzem a liberdade de cada papel. A aplicação nasce de templates conhecidos e dados validados. Este recorte permite observar delegação e correção sem transformar o lab em um agente de programação irrestrito.
+O TL planeja; Front propõe textos; Back propõe limites; outro modelo atua como QA adversarial e registra achados com evidência, severidade e correção. Os contratos reduzem a liberdade de cada papel. A aplicação nasce de templates conhecidos e dados validados. Este recorte permite observar delegação e correção sem transformar o lab em um agente de programação irrestrito.
 
-No modo offline as propostas são preparadas. O erro inicial de limite é deliberado, mas a reprovação vem da execução real dos testes. No modo Ollama, as propostas vêm do modelo; uma correção só acontece se o gate identificar falha.
+No modo offline as propostas e revisões são preparadas, sem IA. O erro inicial de limite é deliberado, mas a reprovação vem da execução real dos testes. No modo Ollama, as propostas vêm do modelo; uma correção só acontece se o gate identificar falha.
+
+## Dois modelos, responsabilidade verificável
+
+O modelo desenvolvedor assume TL/Front/Back; o revisor tem identidade distinta. O gate combina testes determinísticos e ausência de achados high/critical. Uma correção exige novos testes e nova revisão. A separação exemplifica “Claude desenvolve, Codex revisa”, mas os adaptadores deste kit são Ollama; não afirmam integração comercial.

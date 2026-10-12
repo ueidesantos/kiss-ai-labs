@@ -19,6 +19,8 @@ Adicionados por solicitação direta do usuário. Os itens retirados do roadmap 
 | 07 | SDD + agents + RAG de negócio; kit completo e simulador .NET 11 | Núcleo/testes aprovados; integração real e publicação pendentes |
 | 08 | Especificação pelo Figma via MCP + TL/Front/Back + RAG | Cliente e replay implementados; link Figma entregue como alternativa aceita; captura MCP e revisão visual não validadas |
 
+| 09 | KISS AI Squad: SDD + RAG + desenvolvimento e revisão por modelos distintos | Implementado; evidências e limites em [VALIDATION.md](09-ai-squad/VALIDATION.md) |
+
 ## Critérios comuns de conclusão
 
 - Cada laboratório tem `SPEC.md`, instruções para executar e uma pergunta de demonstração.

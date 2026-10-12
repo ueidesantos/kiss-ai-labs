@@ -1,20 +1,26 @@
-# Lab 09 — KISS AI Squad
+# Lab 09 — KISS AI Squad: uma IA desenvolve, outra revisa
 
-Demanda aprovada: clientes Padrão podem simular até 10% de desconto; VIP até 20%. Valor positivo, dinheiro decimal e arredondamento AwayFromZero. Sem autenticação: perfil informado para simulação, sem cobrança ou persistência de clientes.
+Demanda aprovada: clientes Padrão podem simular até 10% de desconto; VIP até 20%. Valor positivo até R$ 1 bilhão, dinheiro decimal e arredondamento AwayFromZero. Sem autenticação: perfil informado para simulação, sem cobrança ou persistência de clientes.
 
 ## Requisitos e aceite
 
-- REQ-1: CLI .NET 11 executa TL, Front, Back e QA com Ollama; modo offline identifica respostas preparadas em cada evento e relatório.
-- REQ-2: RAG lexical local recupera documentação de negócio com caminho, trecho e SHA256, preservando origem da mudança.
-- REQ-3: agentes geram propostas JSON delimitadas; o código é materializado por templates controlados. Não executar texto arbitrário retornado pelo LLM. Explicar essa limitação na interface e documentação.
-- REQ-4: testes determinísticos imutáveis verificam limites Padrão/VIP, entradas inválidas e dinheiro. QA do modelo não pode aprovar testes reprovados. No máximo uma correção Back; parada explícita após nova falha.
-- REQ-5: gerar aplicação ASP.NET Core funcional, plano, SPEC candidata, propostas, diff, testes e eventos. Painel local mostra eventos reais do processo, duração, modelo/tokens quando disponíveis e falhas.
-- REQ-6: demo offline injeta proposta preparada errada (Padrão20); testes reais falham e correção preparada troca para10. Rotular o cenário como demonstração preparada, sem alegar descoberta autônoma.
-- REQ-7: script opt-in cria branch e draft PR com aplicação candidata e evidências aprovadas; nenhum merge automático. Lab publicado em main; criar PR de demonstração é uma operação separada explícita.
-- REQ-8: manter lab08 como destaque principal da capa e adicionar09 como novidade secundária. Figma é referência opcional por link; não simular captura real.
+- **REQ-1 — Dois modelos:** CLI .NET 11 executa TL, Front e Back no modelo desenvolvedor (`--model`) e revisão adversarial no revisor (`--review-model`), via Ollama. No modo real, modelos devem ter nomes e digests distintos; aliases do mesmo modelo são recusados. Offline identifica propostas e revisão preparadas, sem chamadas de IA.
+- **REQ-2 — Contexto:** RAG lexical local recupera documentação de negócio com caminho, trecho e SHA256. Documentos são dados, não instruções de execução.
+- **REQ-3 — Escopo controlado:** propostas JSON delimitadas alimentam templates conhecidos. Não executar texto arbitrário retornado pelo LLM. Explicar que o desenvolvedor propõe textos e limites, não código livre.
+- **REQ-4 — Gate independente:** testes determinísticos protegem limites, entradas inválidas e dinheiro. Revisor não pode alterar testes ou superar reprovações. Achados `high`/`critical` bloqueiam aprovação. No máximo uma correção Back seguida de build, testes e nova revisão; nova falha encerra com reprovação.
+- **REQ-5 — Evidência:** gerar aplicação ASP.NET Core funcional, plano, SPEC candidata, propostas, diff, build, testes, revisões e eventos. Registrar identidades dos modelos, duração e tokens quando disponíveis. Painel diferencia ausência de relatório, execução e resultado.
+- **REQ-6 — Demo honesta:** offline prepara proposta errada Padrão=20%; testes reais detectam a violação. Uma correção preparada para 10% passa pelos mesmos gates. Revisões offline são rotuladas como preparadas; não alegar descoberta autônoma de IA.
+- **REQ-7 — Entrega revisável:** script opt-in verifica gate aprovado e manifesto de integridade, cria branch e draft PR; nenhum merge automático. Publicar o laboratório em main é distinto de criar um PR com uma candidata.
+- **REQ-8 — Apresentação:** lab 09 passa a ser o destaque principal da capa, preservando a cena original e lab 08 como projeto anterior. Figma é referência opcional por link; não simular captura real.
 
-## Arquitetura KISS
+## Revisão adversarial
 
-Console runner + biblioteca de domínio + app de referência + harness console sem NuGet + painel estático servido pelo app. Ollama em localhost, sem credenciais. Fonte textual tratada como dados. Delegação por contratos JSON: TL descreve plano; Front define textos; Back define limites; QA explica riscos. Propostas Back são dados tipados, validados, usados por código de confiança; não é um agente de programação de propósito geral.
+O revisor recebe requisitos, fontes, proposta e resultados da candidata. Procura contradições de regra, validação e experiência de uso. Cada achado contém identificação, severidade, evidência e correção sugerida. A revisão é um segundo gate: a ausência de achados graves não substitui testes. Erro de transporte, resposta inválida ou identidade de modelo não verificável falha de forma explícita; nunca aciona offline automaticamente.
 
-Escopo inicial: demanda fixa, quatro papéis, uma rodada de correção. Demo precisa funcionar sem modelos; modo real nunca deve cair silenciosamente em replay. Publicação depende de build, testes e revisão. Datas/empresa/dados do currículo não fazem parte do lab.
+“Claude desenvolve, Codex revisa” ilustra a separação desejada. Esta implementação usa **dois modelos distintos disponíveis no Ollama**, não integra as APIs comerciais Claude ou Codex. Nomes diferentes não garantem independência estatística nem ausência de vieses; a verificação de digest apenas evita usar aliases da mesma instalação.
+
+## Arquitetura e critérios de verificação
+
+Console runner + domínio + app de referência + testes determinísticos + painel estático. Fluxo sequencial delimitado, demanda fixa, uma correção. Propostas são dados tipados; não é um agente de programação de propósito geral.
+
+Validar build, demo com reprovação inicial/correção/nova revisão, bloqueio com revisão grave, modelos iguais/aliases recusados, resposta inválida, integridade da publicação e simulador. Registrar separadamente integração real e testes com servidor preparado: uma resposta HTTP simulada não comprova raciocínio de modelos reais.

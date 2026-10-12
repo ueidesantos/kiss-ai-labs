@@ -1,18 +1,16 @@
-# Modelo conceitual
+# Modelo de dados
 
-| Dado | Conteúdo | Restrição |
+| Artefato | Conteúdo | Restrição |
 |---|---|---|
-| Demanda | Mudança fixa de limites por perfil | Não é prompt livre para executar comandos |
-| Fonte | Caminho, trecho recuperado, SHA256 | Origem verificável; texto tratado como dado |
-| Plano TL | Passos e distribuição do trabalho | Deve permanecer no escopo aprovado |
-| Proposta Front | Textos da interface | Sem HTML ou script arbitrário executável |
-| Proposta Back | Limites numéricos por perfil | Dados tipados; comportamento submetido aos testes |
-| Revisão QA | Comentários sobre resultados e riscos | Não altera gate determinístico |
-| Evento | Etapa, estado, instante, duração e modo | Offline explicitamente identificado |
-| Uso de modelo | Nome e tokens quando disponíveis | Ausência não é contagem zero medida |
-| Candidata | Aplicação materializada por templates | Separada da fonte canônica |
-| Evidência | Build, testes, diff e estado final | Não presumir sucesso de etapas não executadas |
+| Fontes no relatório | Caminho, trecho, score e SHA256 | Integridade não garante veracidade |
+| Identidades | Modelo desenvolvedor/revisor e digests | Real exige duas identidades distintas |
+| Propostas | Papel e conteúdo JSON | Sem execução de código livre |
+| `policy.json` | Limites Padrão/VIP | Testes protegem 10/20 |
+| `front.json` | `title`, `help`, `standardLabel`, `vipLabel` | Texto apresentado sem interpretar HTML |
+| Revisão | `model`, `summary`, `findings` | Cada achado tem `id`, `severity`, `evidence`, `fix` |
+| Gate | Testes + revisão final | High/critical ou teste falho bloqueia |
+| `report.json` | Estado, política, revisões, testes, histórico, propostas, eventos, fontes e uso de modelos | Offline explicitamente rotulado |
+| `manifest.json` | Integridade dos artefatos da execução | Publicação recusa divergência |
+| `candidate` | App e core materializados | Separados da fonte canônica |
 
-Dinheiro usa decimal com arredondamento AwayFromZero. Os perfis são categorias didáticas. Não há cadastro, banco de dados, armazenamento de clientes ou pagamento.
-
-Este documento descreve os conceitos; o código e os relatórios gerados definem os nomes concretos dos campos de execução. O [contrato de negócio](contracts/business-rules.json) fixa os limites que os testes devem proteger.
+O histórico permite comparar a proposta inicial e a única correção. Registros de tokens são uso retornado pelo provedor quando disponível, não estimativa inventada. Dinheiro usa decimal e arredondamento AwayFromZero; não há cadastro ou pagamentos.
