@@ -1,9 +1,9 @@
-# Evidências da mudança
+# Change evidence
 
-A entrega deve permitir entender por que o desconto foi aceito ou recusado. Interface e backend devem comunicar os limites de Padrão e VIP de forma coerente.
+The delivery must make it possible to understand why a discount was accepted or rejected. The interface and backend must communicate the Standard and VIP limits consistently.
 
-Cada execução registra as fontes de negócio consultadas e sua integridade. A SPEC produzida pelos agentes é candidata; não substitui a especificação aprovada. Testes determinísticos são o gate, e a opinião do agente QA não pode torná-los aprovados.
+Each run records the business sources consulted and their integrity. The SPEC produced by agents is a candidate; it does not replace the approved specification. Deterministic tests are the gate, and the QA agent's opinion cannot make them pass.
 
-No máximo uma correção de backend por execução. Uma nova falha encerra o fluxo com estado explícito. Publicar um draft PR exige uma ação separada. Não fazer merge automaticamente.
+At most one backend correction is allowed per run. Another failure ends the workflow with an explicit status. Publishing a draft PR requires a separate action. Never merge automatically.
 
-Um modelo distinto revisa adversarialmente cada candidata. Achados high/critical bloqueiam a aprovação, mesmo com testes aprovados. Após a única correção permitida, executar os testes e pedir nova revisão; não transportar aprovação antiga para a candidata alterada.
+A distinct model adversarially reviews each candidate. `high`/`critical` findings block approval, even when tests pass. After the one allowed correction, run the tests and request a new review; do not carry the previous approval over to the changed candidate.

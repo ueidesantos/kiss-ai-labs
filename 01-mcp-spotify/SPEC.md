@@ -1,32 +1,32 @@
 # SPEC — MCP Spotify Server
 
-## Objetivo
+## Purpose
 
-Demonstrar de forma mínima o **Model Context Protocol (MCP)** com um servidor MCP em .NET 11 que integra com a **Spotify Web API**.
+Demonstrate the **Model Context Protocol (MCP)** in a minimal way with a .NET 11 MCP server that integrates with the **Spotify Web API**.
 
-O foco é mostrar os conceitos MCP (tools via JSON-RPC sobre stdio) sem camadas de abstração.
+The focus is on MCP concepts (tools over JSON-RPC via stdio) without abstraction layers.
 
-## Papéis (MCP)
+## Roles (MCP)
 
-| Ator                   | Implementação                        |
+| Actor                  | Implementation                      |
 |------------------------|--------------------------------------|
-| **MCP Client**         | Qualquer cliente MCP (ex: o usuário via entrada manual / stdin) |
-| **MCP Server**         | Aplicação .NET 11 Console (`McpSpotifyServer`) |
+| **MCP Client**         | Any MCP client (for example, a user entering input manually via stdin) |
+| **MCP Server**         | .NET 11 Console application (`McpSpotifyServer`) |
 | **Spotify Web API**    | `https://api.spotify.com/v1/...`     |
 
-## Tools MCP Expostas
+## Exposed MCP Tools
 
-Apenas **2 tools** para manter o exemplo didático:
+Only **2 tools**, to keep the example educational:
 
 ### 1. `search_track`
-Busca faixas (tracks) no Spotify por palavra-chave.
+Searches Spotify for tracks by keyword.
 
-**Entrada:**
+**Input:**
 ```json
 { "query": "nome da música ou artista" }
 ```
 
-**Saída (JSON array resumido):**
+**Output (summarized JSON array):**
 ```json
 [
   { "name": "Nome", "artist": "Artista", "album": "Álbum", "uri": "spotify:track:..." },
@@ -35,28 +35,28 @@ Busca faixas (tracks) no Spotify por palavra-chave.
 ```
 
 ### 2. `get_currently_playing`
-Retorna a música que está tocando agora na conta do usuário (requer escopo `user-read-currently-playing`).
+Returns the track currently playing in the user's account (requires the `user-read-currently-playing` scope).
 
-**Entrada:** `{}` (vazio)
+**Input:** `{}` (empty)
 
-**Saída (JSON):**
+**Output (JSON):**
 ```json
 { "is_playing": true, "name": "...", "artist": "...", "progress_ms": 12345, "duration_ms": 234000 }
 ```
 
-## Autenticação Spotify
+## Spotify Authentication
 
-- **Fluxo**: Token de acesso obtido **fora** do servidor (usuário provê via env var).
-- **Escopos necessários**:
-  - `search_track` → **nenhum** (funciona com Client Credentials).
-  - `get_currently_playing` → `user-read-currently-playing` (precisa de Authorization Code Flow).
-- **Configuração** via variáveis de ambiente:
-  - `SPOTIFY_ACCESS_TOKEN` (obrigatório)
-  - `SPOTIFY_CLIENT_ID` + `SPOTIFY_CLIENT_SECRET` (opcional: se quiser renovar token automaticamente via Client Credentials)
+- **Flow**: The access token is obtained **outside** the server (the user supplies it through an environment variable).
+- **Required scopes**:
+  - `search_track` → **none** (works with Client Credentials).
+  - `get_currently_playing` → `user-read-currently-playing` (requires the Authorization Code flow).
+- **Configuration** through environment variables:
+  - `SPOTIFY_ACCESS_TOKEN` (required)
+  - `SPOTIFY_CLIENT_ID` + `SPOTIFY_CLIENT_SECRET` (optional: for automatic token renewal through Client Credentials)
 
-Credenciais nunca são versionadas.
+Credentials are never committed to version control.
 
-## Fluxo de Execução
+## Execution Flow
 
 ```
 ┌─────────────┐  JSON-RPC / stdio  ┌─────────────────┐  HTTPS  ┌────────────┐
@@ -66,24 +66,24 @@ Credenciais nunca são versionadas.
 └─────────────┘   JSON result      └─────────────────┘         └────────────┘
 ```
 
-1. Client envia mensagem JSON-RPC `initialize` → Server responde com `serverInfo` + `capabilities.tools`.
-2. Client envia `tools/list` → Server lista `search_track` e `get_currently_playing`.
-3. Client envia `tools/call` com nome da tool e argumentos → Server chama Spotify → retorna JSON.
+1. The client sends the JSON-RPC `initialize` message → the server responds with `serverInfo` + `capabilities.tools`.
+2. The client sends `tools/list` → the server lists `search_track` and `get_currently_playing`.
+3. The client sends `tools/call` with the tool name and arguments → the server calls Spotify → returns JSON.
 
-## Critérios de Aceite
+## Acceptance Criteria
 
-1. ✅ Compila com `dotnet build` sem warnings.
-2. ✅ Lê `SPOTIFY_ACCESS_TOKEN` de variável de ambiente ou User Secrets.
-3. ✅ Expõe as 2 tools via `tools/list`.
-4. ✅ `search_track` retorna pelo menos 3 resultados formatados como JSON.
-5. ✅ Trata erros:
-   - Token ausente → mensagem clara.
-   - Token expirado/inválido → informa erro HTTP 401.
-   - Spotify offline → mensagem de rede.
-6. ✅ Comunicação MCP mínima válida via stdin/stdout (JSON-RPC 2.0).
-7. ✅ Nenhuma biblioteca MCP de terceiros (protocolo implementado manualmente para didática).
+1. ✅ Builds with `dotnet build` with no warnings.
+2. ✅ Reads `SPOTIFY_ACCESS_TOKEN` from an environment variable or User Secrets.
+3. ✅ Exposes the two tools via `tools/list`.
+4. ✅ `search_track` returns at least three results formatted as JSON.
+5. ✅ Handles errors:
+   - Missing token → clear message.
+   - Expired/invalid token → reports HTTP 401 error.
+   - Spotify offline → network error message.
+6. ✅ Valid minimal MCP communication via stdin/stdout (JSON-RPC 2.0).
+7. ✅ No third-party MCP libraries (the protocol is implemented manually for educational purposes).
 
-## Como Executar
+## How to Run
 
 ```bash
 # 1. Configurar token Spotify (PowerShell):

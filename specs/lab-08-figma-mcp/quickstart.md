@@ -1,38 +1,38 @@
-# Roteiro de execução
+# Runbook
 
-Pré-requisitos do core: SDK .NET 11. Captura real: Figma desktop com arquivo real aberto, Dev Mode/MCP habilitado e compatibilidade de cliente autorizada. SPEC por modelo: Ollama e modelo local. CLI Spec Kit oficial não é pré-requisito.
+Core prerequisites: .NET 11 SDK. Real capture: Figma desktop with the real file open, Dev Mode/MCP enabled, and authorized client compatibility. Model-generated SPEC: Ollama and a local model. The official Spec Kit CLI is not required.
 
-Na raiz do repositório:
+From the repository root:
 
 ```powershell
 dotnet build 08-sdd-figma-mcp/src/FigmaMcp.csproj
 dotnet run --project 08-sdd-figma-mcp/tests
 ```
 
-O coordenador informou 19 checks mock aprovados. São verificações sem sockets; não conexão real.
+The coordinator reported 19 passing mock checks. These run without sockets; they do not verify a real connection.
 
-## Capturar um node real
+## Capture a real node
 
-Crie primeiro o arquivo definido em [FIGMA.md](../../08-sdd-figma-mcp/FIGMA.md), registre URL e node IDs reais e habilite servidor desktop conforme [guia Figma](https://developers.figma.com/docs/figma-mcp-server/local-server-installation/).
+First create the file described in [FIGMA.md](../../08-sdd-figma-mcp/FIGMA.md), record the real URL and node IDs, and enable the desktop server per the [Figma guide](https://developers.figma.com/docs/figma-mcp-server/local-server-installation/).
 
-O CLI em integração pelo coordenador usa estes comandos; confirme `--help` e os arquivos resultantes na entrega antes de executá-los:
+The CLI integrated by the coordinator uses these commands; confirm `--help` and the resulting files before running them:
 
 ```powershell
-dotnet run --project 08-sdd-figma-mcp/src -- capture --node NODE --out ./captura
-dotnet run --project 08-sdd-figma-mcp/src -- spec --capture ./captura/capture.json --out ./saida
+dotnet run --project 08-sdd-figma-mcp/src -- capture --node NODE --out ./capture
+dotnet run --project 08-sdd-figma-mcp/src -- spec --capture ./capture/capture.json --out ./output
 dotnet run --project 08-sdd-figma-mcp/src -- demo
 ```
 
-`NODE` deve ser substituído pelo ID real, não literalmente usado como ID. A segunda operação usa captura como fonte de design e Ollama no modo real; opção `--offline`, quando utilizada, significa replay explícito. Demo usa fixture fictícia e não se apresenta como Figma real. Capturar cada estado separadamente evita presumir cobertura por um único frame.
+Replace `NODE` with a real ID; do not use the literal word as the ID. The second operation uses the capture as the design source and Ollama in real mode; `--offline`, if used, explicitly means replay. The demo uses a fictional fixture and does not present itself as real Figma. Capture each state separately instead of assuming one frame covers them all.
 
-Depois, confira modo, endpoint, node, horário, contexto, metadata e screenshot no capture. Revise SPEC/tarefas/propostas e rejeite informações ausentes inventadas. Não execute propostas automaticamente.
+Then check the mode, endpoint, node, time, context, metadata, and screenshot in the capture. Review the SPEC/tasks/proposals and reject invented details that were missing. Do not run proposals automatically.
 
-## Aplicação funcional de referência
+## Functional reference application
 
 ```powershell
 dotnet run --project 07-sdd-agents-business-rag/app
 ```
 
-Acesse `http://127.0.0.1:8087` quando o ambiente permitir. Esta API/UI serve para demonstrar funcionalidade do lab 07; fidelidade ao Figma do lab 08 permanece pendente. Verifique estados 100/10→90, erro >20 e comportamento mobile após captura real.
+Open `http://127.0.0.1:8087` when the environment allows it. This API/UI demonstrates Lab 07 functionality; fidelity to Lab 08's Figma remains pending. After real capture, verify 100/10→90, error above 20, and mobile behavior.
 
-Nesta execução, criação/captura real ficaram bloqueadas por ferramentas Figma não expostas e navegação negada. Não há arquivo real a usar neste roteiro nem evidência de sucesso HTTP/Ollama/Figma/GitHub.
+In this run, real creation/capture was blocked because Figma tools were not exposed and browser navigation was denied. There is no real file to use in this runbook and no evidence of successful HTTP/Ollama/Figma/GitHub access.

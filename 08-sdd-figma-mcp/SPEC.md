@@ -1,5 +1,5 @@
-# SPEC — 08: Figma como especificação via MCP
+# SPEC — 08: Figma as a specification through MCP
 
-Fonte de verdade: [specs/lab-08-figma-mcp/SPEC.md](../specs/lab-08-figma-mcp/SPEC.md).
+Source of truth: [specs/lab-08-figma-mcp/SPEC.md](../specs/lab-08-figma-mcp/SPEC.md).
 
-Figma define interface/estados; RAG define regras de negócio; TL consolida e delega Front/Back. A criação do arquivo real está pendente da conexão Figma desta sessão; testes do protocolo podem executar offline.
+Figma defines the interface and states; RAG defines business rules; the TL consolidates and delegates to Front/Back. Creating the real file is pending the Figma connection in this session; protocol tests can run offline.

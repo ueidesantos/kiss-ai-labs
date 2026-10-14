@@ -1,23 +1,23 @@
-# Plano técnico
+# Technical plan
 
-[SPEC](SPEC.md) e [constituição](../../08-sdd-figma-mcp/.specify/memory/constitution.md) orientam a entrega.
+The [SPEC](SPEC.md) and [constitution](../../08-sdd-figma-mcp/.specify/memory/constitution.md) guide this delivery.
 
-1. Criar arquivo real autorizado; registrar URL e cinco node IDs.
-2. Capturar nodes no desktop MCP: initialize, initialized, tools/list, tools/call para metadata/context/screenshot. Validar schemas, IDs, versão, sessão, erro e tamanho.
-3. Persistir capture identificado como real, endpoint/node/time/resultados; preservar screenshot retornado.
-4. TL combina `FIGMA` com RAG lexical do negócio do lab 07 e produz SPEC candidata/contrato/tarefas.
-5. Front recebe contexto real e screenshot; Back mantém cálculo decimal/contrato. Código proposto não é executado automaticamente.
-6. Revisar estados/geometry/tokens em desktop/mobile; registrar evidências e convergência.
+1. Create the authorized real file; record the URL and five node IDs.
+2. Capture nodes through desktop MCP: initialize, initialized, tools/list, tools/call for metadata/context/screenshot. Validate schemas, IDs, version, session, errors, and size.
+3. Persist the capture as real, identifying endpoint/node/time/results; preserve the returned screenshot.
+4. TL combines `FIGMA` with Lab 07's lexical business RAG and produces a candidate SPEC/contract/tasks.
+5. Front receives real context and screenshot; Back preserves decimal calculation/contract. Proposed code is not run automatically.
+6. Review states/geometry/tokens on desktop/mobile; record evidence and convergence.
 
-Componentes: `src/FigmaMcpClient.cs`, CLI de captura/geração/demo, workflow do lab 07, API de referência reutilizada e testes MCP sem sockets.
+Components: `src/FigmaMcpClient.cs`, capture/generation/demo CLI, Lab 07 workflow, reused reference API, and MCP tests without sockets.
 
-Dependência crítica: captura não cria arquivo Figma. A criação depende de ferramentas suportadas do conector; a autenticação remote não habilita automaticamente o endpoint desktop.
+Critical dependency: capture does not create a Figma file. Creation depends on supported connector tools; remote authentication does not automatically enable the desktop endpoint.
 
-| Responsável | Requisitos | Entrega |
+| Owner | Requirements | Deliverable |
 |---|---|---|
-| TL | F-1..F-4, F-6 | Captura, integração de fontes, delegação e evidências |
-| Design/Front | F-2, F-5 | Arquivo real, estados e UI fiel após captura |
-| Back | F-4 | Preservação API/regra lab 07 |
-| Revisão | todos | Checklist e comparação visual |
+| TL | F-1..F-4, F-6 | Capture, source integration, delegation, and evidence |
+| Design/Front | F-2, F-5 | Real file, states, and faithful UI after capture |
+| Back | F-4 | Preserve Lab 07 API/rule |
+| Review | All | Checklist and visual comparison |
 
-Se houver discrepância de design/regra, não resolver silenciosamente: atualizar a SPEC com decisão. Descartar propostas não incorporadas é reversível; revisão de código incorporado usa Git.
+If design and business rules conflict, do not resolve silently: update the SPEC with the decision. Discarding proposals that were not incorporated is reversible; code already incorporated should be reverted through Git.

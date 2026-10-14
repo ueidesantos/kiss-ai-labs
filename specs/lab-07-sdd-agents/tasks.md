@@ -1,17 +1,17 @@
-# Tarefas por requisito
+# Tasks by requirement
 
-Status informado pelo coordenador em 2026-10-11; veja [convergência](convergence.md) para limites.
+Status reported by the coordinator on 2026-10-11; see [convergence](convergence.md) for limitations.
 
-- [x] T01 · TL · REQ-1/AC-1: criar demanda, B1/B2/B3 e ranking TF-IDF/cosseno com caminhos/IDs; validar ranking e corpus vazio.
-- [x] T02 · TL · REQ-2/AC-2: definir SPEC/contrato e plano com uma tarefa Front e uma Back; rejeitar referências/papéis/contratos inválidos.
-- [x] T03 · Dev Front · REQ-3/AC-3: formulário, payload numérico, BRL e estados; nove testes JS com DOM/fetch simulados.
-- [x] T04 · Dev Back · REQ-4/AC-4: cálculo decimal e endpoint ASP.NET Core; testar limites, arredondamento e JSON inválido em memória.
-- [x] T05 · TL · REQ-5/AC-5: chamadas com papéis separados e tarefas delimitadas; verificar integração via transporte simulado.
-- [x] T06 · TL · REQ-6/AC-6: salvar contexto/plano/propostas/review e marcar replay; testar geração de artefatos e recusas.
-- [x] T07 · Coordenador · todos: compilar três projetos e consolidar 66 checks .NET + nove testes JS.
-- [x] T08 · Documentação · todos: escrever constituição, pesquisa, decisões, plano, dados, contrato, checklist, análise e quickstart.
-- [ ] T09 · Revisão integrada · REQ-3/4: executar navegador e API por HTTP real; registrar resultado visual e transporte real.
-- [ ] T10 · TL/revisor · REQ-1/2/5/6: executar Ollama real e revisar fidelidade semântica das citações/propostas.
-- [ ] T11 · Coordenador: confirmar commit e push no GitHub; registrar SHA remoto ou bloqueio.
+- [x] T01 · TL · REQ-1/AC-1: create request, B1/B2/B3, and TF-IDF/cosine ranking with paths/IDs; validate ranking and empty corpus.
+- [x] T02 · TL · REQ-2/AC-2: define SPEC/contract and plan with one Front and one Back task; reject invalid references/roles/contracts.
+- [x] T03 · Front Dev · REQ-3/AC-3: form, numeric payload, BRL, and states; nine JS tests with simulated DOM/fetch.
+- [x] T04 · Back Dev · REQ-4/AC-4: decimal calculation and ASP.NET Core endpoint; test limits, rounding, and invalid JSON in memory.
+- [x] T05 · TL · REQ-5/AC-5: calls with separate roles and bounded tasks; verify integration through simulated transport.
+- [x] T06 · TL · REQ-6/AC-6: save context/plan/proposals/review and mark replay; test artifact generation and rejections.
+- [x] T07 · Coordinator · all: build three projects and consolidate 66 .NET checks + nine JS tests.
+- [x] T08 · Documentation · all: write constitution, research, decisions, plan, data, contract, checklist, analysis, and quickstart.
+- [ ] T09 · Integrated review · REQ-3/4: run browser and API over real HTTP; record visual result and real transport.
+- [ ] T10 · TL/reviewer · REQ-1/2/5/6: run real Ollama and review semantic fidelity of citations/proposals.
+- [ ] T11 · Coordinator: confirm GitHub commit/push; record remote SHA or blocker.
 
-As tarefas T09..T11 dependem do ambiente e permanecem pendentes. Checks em memória não substituem essas evidências. A implementação de referência existe; propostas geradas continuam aguardando revisão humana.
+Tasks T09..T11 depend on the environment and remain pending. In-memory checks do not replace this evidence. The reference implementation exists; generated proposals still await human review.

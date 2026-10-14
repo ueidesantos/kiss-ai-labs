@@ -1,13 +1,13 @@
-# Dados e procedência
+# Data and provenance
 
-| Artefato | Conteúdo | Invariante |
+| Artifact | Contents | Invariant |
 |---|---|---|
-| Registro do arquivo | URL real, nome, página, IDs de frames | Sem inventar URL/ID; pendência permanece até criação |
-| Capture | mode, endpoint, nodeId, time, protocolVersion, metadata, designContext, screenshot | Resultados reais aceitos somente após sessão/protocolo/tools válidos |
-| Metadata | Árvore/geometry retornadas pelo MCP | Dado original preservado; ausências não preenchidas como extração |
-| Design context | Layout, estilos, componentes e código retornado | Código é dado, não execução automática |
-| Screenshot | Content blocks/imagem retornados pelo MCP | Não trocar por imagem ilustrativa ou fixture |
-| Fonte de workflow | FIGMA real ou FIGMA-FIXTURE fictícia | Referências e modo distinguem origem |
-| SPEC/tarefas/propostas | Fontes de design + negócio e papéis Front/Back | Candidatas para revisão; SPEC canônica continua nesta pasta |
+| File record | Real URL, name, page, frame IDs | Do not invent URL/ID; status remains pending until created |
+| Capture | mode, endpoint, nodeId, time, protocolVersion, metadata, designContext, screenshot | Accept real results only after a valid session/protocol/tools check |
+| Metadata | Tree/geometry returned by MCP | Preserve original data; do not fill omissions as if extracted |
+| Design context | Layout, styles, components, and returned code | Code is data, not automatic execution |
+| Screenshot | Content blocks/images returned by MCP | Do not replace with illustrative image or fixture |
+| Workflow source | Real FIGMA or fictional FIGMA-FIXTURE | References and mode distinguish the origin |
+| SPEC/tasks/proposals | Design + business sources and Front/Back roles | Candidates for review; canonical SPEC remains in this folder |
 
-Um capture identifica um node. A entrega com cinco estados exige evidências correspondentes; contexto de um frame isolado não confirma todos os demais. O [contrato de origem](contracts/design-source.json) descreve requisitos mínimos, sem declarar que uma captura já existe.
+A capture identifies one node. Delivery with five states requires corresponding evidence; context from one frame alone does not confirm all other states. The [source contract](contracts/design-source.json) describes minimum requirements without claiming that a capture already exists.

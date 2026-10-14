@@ -1,29 +1,29 @@
-# SPEC — RAG Local sem Vector Database
+# SPEC — Local RAG Without a Vector Database
 
-## Objetivo
+## Purpose
 
-Demonstrar recuperação aumentada por geração (RAG) com o mínimo de peças: arquivos Markdown locais, embeddings do Ollama, similaridade de cosseno calculada pelo próprio programa e uma resposta gerada com os trechos recuperados.
+Demonstrate retrieval-augmented generation (RAG) with as few components as possible: local Markdown files, Ollama embeddings, cosine similarity calculated by the program, and an answer generated from the retrieved excerpts.
 
-## Comportamento
+## Behavior
 
-- Lê arquivos `.md` de uma pasta local, sem recorrer a serviços de armazenamento vetorial.
-- Gera um embedding por documento usando a API local `/api/embed` do Ollama.
-- Calcula similaridade de cosseno em memória e seleciona os documentos mais próximos.
-- Envia pergunta e contexto recuperado para `/api/generate` e imprime a resposta.
-- Recebe pergunta, caminho dos documentos, modelos e quantidade de resultados como opções.
-- Mostra os arquivos, IDs de citação e prévias dos trechos recuperados.
+- Reads `.md` files from a local folder without using vector storage services.
+- Generates one embedding per document using Ollama’s local `/api/embed` API.
+- Calculates cosine similarity in memory and selects the closest documents.
+- Sends the question and retrieved context to `/api/generate` and prints the response.
+- Accepts the question, document path, models, and number of results as options.
+- Displays the retrieved files, citation IDs, and excerpt previews.
 
-## Limites
+## Limitations
 
-- Cada arquivo Markdown é um único documento; chunking e persistência ficam para laboratórios posteriores.
-- A citação textual do modelo é probabilística; a lista de fontes e trechos impressa pelo programa é a referência verificável.
-- Todos os documentos e vetores ficam em memória durante a execução.
-- Os documentos não são enviados a um serviço externo, mas seus embeddings e a pergunta passam pelo endpoint Ollama configurado.
-- A qualidade da recuperação depende do modelo de embedding e do conteúdo fornecido.
+- Each Markdown file is a single document; chunking and persistence are left to later labs.
+- The model’s textual citations are probabilistic; the source and excerpt list printed by the program is the verifiable reference.
+- All documents and vectors remain in memory during execution.
+- The documents are not sent to an external service, but their embeddings and the question go through the configured Ollama endpoint.
+- Retrieval quality depends on the embedding model and the supplied content.
 
-## Critérios de aceite
+## Acceptance Criteria
 
-1. Não usa vector database nem pacote de abstração de RAG.
-2. Permite indicar uma pasta Markdown, modelos, endpoint e Top-K.
-3. Informa claramente quando a pasta não existe, está vazia ou o Ollama não responde.
-4. Faz busca por cosseno semântico em memória antes da geração e exibe as fontes recuperadas.
+1. Uses no vector database or RAG abstraction package.
+2. Allows specifying a Markdown folder, models, endpoint, and Top-K.
+3. Clearly reports when the folder does not exist or is empty, or when Ollama does not respond.
+4. Performs semantic cosine search in memory before generation and displays the retrieved sources.

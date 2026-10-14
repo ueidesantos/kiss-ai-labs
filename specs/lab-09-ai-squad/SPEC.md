@@ -1,26 +1,28 @@
-# Lab 09 — KISS AI Squad: uma IA desenvolve, outra revisa
+# Lab 09 — KISS AI Squad: one AI builds, another reviews
 
-Demanda aprovada: clientes Padrão podem simular até 10% de desconto; VIP até 20%. Valor positivo até R$ 1 bilhão, dinheiro decimal e arredondamento AwayFromZero. Sem autenticação: perfil informado para simulação, sem cobrança ou persistência de clientes.
+Approved request: Standard customers can simulate discounts up to 10%; VIP customers up to 20%. The amount must be positive and no more than R$1 billion. Use decimal currency and AwayFromZero rounding. No authentication: the profile is provided for simulation, with no charges or customer persistence.
 
-## Requisitos e aceite
+## Requirements and acceptance
 
-- **REQ-1 — Dois modelos:** CLI .NET 11 executa TL, Front e Back no modelo desenvolvedor (`--model`) e revisão adversarial no revisor (`--review-model`), via Ollama. No modo real, modelos devem ter nomes e digests distintos; aliases do mesmo modelo são recusados. Offline identifica propostas e revisão preparadas, sem chamadas de IA.
-- **REQ-2 — Contexto:** RAG lexical local recupera documentação de negócio com caminho, trecho e SHA256. Documentos são dados, não instruções de execução.
-- **REQ-3 — Escopo controlado:** propostas JSON delimitadas alimentam templates conhecidos. Não executar texto arbitrário retornado pelo LLM. Explicar que o desenvolvedor propõe textos e limites, não código livre.
-- **REQ-4 — Gate independente:** testes determinísticos protegem limites, entradas inválidas e dinheiro. Revisor não pode alterar testes ou superar reprovações. Achados `high`/`critical` bloqueiam aprovação. No máximo uma correção Back seguida de build, testes e nova revisão; nova falha encerra com reprovação.
-- **REQ-5 — Evidência:** gerar aplicação ASP.NET Core funcional, plano, SPEC candidata, propostas, diff, build, testes, revisões e eventos. Registrar identidades dos modelos, duração e tokens quando disponíveis. Painel diferencia ausência de relatório, execução e resultado.
-- **REQ-6 — Demo honesta:** offline prepara proposta errada Padrão=20%; testes reais detectam a violação. Uma correção preparada para 10% passa pelos mesmos gates. Revisões offline são rotuladas como preparadas; não alegar descoberta autônoma de IA.
-- **REQ-7 — Entrega revisável:** script opt-in verifica gate aprovado e manifesto de integridade, cria branch e draft PR; nenhum merge automático. Publicar o laboratório em main é distinto de criar um PR com uma candidata.
-- **REQ-8 — Apresentação:** lab 09 passa a ser o destaque principal da capa, preservando a cena original e lab 08 como projeto anterior. Figma é referência opcional por link; não simular captura real.
+- **REQ-1 — Two models:** A .NET 11 CLI runs TL, Front, and Back with the developer model (`--model`) and adversarial review with the reviewer (`--review-model`), through Ollama. In real mode, models must have distinct names and digests; aliases for the same model are rejected. Offline mode identifies prepared proposals and review, with no AI calls.
+- **REQ-2 — Context:** Local lexical RAG retrieves business documentation with path, excerpt, and SHA256. Documents are data, not execution instructions.
+- **REQ-3 — Controlled scope:** Bounded JSON proposals feed known templates. Do not execute arbitrary text returned by the LLM. Explain that the developer proposes text and limits, not free-form code.
+- **REQ-4 — Independent gate:** Deterministic tests protect limits, invalid inputs, and currency handling. The reviewer cannot change tests or override failures. `high`/`critical` findings block approval. At most one Back correction is allowed, followed by build, tests, and a new review; another failure ends in rejection.
+- **REQ-5 — Evidence:** Generate a working ASP.NET Core application, TL plan, canonical SPEC snapshot alongside the candidate, proposals, diff, build, tests, reviews, and events. Record model identities, duration, and token counts when available. The dashboard distinguishes no report, a run in progress, and a result.
+- **REQ-6 — Honest demo:** Offline mode prepares an incorrect Standard=20% proposal; real tests detect the violation. A prepared correction to 10% passes the same gates. Offline reviews are labeled as prepared; do not claim autonomous AI discovery.
+- **REQ-7 — Reviewable delivery:** An opt-in script checks the approved gate and integrity manifest, creates a branch and draft PR; no automatic merge. Publishing the lab to `main` is separate from creating a PR with a candidate.
+- **REQ-8 — Presentation:** Lab 09 becomes the main feature on the cover, preserving the original scene and Lab 08 as the previous project. Figma is an optional reference link; do not simulate a real capture.
 
-## Revisão adversarial
+## Adversarial review
 
-O revisor recebe requisitos, fontes, proposta e resultados da candidata. Procura contradições de regra, validação e experiência de uso. Cada achado contém identificação, severidade, evidência e correção sugerida. A revisão é um segundo gate: a ausência de achados graves não substitui testes. Erro de transporte, resposta inválida ou identidade de modelo não verificável falha de forma explícita; nunca aciona offline automaticamente.
+The reviewer receives the requirements, sources, proposal, and candidate results. It looks for contradictions in rules, validation, and user experience. Each finding includes an identifier, severity, evidence, and suggested fix. Review is a second gate: no severe findings does not replace tests. A transport error, invalid response, or unverifiable model identity fails explicitly; it never triggers offline mode automatically.
 
-“Claude desenvolve, Codex revisa” ilustra a separação desejada. Esta implementação usa **dois modelos distintos disponíveis no Ollama**, não integra as APIs comerciais Claude ou Codex. Nomes diferentes não garantem independência estatística nem ausência de vieses; a verificação de digest apenas evita usar aliases da mesma instalação.
+“Claude builds, Codex reviews” illustrates the intended separation. This implementation uses **two distinct models available through Ollama**; it does not integrate the commercial Claude or Codex APIs. Different names do not guarantee statistical independence or lack of bias; digest verification only prevents aliases for the same installation.
 
-## Arquitetura e critérios de verificação
+## Architecture and verification criteria
 
-Console runner + domínio + app de referência + testes determinísticos + painel estático. Fluxo sequencial delimitado, demanda fixa, uma correção. Propostas são dados tipados; não é um agente de programação de propósito geral.
+Console runner + domain + reference app + deterministic tests + static dashboard. Bounded sequential workflow, fixed request, one correction. Proposals are typed data; this is not a general-purpose coding agent.
 
-Validar build, demo com reprovação inicial/correção/nova revisão, bloqueio com revisão grave, modelos iguais/aliases recusados, resposta inválida, integridade da publicação e simulador. Registrar separadamente integração real e testes com servidor preparado: uma resposta HTTP simulada não comprova raciocínio de modelos reais.
+Verify the build, demo with initial rejection/correction/new review, blocking on a severe finding, rejection of identical models/aliases, invalid responses, publication integrity, and simulator. Record real integration and tests with a prepared server separately: a simulated HTTP response does not prove real model reasoning.
+
+The build compiles the candidate's files. Deterministic tests use the runner's trusted domain with the proposed policy; API/browser evidence is separate. A run's `SPEC.md` is a canonical snapshot, while `plan.md` contains the TL's proposal.

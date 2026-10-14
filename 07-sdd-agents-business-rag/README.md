@@ -1,55 +1,55 @@
-# 07 — SDD + agents + RAG de negócio
+# 07 — SDD + agents + business RAG
 
-![Fluxo do lab 07](assets/project-flow.png)
+![Lab 07 flow](assets/project-flow.png)
 
-**Demanda KISS:** simular o valor final de um pedido com desconto de 0 a 20%. Stack: .NET 11, ASP.NET Core, C#, HTML/CSS/JS e Ollama opcional. Nenhum pacote externo.
+**KISS request:** simulate the final order amount with a discount from 0 to 20%. Stack: .NET 11, ASP.NET Core, C#, HTML/CSS/JS, and optional Ollama. No external packages.
 
-O TL recupera documentação de negócio por RAG lexical (TF-IDF + cosseno), prepara uma SPEC candidata e delega tarefas delimitadas para Dev Front e Dev Back. Cada dev recebe a SPEC, o contrato, as fontes e somente sua tarefa. As propostas são gravadas para revisão; não são executadas automaticamente.
+The TL retrieves business documentation with lexical RAG (TF-IDF + cosine similarity), prepares a candidate SPEC, and delegates bounded tasks to Front Dev and Back Dev. Each developer receives the SPEC, contract, sources, and only their assigned task. Proposals are saved for review; they are not run automatically.
 
-A aplicação de referência foi implementada por agents Front/Back separados durante esta entrega, com revisão independente. Ela pode ser executada sem Ollama.
+The reference application was implemented by separate Front/Back agents for this delivery and independently reviewed. It runs without Ollama.
 
-## Executar a aplicação
+## Run the application
 
-Na raiz do repositório, com SDK .NET 11:
+From the repository root, with the .NET 11 SDK:
 
 ```bash
 dotnet run --project 07-sdd-agents-business-rag/app
 ```
 
-Abra `http://127.0.0.1:8087`. Informe 100 e 10; o resultado esperado é R$90,00. Desconto21% deve mostrar erro. A simulação não grava pedidos nem cobra valores.
+Open `http://127.0.0.1:8087`. Enter 100 and 10; the expected result is R$90.00. A 21% discount should show an error. The simulation does not save orders or charge amounts.
 
-Contrato: `POST /api/discount`, JSON `{ "amount": 100, "discount": 10 }`; sucesso `{ "original": "100.00", "discount": "10", "total": "90.00" }`; erro400 `{ "error": "mensagem" }`.
+Contract: `POST /api/discount`, JSON `{ "amount": 100, "discount": 10 }`; success `{ "original": "100.00", "discount": "10", "total": "90.00" }`; HTTP 400 error `{ "error": "message" }`.
 
-O backend usa decimal e arredondamento HALF_UP (AwayFromZero). O frontend preserva dinheiro como texto ao apresentar a resposta; se a conversão de uma entrada para número JSON mudaria seu valor decimal, recusa a entrada antes de chamar a API. O corpo JSON da API é limitado a4096bytes.
+The backend uses decimal arithmetic and HALF_UP rounding (`AwayFromZero`). The frontend preserves money as text when displaying the response; if converting an input to a JSON number would change its decimal value, it rejects the input before calling the API. The API JSON body is limited to 4096 bytes.
 
-## Executar TL + Front + Back
+## Run TL + Front + Back
 
-Sem modelos, para estudar o fluxo:
+Without models, to study the workflow:
 
 ```bash
 dotnet run --project 07-sdd-agents-business-rag/src -- --offline
 ```
 
-**Offline é replay de respostas preparadas, não uma geração de IA.** Ele usa o código de referência como proposta. Com Ollama em execução:
+**Offline mode replays prepared responses; it is not AI generation.** It uses the reference code as a proposal. With Ollama running:
 
 ```bash
 ollama pull llama3.2
 dotnet run --project 07-sdd-agents-business-rag/src -- --model llama3.2 --cpu
 ```
 
-O modo real faz três chamadas `/api/generate`: TL, Front e Back, com respostas JSON e validação de contrato, papéis e referências. `--cpu` envia `num_gpu=0`. Temperatura zero e seed fixa não garantem precisão; a fidelidade das regras/citações precisa de revisão.
+Real mode makes three `/api/generate` calls: TL, Front, and Back, with JSON responses and validation of contracts, roles, and references. `--cpu` sends `num_gpu=0`. Zero temperature and a fixed seed do not guarantee accuracy; rule fidelity and citations require review.
 
-Opções: `--offline`, `--cpu`, `--lab`, `--out`, `--model`, `--url`, `--top-k`, `--help`. K padrão3. A pasta do lab é descoberta a partir do executável. As saídas ficam em `runs/<horário UTC>/`, ignoradas pelo Git. Uma `--out` existente e não vazia é recusada.
+Options: `--offline`, `--cpu`, `--lab`, `--out`, `--model`, `--url`, `--top-k`, `--help`. Default K is 3. The lab folder is discovered from the executable. Output goes to `runs/<UTC timestamp>/`, ignored by Git. An existing nonempty `--out` folder is rejected.
 
-## Kit completo da demanda
+## Complete request kit
 
-Leia [SPECKIT.md](SPECKIT.md) para a explicação do ciclo. A entrega inclui constituição, demanda, fontes de negócio, SPEC, esclarecimentos, pesquisa, plano, modelo de dados, contrato, tarefas, checklist, análise e convergência. É um kit autorado para esta demanda, alinhado ao processo do [Spec Kit oficial](https://github.com/github/spec-kit); seu CLI não foi instalado/executado nesta sessão.
+Read [SPECKIT.md](SPECKIT.md) for an explanation of the cycle. The delivery includes the constitution, request, business sources, SPEC, clarifications, research, plan, data model, contract, tasks, checklist, analysis, and convergence. This kit was authored for this request and follows the process of the [official Spec Kit](https://github.com/github/spec-kit); its CLI was not installed or run in this session.
 
-Fonte de verdade: [SPEC canônica](../specs/lab-07-sdd-agents/SPEC.md). A SPEC emitida pelo modelo é candidata e não substitui a canônica sem revisão. Fontes → requisitos → tarefas → código → evidências permanecem separados.
+Source of truth: [canonical SPEC](../specs/lab-07-sdd-agents/SPEC.md). The model-emitted SPEC is a candidate and does not replace the canonical one without review. Sources → requirements → tasks → code → evidence remain distinct.
 
-Cada execução grava `sources.json`, `plan.json`, `SPEC.candidate.md`, `tasks.md`, `handoffs.json`, propostas `.html`/`.cs` e `review.json`. O último declara `generatedCodeExecuted=false` e `needs-human-review`.
+Each run writes `sources.json`, `plan.json`, `SPEC.candidate.md`, `tasks.md`, `handoffs.json`, proposals `.html`/`.cs`, and `review.json`. The latter declares `generatedCodeExecuted=false` and `needs-human-review`.
 
-## Validar
+## Validate
 
 ```bash
 dotnet build 07-sdd-agents-business-rag/tests/LabTests.csproj
@@ -57,10 +57,10 @@ dotnet run --project 07-sdd-agents-business-rag/tests
 node --test 07-sdd-agents-business-rag/tests/frontend.test.cjs
 ```
 
-Os testes .NET verificam cálculo/handler HTTP nativos em memória, ranking, fontes, delegação, recusas e replay. Os testes JS usam DOM/fetch simulados; Node só é necessário para essa validação. [VALIDATION.md](VALIDATION.md) registra o que foi executado e o que depende de rede/navegador.
+The .NET tests check calculation/native in-memory HTTP handler, ranking, sources, delegation, rejections, and replay. JS tests use simulated DOM/fetch; Node is only required for that validation. [VALIDATION.md](VALIDATION.md) records what ran and what still depends on network/browser access.
 
-## Dados e limites
+## Data and limitations
 
-RAG fica em memória, com arquivos Markdown inteiros e busca lexical; não usa embeddings nem banco. No modo Ollama, a demanda, documentos recuperados e especificação são enviados ao endpoint configurado. As propostas/artefatos também são gravadas em disco. Endpoint remoto recebe esses textos.
+RAG runs in memory, with whole Markdown files and lexical search; it uses neither embeddings nor a database. In Ollama mode, the request, retrieved documents, and specification are sent to the configured endpoint. Proposals/artifacts are also written to disk. A remote endpoint receives this text.
 
-O lab não executa código gerado nem resolve conflitos de negócio por conta própria. Referências válidas não provam fidelidade semântica. O servidor da aplicação e a revisão visual exigem acesso local; Ollama exige modelos. Timeout de geração3minutos e limite4096tokens por chamada. [Demanda](DEMAND.md) · [SPEC](SPEC.md) · [Kit](SPECKIT.md).
+The lab does not run generated code or resolve business conflicts on its own. Valid references do not prove semantic fidelity. The application server and visual review require local access; Ollama requires models. Generation timeout is 3 minutes and the limit is 4096 tokens per call. [Request](DEMAND.md) · [SPEC](SPEC.md) · [Kit](SPECKIT.md).

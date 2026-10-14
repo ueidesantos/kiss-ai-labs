@@ -1,19 +1,19 @@
-# Checklist de requisitos
+# Requirements checklist
 
-Base: [SPEC](../SPEC.md), [análise](../analysis.md).
+Based on the [SPEC](../SPEC.md) and [analysis](../analysis.md).
 
-- [x] Demanda tem usuário, objetivo e exemplo de resultado.
-- [x] Escopo exclui cobrança, persistência de pedido, login e aprovação gerencial.
-- [x] Fontes B1/B2/B3 e requisitos REQ-1..6 estão identificados.
-- [x] Todos os requisitos possuem critério de aceite e tarefa.
-- [x] .NET 11/ASP.NET Core e frontend vanilla estão definidos antes da entrega.
-- [x] Contrato de API é compartilhado; cálculo usa decimal.
-- [x] TL delega exatamente Front/Back e mantém limites de atuação.
-- [x] Refs inválidas e contrato divergente são recusados por validação.
-- [x] Replay registra que não chamou modelo; código proposto não é executado.
-- [x] Testes core e builds têm resultado informado sem extrapolar evidência.
-- [ ] AC-3/AC-4 verificados com navegador e HTTP real.
-- [ ] AC-1/AC-2/AC-5/AC-6 demonstrados com Ollama real e revisão humana do conteúdo.
-- [ ] Publicação remota confirmada.
+- [x] Request identifies user, goal, and example outcome.
+- [x] Scope excludes charges, order persistence, login, and management approval.
+- [x] Sources B1/B2/B3 and requirements REQ-1..6 are identified.
+- [x] Every requirement has an acceptance criterion and task.
+- [x] .NET 11/ASP.NET Core and vanilla frontend were defined before delivery.
+- [x] API contract is shared; calculation uses decimal.
+- [x] TL delegates exactly to Front/Back and maintains role boundaries.
+- [x] Invalid refs and divergent contracts are rejected by validation.
+- [x] Replay records that no model was called; proposed code is not run.
+- [x] Core tests and builds have reported results without overstating evidence.
+- [ ] AC-3/AC-4 verified in a browser and over real HTTP.
+- [ ] AC-1/AC-2/AC-5/AC-6 demonstrated with real Ollama and human content review.
+- [ ] Remote publication confirmed.
 
-Conclusão: pronto para revisão do core; validação integral e publicação ainda dependem das integrações pendentes. Checklist de processo não é aprovação automática das propostas.
+Conclusion: ready for core review; full validation and publication still depend on pending integrations. A process checklist is not automatic approval of proposals.

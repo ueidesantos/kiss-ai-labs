@@ -1,12 +1,12 @@
-# 05 — RAG sobre Código-Fonte
+# 05 — RAG over Source Code
 
 ![Capa original KISS AI Labs](../assets/kiss_ai_lab.png)
 
-Localize regras e classes em arquivos C# usando embeddings locais e similaridade de cosseno. O fluxo continua explícito: arquivos `.cs` → embeddings → ranking em memória → Top-K → resposta com fontes.
+Find rules and classes in C# files using local embeddings and cosine similarity. The flow remains explicit: `.cs` files → embeddings → in-memory ranking → Top-K → answer with sources.
 
-## Executar
+## Run
 
-Pré-requisitos: SDK .NET 11 (preview com suporte a `net11.0`), Ollama em execução e modelos baixados. Execute na raiz do repositório:
+Prerequisites: .NET 11 SDK (preview with `net11.0` support), Ollama running, and models downloaded. Run from the repository root:
 
 ```bash
 ollama pull nomic-embed-text
@@ -16,40 +16,40 @@ dotnet run --project 05-rag-source-code/src -- --question "Qual classe valida o 
 dotnet run --project 05-rag-source-code/src -- --question "Onde a regra de desconto é aplicada?" --top-k 2
 ```
 
-Confira `DiscountPolicy.cs` (valida descontos entre 0 e 20%) e `OrderService.cs` (chama a validação antes do cálculo). `ShippingPolicy.cs` oferece outro assunto para observar ruído no ranking. Esses arquivos são dados de exemplo; não são executados pelo RAG.
+Review `DiscountPolicy.cs` (validates discounts between 0 and 20%) and `OrderService.cs` (calls the validation before calculating). `ShippingPolicy.cs` provides another topic for observing ranking noise. These files are sample data; RAG does not execute them.
 
-Para consultar seu código:
+To query your code:
 
 ```bash
 dotnet run --project 05-rag-source-code/src -- --code ./meu-projeto --question "Qual classe faz essa validação?" --top-k 3
 ```
 
-Opções: `--code`, `--question`, `--top-k`, `--url`, `--embedding-model`, `--model`, `--cpu`, `--help`. Padrões: pasta `05-rag-source-code/samples`, K=2, endpoint `http://localhost:11434`, modelos `nomic-embed-text` e `llama3.2`. K deve ser positivo; acima do total recupera todos os arquivos disponíveis.
+Options: `--code`, `--question`, `--top-k`, `--url`, `--embedding-model`, `--model`, `--cpu`, `--help`. Defaults: folder `05-rag-source-code/samples`, K=2, endpoint `http://localhost:11434`, models `nomic-embed-text` and `llama3.2`. K must be positive; values above the total retrieve all available files.
 
-Se ocorrer `prediction aborted, token repeat limit reached`, tente `--cpu` para executar embeddings e geração na CPU. Esse modo resolveu a falha observada neste ambiente; pode ser mais lento. Exemplo:
+If `prediction aborted, token repeat limit reached` occurs, try `--cpu` to run embeddings and generation on the CPU. This mode resolved the failure observed in this environment; it may be slower. Example:
 
 ```bash
 dotnet run --project 05-rag-source-code/src -- --question "Onde a regra de desconto é aplicada?" --top-k 2 --cpu
 ```
 
-## O que observar
+## What to Observe
 
-O console imprime os arquivos recuperados, cosseno, contexto completo, resposta e fontes `[S1]` com caminho relativo e intervalo `arquivo.cs:1-N`. Cada arquivo inteiro é uma unidade de recuperação; o intervalo identifica a fonte completa, não a linha exata da regra. Confira a chamada e a validação no código original. IDs citados pelo LLM não são validados automaticamente.
+The console prints retrieved files, cosine scores, full context, the answer, and `[S1]` sources with relative paths and ranges such as `file.cs:1-N`. Each entire file is a retrieval unit; the range identifies the full source, not the exact line containing the rule. Verify the call and validation in the original code. LLM-cited IDs are not validated automatically.
 
-A busca é recursiva, aceita `.cs` e `.CS`, ignora `bin`, `obj`, `.git`, `.vs`, `node_modules` e não segue links de arquivos ou diretórios. Não usa Roslyn, grafo de chamadas, banco vetorial, persistência, chunking nem filtro de similaridade. Por isso pode recuperar arquivos irrelevantes ou deixar de encontrar uma chamada: similaridade não prova relação entre classes.
+Search is recursive, accepts `.cs` and `.CS`, ignores `bin`, `obj`, `.git`, `.vs`, and `node_modules`, and does not follow file or directory links. It does not use Roslyn, a call graph, a vector database, persistence, chunking, or a similarity threshold. It may therefore retrieve irrelevant files or miss a call: similarity does not prove a relationship between classes.
 
-## Dados e limites
+## Data and Limitations
 
-O texto completo dos arquivos e a pergunta são enviados ao endpoint para embeddings; os arquivos recuperados e a pergunta são enviados para geração. Endpoint e modelos locais mantêm esse processamento na máquina. Com endpoint remoto, esses textos seguem para o servidor configurado. O contexto também aparece no terminal.
+The full file text and question are sent to the endpoint for embeddings; retrieved files and the question are sent for generation. A local endpoint and local models keep this processing on the machine. With a remote endpoint, these texts go to the configured server. The context is also displayed in the terminal.
 
-Embeddings são recalculados a cada execução. Arquivos grandes podem exceder a janela do embedding (truncamento desativado); selecione uma pasta pequena. A geração é limitada a 384 tokens e à janela do modelo. Temperatura zero e seed fixa não garantem precisão ou determinismo.
+Embeddings are recalculated on every run. Large files may exceed the embedding window (truncation is disabled); choose a small folder. Generation is limited to 384 tokens and the model context window. A temperature of zero and a fixed seed do not guarantee accuracy or determinism.
 
-Pasta ausente, vazia, opções inválidas e falhas de leitura retornam código 1 com mensagem. Conexão recusada ou modelo ausente: confira Ollama, `--url` e os modelos baixados. Use `--help` para consultar opções.
+A missing or empty folder, invalid options, and read failures return exit code 1 with a message. Connection refused or missing model: check Ollama, `--url`, and downloaded models. Use `--help` to see the options.
 
-## Validação
+## Validation
 
 ```powershell
 pwsh -File 05-rag-source-code/tests/validate.ps1
 ```
 
-O teste HTTP sem modelos verifica descoberta recursiva, exclusão de pastas geradas, ranking, fontes com linhas, contexto, limite de K e erros de entrada. Não mede qualidade semântica. Consulte [VALIDATION.md](VALIDATION.md) e [SPEC.md](SPEC.md).
+The HTTP test runs without models and checks recursive discovery, generated-folder exclusions, ranking, sources with line ranges, context, the K limit, and input errors. It does not measure semantic quality. See [VALIDATION.md](VALIDATION.md) and [SPEC.md](SPEC.md).

@@ -1,21 +1,21 @@
-# Convergência — Lab 08
+# Lab 08 convergence
 
-Data: 2026-10-11. **Estado: core MCP testado com mocks; entrega visual obrigatória bloqueada.** Relatório autorado, não execução da skill oficial `speckit-converge`.
+Date: 2026-10-11. **Status: MCP core tested with mocks; required visual delivery blocked.** Authored report, not a run of the official `speckit-converge` skill.
 
-| Evidência | Estado |
+| Evidence | Status |
 |---|---|
-| Cliente .NET MCP | Implementado |
-| Checks MCP | 19 passaram, conforme coordenador; sem sockets |
-| Kit SDD e briefing | Autorados; fonte canônica preservada |
-| Conector Figma | Instalado/conectado segundo screenshot |
-| Tools Figma na sessão | Não expostas; criação não executada |
-| Acesso Figma via navegador | Explicitamente negado |
-| Arquivo/URL fornecidos pelo usuário | Registrados em figma.source.json; conteúdo não lido |
-| IDs dos frames da especificação | Pendentes de metadados/captura; 0:1 é apenas o nó do link |
-| Captura real e screenshot MCP | Pendentes |
-| Front fiel ao Figma | Pendente; nenhuma UI lab 08 fabricada |
-| Ollama/HTTP reais e push | Sem evidência de sucesso nesta documentação |
+| .NET MCP client | Implemented |
+| MCP checks | 19 passed, per coordinator; no sockets |
+| SDD kit and brief | Authored; canonical source preserved |
+| Figma connector | Installed/connected per screenshot |
+| Figma tools in session | Not exposed; creation not performed |
+| Figma browser access | Explicitly denied |
+| User-supplied file/URL | Recorded in figma.source.json; content not read |
+| Specification frame IDs | Pending metadata/capture; 0:1 is only the link's node |
+| Real capture and MCP screenshot | Pending |
+| Front faithful to Figma | Pending; no Lab 08 UI fabricated |
+| Real Ollama/HTTP and push | No success evidence in this documentation |
 
-G1/G2 técnico têm escopo e contrato; G2 visual continua pendente. Mocks fornecem evidência protocolar F-1/2/6, sem concluir F-2..F-5 no ambiente real. Demo fictícia não muda esse estado.
+G1/G2 technical scope and contract are defined; G2 visual remains pending. Mocks provide protocol evidence for F-1/2/6, without completing F-2..F-5 in the real environment. Fictional demo does not change that status.
 
-Para concluir: disponibilizar ferramentas Figma na sessão suportada, criar arquivo autorizado com cinco frames, registrar URL/IDs/capturas, integrar fonte real ao TL/RAG, implementar/revisar Front, verificar API e geração reais, publicar e registrar commit. Não repetir reinstalação de conector já conectado nem contornar controles de acesso.
+To complete: make Figma tools available in a supported session, create the authorized file with five frames, record URL/IDs/captures, integrate the real source into TL/RAG, implement/review Front, verify real API and generation, publish, and record the commit. Do not reinstall an already connected connector or bypass access controls.

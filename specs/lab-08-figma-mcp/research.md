@@ -1,14 +1,14 @@
-# Pesquisa e decisões
+# Research and decisions
 
-Base: [SPEC](SPEC.md). Fontes consultadas em 2026-10-11: [Figma desktop MCP](https://developers.figma.com/docs/figma-mcp-server/local-server-installation/), [Figma remoto/OAuth](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/), [MCP lifecycle 2025-06-18](https://modelcontextprotocol.io/specification/2025-06-18/basic/lifecycle).
+Based on the [SPEC](SPEC.md). Sources consulted 2026-10-11: [Figma desktop MCP](https://developers.figma.com/docs/figma-mcp-server/local-server-installation/), [Figma remote/OAuth](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/), [MCP lifecycle 2025-06-18](https://modelcontextprotocol.io/specification/2025-06-18/basic/lifecycle).
 
-| Decisão | Justificativa | Limite |
+| Decision | Rationale | Limit |
 |---|---|---|
-| Arquivo Figma real obrigatório | Especificação visual precisa de nodes e contexto verificáveis | Mock/Markdown não substituem design |
-| Cliente .NET 11 com HttpClient/JSON | Exemplo protocolar pequeno, sem NuGet externo | Cliente próprio exige validação de compatibilidade real |
-| Endpoint desktop local | Documentação informa 127.0.0.1:3845/mcp | Requer Figma desktop, arquivo aberto e servidor habilitado |
-| Negociação MCP | Sessão, protocolo, schemas e erros precedem captura | Versionamento e inputSchema não podem ser presumidos |
-| Reuso lab 07 | Contrato/cálculo já definidos; foco novo é fonte visual | UI do lab 07 não prova fidelidade ao lab 08 |
-| Remote Codex separado | OAuth gerenciado pelo conector | Cliente .NET não coleta/reutiliza tokens nem implementa OAuth |
+| Real Figma file required | Visual specification needs verifiable nodes and context | Mock/Markdown do not replace design |
+| .NET 11 client with HttpClient/JSON | Small protocol example without external NuGet packages | Custom client requires real compatibility validation |
+| Local desktop endpoint | Documentation lists 127.0.0.1:3845/mcp | Requires Figma desktop, open file, and enabled server |
+| MCP negotiation | Session, protocol, schemas, and errors precede capture | Do not assume protocol version or inputSchema |
+| Reuse Lab 07 | Contract/calculation already defined; new focus is the visual source | Lab 07 UI does not prove Lab 08 fidelity |
+| Separate remote Codex | OAuth managed by the connector | .NET client does not collect/reuse tokens or implement OAuth |
 
-Screenshot de sessão comprova conector instalado/conectado; inventário de tools não expôs Figma e navegação foi negada. Esta é uma limitação operacional, não uma indicação de que o plugin precisa ser reinstalado.
+A session screenshot confirms the connector is installed/connected; the tool inventory did not expose Figma, and navigation was denied. This is an operational limitation, not evidence that the plugin needs reinstalling.

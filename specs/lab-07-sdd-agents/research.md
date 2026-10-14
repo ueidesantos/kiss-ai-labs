@@ -1,17 +1,17 @@
-# Pesquisa e decisões técnicas
+# Research and technical decisions
 
-Referência: [SPEC](SPEC.md). Pesquisa de processo: [Spec Kit oficial](https://github.com/github/spec-kit), consultado em 2026-10-11. Os artefatos abaixo são autorais desta demanda.
+Reference: [SPEC](SPEC.md). Process research: [official Spec Kit](https://github.com/github/spec-kit), consulted 2026-10-11. The artifacts below were authored for this request.
 
-| Questão | Decisão | Motivo e limite |
+| Question | Decision | Reason and limit |
 |---|---|---|
-| Stack | .NET 11 / ASP.NET Core / HTML vanilla | Atende à stack solicitada; três projetos sem NuGet externos |
-| Recuperação | TF-IDF e cosseno, documentos Markdown inteiros | Corpus de três textos; simples, local e inspecionável. Não equivale a embeddings semânticos |
-| Coordenação | TL primeiro, depois uma chamada Front e uma Back | Contrato compartilhado antes da proposta; três chamadas sequenciais |
-| Dinheiro | `decimal`, duas casas, `AwayFromZero` | Para valores positivos, implementa HALF_UP das fontes |
-| Persistência | Somente artefatos do workflow | Simulação não cria pedido ou cobrança; dispensa banco |
-| Execução das propostas | Revisão humana | Código gerado é arquivo de proposta, não executável automático |
-| Demonstração sem modelo | Replay explícito | Exercita artefatos e validações; não mede qualidade de IA |
+| Stack | .NET 11 / ASP.NET Core / vanilla HTML | Meets requested stack; three projects without external NuGet packages |
+| Retrieval | TF-IDF and cosine similarity over whole Markdown files | Three-document corpus; simple, local, inspectable. Not equivalent to semantic embeddings |
+| Coordination | TL first, then one Front call and one Back call | Shared contract before proposals; three sequential calls |
+| Currency | `decimal`, two places, `AwayFromZero` | For positive amounts, implements source HALF_UP rule |
+| Persistence | Workflow artifacts only | Simulation creates no order or charge; no database needed |
+| Proposal execution | Human review | Generated code is a proposal file, not automatically executable |
+| Model-free demo | Explicit replay | Exercises artifacts and validation; does not measure AI quality |
 
-Não adotados nesta demanda: vector database, microserviços, framework Front, autenticação, MCP e implantação automática. Omissões são limites de escopo, não promessas de recursos.
+Not adopted for this request: vector database, microservices, Front framework, authentication, MCP, or automatic deployment. These are scope limits, not promises of future features.
 
-Próxima evidência necessária: executar aplicação HTTP e três chamadas Ollama em ambiente com acesso autorizado; revisar fidelidade das regras citadas, além da validade dos IDs.
+Next evidence needed: run the HTTP application and three Ollama calls in an environment with authorized access; review fidelity to cited rules in addition to ID validity.

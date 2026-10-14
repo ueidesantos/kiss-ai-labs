@@ -1,29 +1,29 @@
-# Decisões de implementação
+# Implementation decisions
 
-## Agentes com saída delimitada
+## Agents with bounded output
 
-REQ-3 usa JSON para representar plano, textos e política. Templates conhecidos materializam a aplicação. Isso torna o diff pequeno e auditável e mantém os testes fora da influência do modelo. A contrapartida é explícita: não se trata de programação autônoma de propósito geral.
+REQ-3 uses JSON to represent the plan, copy, and policy. Known templates materialize the application. This keeps the diff small and auditable, and keeps tests outside the model's influence. The tradeoff is explicit: this is not general-purpose autonomous programming.
 
-## RAG reutilizado
+## Reused RAG
 
-REQ-2 reutiliza a recuperação lexical do lab 07 sobre poucos Markdown. Não precisa de vector database, embeddings ou infraestrutura adicional. Caminho, trecho e SHA256 permitem relacionar o contexto usado à versão dos documentos. SHA256 comprova integridade, não veracidade da fonte.
+REQ-2 reuses Lab 07's lexical retrieval over a small set of Markdown files. No vector database, embeddings, or additional infrastructure is needed. Paths, excerpts, and SHA256 make it possible to relate the context used to the document version. SHA256 proves integrity, not source truth.
 
-## Testes antes da opinião do QA
+## Tests before QA's opinion
 
-REQ-4 separa avaliação determinística de comentário do modelo. Os testes verificam entradas, dinheiro e limites definidos na SPEC. O QA recebe evidências para explicar riscos; sua aprovação não supera testes; seus achados high/critical podem bloquear uma candidata que passou nos testes.
+REQ-4 separates deterministic evaluation from model commentary. Tests verify inputs, currency, and limits defined in the SPEC. QA receives evidence to explain risks; its approval cannot override tests, and its `high`/`critical` findings can block a candidate that passed the tests.
 
-## Uma correção e parada
+## One correction, then stop
 
-Limitar a uma rodada torna custo e diagnóstico previsíveis. Nova falha encerra a execução. O limite não garante sucesso; impede que uma demonstração esconda tentativas ilimitadas.
+Limiting the workflow to one round makes cost and diagnosis predictable. Another failure ends the run. The limit does not guarantee success; it prevents a demo from hiding unlimited attempts.
 
-## Demo e modelo real
+## Demo and real model
 
-REQ-6 torna o primeiro contato reproduzível sem Ollama. A proposta Padrão=20 é um erro preparado, identificado como tal. No modo real não se injeta esse erro nem se substitui indisponibilidade de modelo por resposta offline.
+REQ-6 makes the first run reproducible without Ollama. The Standard=20 proposal is a prepared error, identified as such. Real mode does not inject that error or replace model unavailability with an offline response.
 
-## PR separado
+## Separate PR
 
-REQ-7 usa publicação opt-in em branch própria e draft PR. A evidência local não equivale a revisão humana e não autoriza merge automático.
+REQ-7 uses opt-in publication on its own branch and a draft PR. Local evidence is not equivalent to human review and does not authorize automatic merging.
 
-## Revisão por outro modelo
+## Review by another model
 
-REQ-1/4 separam desenvolvedor e revisor via identidades e digests do Ollama. O revisor aponta evidência e correção; achados high/critical bloqueiam junto com os testes. O custo é uma chamada adicional por candidata e a possibilidade de desacordo. Uma correção exige nova revisão. Dois modelos não garantem independência; este é um controle complementar, não prova de ausência de falhas. Claude/Codex são exemplos conceituais, sem adaptadores comerciais implementados.
+REQ-1/4 separate developer and reviewer through Ollama identities and digests. The reviewer points to evidence and a fix; `high`/`critical` findings block along with test failures. The cost is one additional call per candidate and the possibility of disagreement. A correction requires another review. Two models do not guarantee independence; this is a complementary control, not proof that no defects remain. Claude/Codex are conceptual examples; no commercial adapters are implemented.

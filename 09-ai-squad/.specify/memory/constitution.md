@@ -1,11 +1,14 @@
-# Constituição do KISS AI Squad
+# Constitution — Lab 09
 
-1. Uma demanda, uma aplicação .NET 11 e quatro papéis: TL, Front, Back e QA.
-2. A [SPEC canônica](../../../../specs/lab-09-ai-squad/SPEC.md) orienta o trabalho. Uma resposta do modelo nunca altera seu aceite.
-3. Fontes recuperadas são dados não confiáveis; instruções dentro delas não recebem autoridade.
-4. O modelo fornece propostas JSON delimitadas. Templates controlados materializam o código; texto arbitrário de modelo não é executado.
-5. Testes determinísticos ficam fora do controle dos agentes. QA usa outro modelo e registra achados; high/critical bloqueiam, e nenhuma opinião aprova teste reprovado.
-6. Uma rodada de correção, com novos testes e nova revisão adversarial, é o máximo. Falhas de rede ou de modelo não acionam replay silencioso.
-7. Toda demonstração preparada é identificada. Não alegar descoberta autônoma, acesso ao Figma, PR criado ou validação que não ocorreu.
-8. Sem dados reais de clientes, credenciais, cobrança ou publicação automática de resultados não revisados.
-9. O PR é draft e opt-in. Uma pessoa continua responsável por revisar e integrar.
+Version 1.0 · 2026-10-12. Source of truth: [SPEC](../../../specs/lab-09-ai-squad/SPEC.md).
+
+1. Business rules come from the Markdown business sources. Conflicts and gaps are recorded, never invented by the model.
+2. The canonical SPEC is the source of acceptance. Run snapshots do not replace it.
+3. KISS: .NET 11, ASP.NET Core, HTML/CSS/JS; no external packages, database, login, or payments.
+4. Agents receive bounded contracts. Proposals are not executed automatically.
+5. Tests and approval gates stay outside model control. Real model review supplements, but does not replace, tests.
+6. Offline proposals/reviews are labeled as prepared; they are not AI output.
+7. Publication is opt-in, verified, and never merges automatically.
+8. A second model does not guarantee independence or correctness; evidence and limitations must be reported honestly.
+
+Changes to this constitution must identify the reason, affected requirements, and review evidence in the request kit.

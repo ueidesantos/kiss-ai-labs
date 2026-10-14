@@ -1,9 +1,9 @@
-# Política de descontos — B1
+# Discount rules — B1
 
-O valor original do pedido deve ser um número finito maior que zero.
-O desconto percentual permitido vai de 0 a 20, incluindo os limites.
-Descontos negativos ou acima de 20 devem ser recusados, com mensagem legível.
-O valor final é valor original multiplicado por (1 - desconto / 100).
-Valores monetários são arredondados a duas casas decimais com HALF_UP.
-Exemplo: 100 com desconto de 10 por cento resulta em 90.00.
-Estas regras pertencem a uma loja fictícia usada neste laboratório.
+The original order amount must be finite and greater than zero.
+The permitted discount percentage is from 0 to 20, inclusive.
+Negative discounts and discounts above 20 must be rejected with a readable message.
+The final amount is the original amount multiplied by (1 - discount / 100).
+Currency amounts are rounded to two decimal places using HALF_UP.
+Example: 100 with a 10 percent discount results in 90.00.
+These rules belong to a fictional store used in this lab.

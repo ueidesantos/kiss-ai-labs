@@ -1,24 +1,24 @@
-# Validação — LAB08
+# Validation — LAB 08
 
-2026-10-11, America/Sao_Paulo. **Entrega no Figma e publicação pendentes.**
+2026-10-11, America/Sao_Paulo. **Figma delivery and publication are pending.**
 
-- Cliente e harness .NET11 compilados sem avisos/erros.
-- 19 testes passaram com transporte fictício: lifecycle JSON/SSE, sessão, versão, ID correlacionado, JSON-RPC error, tools/schemas, screenshot exigido, isError, vazio, limite de tamanho, node obrigatório, recusa de fixture como fonte real e assinatura de screenshot. Não são chamadas reais ao Figma.
-- CLI `demo` executado e integrou contexto `FIGMA-FIXTURE`, RAG de negócio, TL/Front/Back, SPEC candidata e fonte visual. `figma-review.json` informa `visualMatchVerified=false`, `figmaFileCreatedByThisRun=false` e necessidade de revisão.
-- O usuário comprovou plugin instalado/conectado com Allowall e forneceu links Design/Prototype/Community. O alvo mais recente consta de `figma.source.json`.
-- Ferramentas do conector não foram expostas nesta sessão; navegador recusou acesso a Figma e a página de Plugins. Web também não conseguiu ler os URLs fornecidos. Nenhum frame, token, componente ou screenshot real foi extraído; nenhuma alteração de canvas foi confirmada.
-- Imagem de arquitetura gerada com image_gen, identificada como diagrama no README. Ela não é design/screenshot do Figma nem evidencia conformidade visual.
-- Fetch/push GitHub bloqueados por DNS. Commit local não equivale a publicação.
+- .NET 11 client and harness compiled with no warnings/errors.
+- 19 tests passed with fake transport: JSON/SSE lifecycle, session, version, correlated ID, JSON-RPC error, tools/schemas, required screenshot, isError, empty response, size limit, required node, rejection of fixture as real source, and screenshot signature. These are not real Figma calls.
+- CLI `demo` ran and combined `FIGMA-FIXTURE` context, business RAG, TL/Front/Back, candidate SPEC, and visual source. `figma-review.json` reports `visualMatchVerified=false`, `figmaFileCreatedByThisRun=false`, and need for review.
+- The user confirmed the plugin was installed/connected with Allow all and provided Design/Prototype/Community links. The latest target is listed in `figma.source.json`.
+- Connector tools were not exposed in this session; browser access to Figma and the Plugins page was denied. Web also could not read the supplied URLs. No real frame, token, component, or screenshot was extracted; no canvas changes were confirmed.
+- Architecture image generated with integrated image_gen and labeled as a diagram in the README. It is not a Figma design/screenshot or evidence of visual conformance.
+- GitHub fetch/push were blocked by DNS. A local commit is not publication.
 
-## Obrigatório para concluir
+## Required to complete
 
-1. Acessar o arquivo real pelo conector; criar/editar os frames definidos no briefing e registrar URL/IDs.
-2. Capturar metadados, contexto de alta fidelidade e screenshots; registrar a especificação derivada dessas fontes.
-3. Implementar/revisar Front contra os frames reais e executar integração visual/funcional.
-4. Conferir gates e publicar os commits com hash remoto confirmado.
+1. Access the real file through the connector; create/edit the briefed frames and record URL/IDs.
+2. Capture metadata, high-fidelity context, and screenshots; record the specification derived from these sources.
+3. Implement/review Front against the real frames and run visual/functional integration.
+4. Check the gates and publish the commits with a confirmed remote hash.
 
-Veja [convergence.md](../specs/lab-08-figma-mcp/convergence.md). Não tratar fixture como substituto desses requisitos.
+See [convergence.md](../specs/lab-08-figma-mcp/convergence.md). Do not treat a fixture as a substitute for these requirements.
 
-## Atualização do link e alternativa de entrega — 2026-10-11
+## Link update and alternate delivery — 2026-10-11
 
-Link da comunidade confirmado pelo usuário e incluído nos READMEs principal e interno. Usuário aceitou publicar com o link quando o acesso não for possível. Nesta tentativa, nenhuma ferramenta Figma estava exposta e a consulta web à cópia Design retornou inacessível. Não há evidência para atribuir a falha à assinatura. Alteração documental, sem mudança no código; JSONs e diff verificados.
+The user confirmed the community link, which was added to the main and internal READMEs. The user accepted publication with the link when access is unavailable. In this attempt, no Figma tool was exposed and the web lookup of the Design copy returned inaccessible. There is no evidence to attribute the failure to a subscription. Documentation-only change, no code changes; JSON and diff checked.

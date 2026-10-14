@@ -1,15 +1,15 @@
-# Validação — LAB07
+# Validation — LAB 07
 
-2026-10-11, America/Sao_Paulo. SDK11.0.100-rc.1.26425.128.
+2026-10-11, America/Sao_Paulo. SDK 11.0.100-rc.1.26425.128.
 
-- Três projetos do lab compilados: app, coordenador e harness; zeroavisos/erros.
-- 66checks .NET passaram: cálculo decimal, limites, tipos inválidos, handler HTTP em memória, corpo limitado, RAG lexical/ranking/acentos/corpusvazio, fontes, contrato, papéis, delegação, replay e geração de artefatos.
-- 9testes JS passaram: payload, BRL, carregamento, erros, entradas inválidas, precisão monetária, notação científica e valores grandes.
-- Revisão independente encontrou perda monetária no frontend; corrigida e coberta por testes. Corrigida também lacuna de evidência sobre normalização/corpus vazio por inclusão dos cenários.
-- Replay offline executado: recuperou simulacao.md, descontos.md e glossario.md e gravou SPEC/plano/handoffs sem chamar um modelo.
-- Servidor ASP.NET Core iniciou e anunciou `Now listening on: http://127.0.0.1:8087`. A solicitação HTTP real foi bloqueada por permissões de socket; navegador também recusou acesso. Portanto, não declarar teste de navegador/HTTP real aprovado. Servidor encerrado após a tentativa.
-- Ollama real não executado neste lab; integração validada com HttpMessageHandler fictício. A revisão semântica da saída real permanece pendente.
-- Imagem de arquitetura e capa principal geradas com image_gen integrada; imagens anteriores preservadas.
-- Publicação: fetch/push do GitHub bloqueados por DNS nesta sessão. Registrar o commit local na entrega; não confundir com publicação confirmada.
+- Three lab projects built: app, coordinator, and harness; zero warnings/errors.
+- 66 .NET checks passed: decimal calculation, limits, invalid types, in-memory HTTP handler, body limit, lexical RAG/ranking/diacritics/empty corpus, sources, contract, roles, delegation, replay, and artifact generation.
+- Nine JS tests passed: payload, BRL, loading, errors, invalid inputs, currency precision, scientific notation, and large amounts.
+- Independent review found currency loss in the frontend; it was fixed and covered by tests. An evidence gap around normalization/empty corpus was also fixed by adding those scenarios.
+- Offline replay ran: retrieved simulacao.md, descontos.md, and glossario.md and wrote SPEC/plan/handoffs without calling a model.
+- ASP.NET Core server started and announced `Now listening on: http://127.0.0.1:8087`. A real HTTP request was blocked by socket permissions; the browser also denied access. Therefore, do not report browser/real HTTP tests as passed. Server was stopped after the attempt.
+- Real Ollama was not run in this lab; integration was validated with a fake HttpMessageHandler. Semantic review of real output remains pending.
+- Architecture image and main cover were generated with integrated image_gen; previous images were preserved.
+- Publication: GitHub fetch/push were blocked by DNS in this session. Record the local commit in the delivery; do not confuse it with confirmed publication.
 
-Os checks em memória são evidência do núcleo executável. O gate de integração real está pendente em [convergence.md](../specs/lab-07-sdd-agents/convergence.md).
+In-memory checks are evidence for the executable core. The real integration gate remains pending in [convergence.md](../specs/lab-07-sdd-agents/convergence.md).

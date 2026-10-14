@@ -1,16 +1,13 @@
-# Esclarecimentos
+# Clarifications
 
-| Questão | Decisão |
+| Question | Decision |
 |---|---|
-| Demanda arbitrária? | Não; simulador fixo Padrão10/VIP20. |
-| O que o desenvolvedor gera? | Propostas JSON de plano/textos/política, materializadas por templates. |
-| Claude e Codex integrados? | Não; exemplo conceitual. Implementação usa dois modelos Ollama distintos. |
-| Nomes diferentes bastam? | Não; digests também devem diferir para rejeitar aliases. |
-| Dois modelos garantem independência? | Não. Podem compartilhar vieses; testes continuam obrigatórios. |
-| Como a revisão bloqueia? | Achado high/critical ou teste reprovado fecha gate. |
-| Quantas correções? | Uma Back, seguida de build/testes e nova revisão. Persistência encerra reprovado. |
-| Offline usa IA? | Não. Propostas e revisões preparadas; testes executados de verdade. |
-| RAG usa embeddings? | Não; TF-IDF e cosseno lexical reutilizados do lab 07. |
-| Figma obrigatório? | Não; somente referência complementar, sem alegar captura. |
-| Entrega em main? | Lab em main; candidata em draft PR opt-in separado. |
-| Qual capa? | Pedido mais recente: lab 09 principal, lab 08 secundário; preservar cenário. |
+| Is this commercial customer validation? | No. It is a fictional demo. Profile selection does not authenticate or authorize anyone. |
+| What do two models guarantee? | Nothing about independence. They may share biases; tests remain mandatory. |
+| How does review block? | A `high`/`critical` finding or failed test closes the gate. |
+| How many corrections? | One Back correction, followed by build/tests and another review. A persistent issue ends in rejection. |
+| Does offline mode use AI? | No. Proposals and reviews are prepared; tests are actually run. |
+| Does RAG use embeddings? | No; it reuses Lab 07's lexical TF-IDF and cosine similarity. |
+| Is Figma required? | No; it is a complementary reference only, with no claim of capture. |
+| Is delivery to `main`? | The lab is on `main`; the candidate can go to a separate opt-in draft PR. |
+| Which cover? | Latest request: Lab 09 featured, Lab 08 secondary; preserve the scene. |

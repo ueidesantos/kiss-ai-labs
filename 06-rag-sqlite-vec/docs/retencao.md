@@ -1,5 +1,5 @@
-# Retenção de dados
+# Data Retention
 
-Registros operacionais devem ser mantidos pelo período necessário para suporte e auditoria. Remova ou anonimize dados pessoais quando o prazo de retenção terminar.
+Operational records should be retained for as long as needed for support and auditing. Remove or anonymize personal data when the retention period ends.
 
-Backups seguem o mesmo prazo de retenção dos dados originais. Uma exclusão deve considerar as cópias de backup dentro do ciclo de expiração documentado.
+Backups follow the same retention period as the original data. Deletions must account for backup copies within the documented expiration cycle.

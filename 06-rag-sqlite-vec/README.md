@@ -1,20 +1,20 @@
-# 06 — RAG Local com SQLite-vec
+# 06 — Local RAG with SQLite-vec
 
-![KISS AI Labs com SQLite-vec](../assets/kiss-ai-labs-sqlite-vec.png)
+![KISS AI Labs with SQLite-vec](../assets/kiss-ai-labs-sqlite-vec.png)
 
-Indexe documentos Markdown uma vez e reutilize textos e embeddings num arquivo SQLite. Python chama o Ollama por HTTP; a extensão SQLite-vec calcula a distância de cosseno em SQL. Não há serviço de banco externo.
+Index Markdown documents once and reuse their text and embeddings in a SQLite file. Python calls Ollama over HTTP; the SQLite-vec extension calculates cosine distance in SQL. No external database service is required.
 
-**Estado desta entrega:** implementação e testes preparados; validação da extensão nativa e demonstração com Ollama pendentes neste ambiente. Consulte [VALIDATION.md](VALIDATION.md).
+**Delivery status:** implementation and tests are prepared; validating the native extension and running the Ollama demo remain pending in this environment. See [VALIDATION.md](VALIDATION.md).
 
-## Executar
+## Run
 
-Pré-requisitos: Python 3.10 ou superior com `sqlite3` capaz de carregar extensões, SQLite 3.41 ou superior recomendado, Ollama em execução e os modelos abaixo. Execute na raiz do repositório:
+Prerequisites: Python 3.10 or later with `sqlite3` able to load extensions, SQLite 3.41 or later recommended, Ollama running, and the models below. Run from the repository root:
 
 ```bash
 python -m venv .venv
 ```
 
-Ative o ambiente no PowerShell com `.\.venv\Scripts\Activate.ps1`, ou no Linux/macOS com `source .venv/bin/activate`. Depois:
+Activate the environment in PowerShell with `\.venv\Scripts\Activate.ps1`, or on Linux/macOS with `source .venv/bin/activate`. Then:
 
 ```bash
 python -m pip install -r 06-rag-sqlite-vec/requirements.txt
@@ -25,18 +25,18 @@ python 06-rag-sqlite-vec/src/rag.py ask --question "Como protegemos credenciais?
 python 06-rag-sqlite-vec/src/rag.py ask --question "Por quanto tempo guardamos logs?" --top-k 2 --cpu
 ```
 
-`--cpu` é opcional: envia `num_gpu=0` tanto para embeddings quanto para geração. Nos labs anteriores, resolveu uma falha de repetição de tokens observada na execução padrão do Ollama. Sem essa opção, o Ollama decide como executar os modelos.
+`--cpu` is optional: it sends `num_gpu=0` for both embeddings and generation. In previous labs, this resolved a token repetition failure observed with Ollama’s default run mode. Without this option, Ollama chooses how to run the models.
 
-Para seus documentos:
+For your own documents:
 
 ```bash
 python 06-rag-sqlite-vec/src/rag.py index --docs ./meus-documentos --db ./meu-rag.sqlite3
 python 06-rag-sqlite-vec/src/rag.py ask --db ./meu-rag.sqlite3 --question "Qual é a política de retenção?"
 ```
 
-O diretório pai de `--db` precisa existir. O arquivo padrão é `06-rag-sqlite-vec/rag.sqlite3`, ignorado pelo Git. Use um banco exclusivo do lab; arquivos SQLite com outras tabelas são recusados.
+The parent directory of `--db` must exist. The default file is `06-rag-sqlite-vec/rag.sqlite3`, which Git ignores. Use a database dedicated to this lab; SQLite files containing other tables are rejected.
 
-## Indexar e consultar
+## Indexing and Querying
 
 ```text
 index: Markdown → Ollama /api/embed → textos + vetores float32 → rag.sqlite3
@@ -44,49 +44,49 @@ ask:   pergunta → Ollama /api/embed → distância de cosseno em SQL → Top-K
                                       → contexto + pergunta → Ollama /api/generate
 ```
 
-`index` procura `.md` e `.MD` recursivamente, ignora arquivos vazios e links simbólicos de arquivos, e trata cada arquivo inteiro como uma unidade. Os arquivos de exemplo discutem credenciais, retenção e implantação.
+`index` recursively searches for `.md` and `.MD` files, ignores empty files and symbolic links to files, and treats each whole file as a unit. The sample files cover credentials, retention, and deployment.
 
-O índice guarda `documents` (caminho relativo, texto e vetor) e `metadata` (formato, dimensão, modelo de embedding e endpoint). A consulta usa `vec_distance_cosine`, uma função da extensão SQLite-vec, com `ORDER BY distance, path LIMIT K`: menor distância significa maior proximidade. É uma varredura exata da tabela, adequada para este lab pequeno; não utiliza tabela virtual `vec0` nem índice aproximado. Veja a [documentação oficial de consultas KNN](https://alexgarcia.xyz/sqlite-vec/features/knn.html).
+The index stores `documents` (relative path, text, and vector) and `metadata` (format, dimensions, embedding model, and endpoint). Queries use `vec_distance_cosine`, a SQLite-vec extension function, with `ORDER BY distance, path LIMIT K`: a smaller distance means a closer match. This is an exact table scan, suitable for this small lab; it does not use the `vec0` virtual table or an approximate index. See the [official KNN query documentation](https://alexgarcia.xyz/sqlite-vec/features/knn.html).
 
-`ask` não acessa a pasta de documentos: gera apenas o embedding da pergunta, consulta os vetores persistidos e faz uma chamada de geração. Imprime caminhos, distâncias, IDs `[S1]`, contexto completo e resposta. Confira a resposta contra esse contexto; citações e afirmações do modelo não são validadas automaticamente.
+`ask` does not access the document folder: it generates only the question embedding, queries the persisted vectors, and makes a generation call. It prints paths, distances, `[S1]` IDs, the full context, and the response. Check the response against that context; model citations and claims are not validated automatically.
 
-Modificou, adicionou ou removeu documentos? Execute `index` novamente. A reconstrução gera todos os embeddings e substitui o conjunto anterior numa única transação, sem atualização incremental. Uma falha durante a geração ou gravação preserva o índice anterior. Arquivos vazios não apagam o índice anterior. A primeira execução que falha pode deixar um arquivo SQLite vazio, reutilizável pelo próximo `index`.
+Did you modify, add, or remove documents? Run `index` again. Rebuilding generates all embeddings and replaces the previous set in a single transaction, without incremental updates. A failure during generation or writing preserves the previous index. Empty folders do not erase the previous index. The first failed run may leave an empty SQLite file that the next `index` run can reuse.
 
-## Opções
+## Options
 
-| Comando | Opção | Padrão |
+| Command | Option | Default |
 |---|---|---|
-| Ambos | `--db` | `06-rag-sqlite-vec/rag.sqlite3` |
-| Ambos | `--url` | `http://localhost:11434` |
-| Ambos | `--cpu` | Ausente; Ollama decide o dispositivo |
-| index | `--docs` | Documentos de exemplo do lab |
+| Both | `--db` | `06-rag-sqlite-vec/rag.sqlite3` |
+| Both | `--url` | `http://localhost:11434` |
+| Both | `--cpu` | Not set; Ollama chooses the device |
+| index | `--docs` | Lab sample documents |
 | index | `--embedding-model` | `nomic-embed-text` |
 | ask | `--question` | `Como protegemos credenciais?` |
-| ask | `--top-k` | 2; inteiro positivo |
+| ask | `--top-k` | 2; positive integer |
 | ask | `--model` | `llama3.2` |
 
-Use `python 06-rag-sqlite-vec/src/rag.py index --help` ou `ask --help`. `ask` usa o modelo de embedding gravado no índice e exige o mesmo endpoint. Para mudar modelo/endpoint, reindexe. Uma mudança na dimensão é recusada; uma atualização do modelo sob o mesmo nome com a mesma dimensão não é detectada, portanto também exige reindexação manual.
+Use `python 06-rag-sqlite-vec/src/rag.py index --help` or `ask --help`. `ask` uses the embedding model recorded in the index and requires the same endpoint. Reindex to change the model or endpoint. A dimension change is rejected; an updated model with the same name and dimensions is not detected, so it also requires manual reindexing.
 
-## Dados, limites e falhas comuns
+## Data, Limitations, and Common Failures
 
-Textos completos vão ao endpoint para indexação; a pergunta vai para embedding em cada consulta; pergunta e documentos selecionados vão para geração. Com endpoint e modelos locais, esse processamento ocorre na máquina. Endpoint remoto recebe os textos. O SQLite contém textos e embeddings sem criptografia, e o terminal exibe o contexto.
+Full texts are sent to the endpoint for indexing; each query sends the question for embedding; the question and selected documents are sent for generation. With a local endpoint and models, this processing happens on the machine. A remote endpoint receives the texts. SQLite stores text and embeddings without encryption, and the terminal displays the context.
 
-Sem chunking, filtros mínimos, persistência da pergunta ou estimativa de tokens. Arquivos grandes podem exceder a janela de embedding (truncamento desativado). A geração não usa streaming, tem timeout de 300 segundos e limite de 384 tokens, podendo terminar antes de completar a resposta. Temperatura zero e seed fixa não garantem precisão.
+There is no chunking, minimum-similarity filter, question persistence, or token estimation. Large files may exceed the embedding window (truncation is disabled). Generation does not stream, has a 300-second timeout and a 384-token limit, and may stop before completing the response. A temperature of zero and a fixed seed do not guarantee accuracy.
 
-- Dependência ausente: instale `requirements.txt` no mesmo Python que executa o lab. A versão foi fixada em `0.1.9` para reprodução, mas ainda precisa ser validada neste ambiente.
-- Python sem suporte a extensões: use uma distribuição que exponha `enable_load_extension`; consulte o [guia oficial de Python](https://alexgarcia.xyz/sqlite-vec/python.html).
-- Banco ausente: execute `index` primeiro. Pasta sem Markdown não modifica o índice anterior.
-- Modelo ausente, rede ou timeout: confira Ollama, os modelos baixados e `--url`.
-- Modelo ou dimensão diferente: reindexe com a configuração desejada.
-- Argumentos inválidos retornam código 2; erros de execução retornam código 1.
+- Missing dependency: install `requirements.txt` using the same Python interpreter that runs the lab. The version is pinned to `0.1.9` for reproducibility but still needs validation in this environment.
+- Python without extension support: use a distribution that exposes `enable_load_extension`; see the [official Python guide](https://alexgarcia.xyz/sqlite-vec/python.html).
+- Missing database: run `index` first. A folder without Markdown files does not modify the previous index.
+- Missing model, network error, or timeout: check Ollama, downloaded models, and `--url`.
+- Different model or dimensions: reindex with the desired configuration.
+- Invalid arguments return exit code 2; runtime errors return exit code 1.
 
-## Validar
+## Validate
 
 ```bash
 python -m py_compile 06-rag-sqlite-vec/src/rag.py 06-rag-sqlite-vec/tests/test_rag.py
 python 06-rag-sqlite-vec/tests/test_rag.py
 ```
 
-A suíte usa o SQLite-vec real para persistência e ranking, e substitui apenas as respostas HTTP do Ollama por dados controlados. Não exige serviço Ollama ou modelos baixados. Se a extensão estiver ausente, os testes nativos são omitidos e o comando retorna 1 para sinalizar validação incompleta. A demo real acima avalia o fluxo semântico e deve ser executada separadamente.
+The suite uses real SQLite-vec for persistence and ranking, and replaces only Ollama HTTP responses with controlled data. It does not require an Ollama service or downloaded models. If the extension is missing, native tests are skipped and the command returns 1 to indicate incomplete validation. The real demo above evaluates the semantic flow and should be run separately.
 
-[Especificação](SPEC.md) · [Registro de validação](VALIDATION.md)
+[Specification](SPEC.md) · [Validation Record](VALIDATION.md)

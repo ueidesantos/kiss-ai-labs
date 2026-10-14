@@ -1,8 +1,8 @@
-# Executar o Lab 07
+# Run Lab 07
 
-Pré-requisitos: SDK .NET 11 e Node.js para teste frontend. Ollama e um modelo local são necessários somente para geração real. Não é necessário instalar Spec Kit CLI ou pacotes NuGet externos.
+Prerequisites: .NET 11 SDK and Node.js for frontend tests. Ollama and a local model are needed only for real generation. No Spec Kit CLI or external NuGet packages need to be installed.
 
-Execute os comandos abaixo na raiz do repositório:
+Run these commands from the repository root:
 
 ```powershell
 dotnet build 07-sdd-agents-business-rag/src/SddAgents.csproj
@@ -12,36 +12,36 @@ dotnet run --project 07-sdd-agents-business-rag/tests
 node --test 07-sdd-agents-business-rag/tests/frontend.test.cjs
 ```
 
-O coordenador informou: três builds sem warnings, 66 checks .NET e nove testes JS passaram. As validações usam transporte em memória/simulado; não atestam rede real.
+The coordinator reported: three builds without warnings, 66 .NET checks, and nine JS tests passed. Validation uses in-memory/simulated transport; it does not verify a real network.
 
-## Replay sem modelo
+## Replay without a model
 
 ```powershell
 dotnet run --project 07-sdd-agents-business-rag/src -- --offline
 ```
 
-Leia a pasta de artefatos mostrada no terminal: contexto, SPEC candidata, tarefas, propostas e review. O modo declara `REPLAY OFFLINE`; o conteúdo usa respostas preparadas, não IA. Para escolher saída, acrescente `--out <pasta-vazia>`; o workflow recusa sobrescrever pasta não vazia.
+Read the artifact folder shown in the terminal: context, candidate SPEC, tasks, proposals, and review. The mode declares `REPLAY OFFLINE`; content uses prepared responses, not AI. To choose an output folder, add `--out <empty-folder>`; the workflow rejects overwriting a nonempty folder.
 
-## Aplicação de referência
+## Reference application
 
 ```powershell
 dotnet run --project 07-sdd-agents-business-rag/app
 ```
 
-Abra `http://127.0.0.1:8087`. Simule R$100 com 10%: total R$90,00. O endpoint também pode ser consultado:
+Open `http://127.0.0.1:8087`. Simulate R$100 at 10%: total R$90.00. You can also call the endpoint:
 
 ```powershell
 Invoke-RestMethod -Uri http://127.0.0.1:8087/api/discount -Method Post -ContentType application/json -Body '{"amount":100,"discount":10}'
 ```
 
-HTTP real e inspeção visual não foram validados nesta execução por restrições do ambiente. O comando é roteiro para completar essa evidência.
+Real HTTP and visual inspection were not validated in this run due to environment restrictions. The command is a recipe for completing that evidence.
 
-## Geração real
+## Real generation
 
-Com Ollama disponível em `http://localhost:11434` e `llama3.2` instalado:
+With Ollama available at `http://localhost:11434` and `llama3.2` installed:
 
 ```powershell
 dotnet run --project 07-sdd-agents-business-rag/src -- --model llama3.2
 ```
 
-Use `--cpu` se desejar geração na CPU; `--url`, `--top-k`, `--lab` e `--out` ajustam endpoint, recuperação e caminhos. `--help` lista opções. O fluxo chama TL, Front e Back sequencialmente. Revise citações e propostas antes de incorporá-las. Ollama real não foi validado nesta execução; artefatos candidatos não aprovam mudança de negócio.
+Use `--cpu` to generate on the CPU; `--url`, `--top-k`, `--lab`, and `--out` adjust the endpoint, retrieval, and paths. `--help` lists options. The workflow calls TL, Front, and Back sequentially. Review citations and proposals before incorporating them. Real Ollama was not validated in this run; candidate artifacts do not approve business-rule changes.

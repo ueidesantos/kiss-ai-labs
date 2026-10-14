@@ -1,17 +1,16 @@
-# Convergência e evidências
+# Convergence and evidence
 
-Estado deste registro: kit preparado; consolidação das validações pelo coordenador pendente.
+Scope updated on 2026-10-12: two distinct Ollama models, blocking adversarial review, and Lab 09 featured on the main cover. Detailed evidence is in [VALIDATION.md](VALIDATION.md).
 
-| Camada | Critério | Evidência a registrar |
-|---|---|---|
-| Core | Limites e dinheiro corretos | Comando do harness, quantidade e resultado |
-| Runner offline | Falha preparada, teste real, uma correção | Diretório de execução e relatório |
-| Runner real | Chamadas Ollama, sem replay | Modelo e resultado; ou limitação explícita |
-| Candidata | Build e testes executados | Saídas e estado final |
-| Interface | Estados e navegação utilizáveis | Verificação de desktop/mobile e erros |
-| Publicação opcional | Gate e draft PR corretos | Teste de recusa e URL somente se criado |
-| Documentação e capa | Links válidos e 09 em destaque | Revisão dos artefatos |
+| Layer | Proven status |
+|---|---|
+| Domain | Demo: 13/17 initially → 17/17 after one correction |
+| Offline runner | One correction, two prepared reviews, candidate compiled twice |
+| Integration contracts | Prepared HTTP server: approval, severe blocker, alias, invalid JSON, and build failure verified |
+| Local publication | Tampered manifest and overwrite rejected; local gate verified |
+| Interface | Standard/VIP simulations, 390px mobile, and finding rendered as literal text verified |
+| Real models | Not exercised: local Ollama unavailable |
+| Draft PR | Not created: GitHub CLI unavailable; do not confuse local gate with publication |
+| Cover/site/commit | Final confirmation by the coordinator, outside execution tests |
 
-O status de um gate pertence à execução correspondente. Uma demo aprovada não permite afirmar que o modo Ollama, o Figma ou a publicação de draft PR foram exercitados.
-
-Revisão de escopo em 12/10/2026: dois modelos Ollama distintos e revisão adversarial com achados high/critical bloqueantes; lab 09 principal na capa. Evidências desta atualização devem ser consolidadas após os testes, sem confundir servidor preparado com inferência real.
+The run's SPEC is a canonical snapshot; the plan is the TL's proposal. Deterministic tests exercise the trusted domain with the policy; HTTP/browser tests are separate. An approved demo does not prove real models, Figma, or draft PR publication were exercised.

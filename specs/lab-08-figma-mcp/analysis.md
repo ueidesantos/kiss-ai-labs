@@ -1,18 +1,18 @@
-# Análise de consistência
+# Consistency analysis
 
-Base: [SPEC](SPEC.md). Data: 2026-10-11.
+Based on the [SPEC](SPEC.md). Date: 2026-10-11.
 
-| Requisito | Implementação/evidência | Limite |
+| Requirement | Implementation/evidence | Limit |
 |---|---|---|
-| F-1 | FigmaMcpClient initialize/notification/sessão/protocolo/JSON/SSE | 19 checks mock, não servidor real |
-| F-2 | tools/list, schemas e chamadas obrigatórias | Nó real ainda indisponível |
-| F-3 | Capture inclui metadata/context/screenshot/origem/time | Captura real e gravação CLI precisam confirmação |
-| F-4 | Coordenador integra fonte FIGMA com workflow lab 07 | Não atestar geração/delegação real sem capture |
-| F-5 | Briefing dos frames, tokens e estados | É instrução de criação; gate visual pendente |
-| F-6 | Transporte fake e modo demo/fixture explícito | Mock não comprova conformidade ao Figma |
+| F-1 | FigmaMcpClient initialize/notification/session/protocol/JSON/SSE | 19 mock checks, not a real server |
+| F-2 | tools/list, schemas, and required calls | Real node still unavailable |
+| F-3 | Capture includes metadata/context/screenshot/source/time | Real capture and CLI recording need confirmation |
+| F-4 | Coordinator integrates FIGMA source with Lab 07 workflow | Do not claim real generation/delegation without capture |
+| F-5 | Frame, token, and state brief | Creation instructions; visual gate pending |
+| F-6 | Fake transport and explicit demo/fixture mode | Mock does not prove Figma conformance |
 
-As fontes têm autoridade distinta: negócio define regra; Figma define apresentação; SPEC registra decisões; testes dão evidência de execução. Um texto de design não é Figma real. Uma imagem no README não é captura MCP por si só.
+Sources have different authority: business documentation defines rules; Figma defines presentation; the SPEC records decisions; tests provide execution evidence. A design text is not real Figma. An image in the README is not by itself an MCP capture.
 
-Situação do conector: screenshot comprova instalado/conectado; tools não expostas no inventário e navegação Figma negada impediram ação real. Não transformar esse bloqueio em pedido de reinstalação. O [contrato](contracts/design-source.json) mantém URL/node nulos porque nenhum arquivo foi criado.
+Connector status: screenshot confirms installed/connected; tools were not exposed in the inventory and Figma navigation was denied, preventing real action. Do not turn this block into a reinstall request. The [contract](contracts/design-source.json) keeps URL/node null because no file was created.
 
-Referências FIGMA válidas comprovam procedência identificada, não que toda descrição gerada seja fiel. Comparação visual e revisão humana continuam obrigatórias. [Convergência](convergence.md) registra a consequência: entrega integral ainda não aprovada.
+Valid FIGMA references prove identified provenance, not that all generated descriptions are faithful. Visual comparison and human review remain mandatory. [Convergence](convergence.md) records the result: full delivery is not yet approved.

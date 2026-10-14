@@ -1,56 +1,56 @@
-# SPEC — LAB-07: SDD + agents + RAG de negócio
+# SPEC — LAB-07: SDD + agents + business RAG
 
-- Estado: definida para implementação do exemplo didático solicitado.
-- Coordenador/TL: agent principal; Dev Front e Dev Back: agents delegados.
-- Demanda: simular o valor final de um pedido com desconto, com regras recuperadas da documentação de negócio.
-- Domínio fictício: valores e regras abaixo pertencem somente a este exemplo.
+- Status: defined for implementation of the requested educational example.
+- Coordinator/TL: primary agent; Front Dev and Back Dev: delegated agents.
+- Request: simulate the final amount of an order with a discount, using rules retrieved from business documentation.
+- Fictional domain: the amounts and rules below apply only to this example.
 
-## Objetivo e escopo
+## Goal and scope
 
-Uma página com valor do pedido, desconto e botão Simular; uma API que valida e calcula; um fluxo de agents que consulta documentos, prepara a SPEC e delega propostas de Front e Back. Sem login, banco, checkout, aprovação gerencial ou implantação automática.
+A page with an order amount, discount, and Simulate button; an API that validates and calculates; and an agent workflow that consults documents, prepares a SPEC, and delegates Front and Back proposals. No login, database, checkout, management approval, or automatic deployment.
 
-## Fontes de negócio
+## Business sources
 
-- B1: `07-sdd-agents-business-rag/business/descontos.md`: pedido maior que zero, desconto de 0 a 20%, dinheiro arredondado a duas casas com HALF_UP.
-- B2: `07-sdd-agents-business-rag/business/glossario.md`: valor original, percentual e valor final.
-- B3: `07-sdd-agents-business-rag/business/simulacao.md`: apenas simulação; nenhuma gravação ou cobrança.
+- B1: `07-sdd-agents-business-rag/business/descontos.md`: order greater than zero, discount from 0 to 20%, currency rounded to two decimal places using HALF_UP.
+- B2: `07-sdd-agents-business-rag/business/glossario.md`: original amount, percentage, and final amount.
+- B3: `07-sdd-agents-business-rag/business/simulacao.md`: simulation only; no recording or charging.
 
-## Requisitos e critérios de aceite
+## Requirements and acceptance criteria
 
-| ID | Requisito | Fonte | Critério de aceite |
+| ID | Requirement | Source | Acceptance criterion |
 |---|---|---|---|
-| REQ-1 | Consultar a documentação de negócio antes de especificar | B1, B2, B3 | AC-1: recuperação local por TF-IDF/cosseno retorna trechos com IDs e caminhos |
-| REQ-2 | TL produz SPEC e delega tarefas rastreáveis para Front e Back | B1, B3 | AC-2: plano JSON contém exatamente uma tarefa por papel, requisitos e critérios; referências fora do contexto são recusadas |
-| REQ-3 | Front coleta valor e percentual, envia à API e mostra resultado/erro | B2, B3 | AC-3: formulário rotulado, estados aguardando/sucesso/erro, resultado em reais e contrato compartilhado |
-| REQ-4 | Back valida e calcula com decimal do .NET | B1 | AC-4: 100 com 10% retorna 90; limites 0/20 aceitos; >20, negativos, bool, não finitos, campos inválidos recusados |
-| REQ-5 | Devs recebem SPEC, contrato e somente a tarefa atribuída | SPEC | AC-5: duas chamadas de desenvolvimento com papéis separados; entregas com refs de requisitos e fontes |
-| REQ-6 | Registrar evidências e distinguir IA real de replay offline | SPEC | AC-6: execução salva fontes, SPEC, tarefas e propostas; modo offline declara que usa respostas preparadas e não chamou modelo |
+| REQ-1 | Consult business documentation before specifying | B1, B2, B3 | AC-1: local TF-IDF/cosine retrieval returns excerpts with IDs and paths |
+| REQ-2 | TL produces a SPEC and delegates traceable tasks to Front and Back | B1, B3 | AC-2: JSON plan contains exactly one task per role, requirements, and criteria; references outside the context are rejected |
+| REQ-3 | Front collects amount and percentage, sends them to the API, and displays result/error | B2, B3 | AC-3: labeled form, waiting/success/error states, amount in reais, and shared contract |
+| REQ-4 | Back validates and calculates using .NET decimal | B1 | AC-4: 100 with 10% returns 90; limits 0/20 accepted; >20, negatives, booleans, non-finite values, and invalid fields rejected |
+| REQ-5 | Developers receive the SPEC, contract, and only their assigned task | SPEC | AC-5: two development calls with separate roles; deliverables include requirement and source references |
+| REQ-6 | Record evidence and distinguish real AI from offline replay | SPEC | AC-6: run saves sources, SPEC, tasks, and proposals; offline mode states that it used prepared responses and did not call a model |
 
-## Contrato aprovado para o exemplo
+## Approved contract for the example
 
 - `POST /api/discount`, JSON `{ "amount": 100, "discount": 10 }`.
-- HTTP 200: `{ "original": "100.00", "discount": "10", "total": "90.00" }`. Valores monetários são strings decimais.
-- HTTP 400: `{ "error": "mensagem legível" }` para dados inválidos.
-- `GET /` entrega a página. Nenhuma entrada executa comandos nem grava pedidos.
+- HTTP 200: `{ "original": "100.00", "discount": "10", "total": "90.00" }`. Currency values are decimal strings.
+- HTTP 400: `{ "error": "readable message" }` for invalid data.
+- `GET /` serves the page. No input executes commands or records orders.
 
-## Design KISS e delegação
+## KISS design and delegation
 
-- .NET 11, ASP.NET Core, C# e bibliotecas do framework; HTML/CSS/JS sem build frontend. Sem pacotes NuGet externos.
-- RAG lexical local com TF-IDF e cosseno sobre três Markdown inteiros, sem embeddings/banco.
-- Agents: chamadas HTTP explícitas para Ollama com papéis TL, Dev Front e Dev Back; chamadas sequenciais, com contrato fixo.
-- TL gera SPEC estruturada e duas tarefas; devs geram propostas de código e verificações. Propostas ficam em diretório próprio e não são executadas automaticamente.
-- A aplicação de referência em `app/` é implementada pelos agents delegados nesta entrega, revisada e testada separadamente. Replay usa propostas dessa aplicação; não deve ser apresentado como geração de IA.
-- SPEC JSON do fluxo é um artefato candidato; a fonte de verdade deste lab continua sendo este arquivo até revisão humana.
+- .NET 11, ASP.NET Core, C#, and framework libraries; HTML/CSS/JS without a frontend build. No external NuGet packages.
+- Local lexical RAG with TF-IDF and cosine similarity across three whole Markdown files, without embeddings or a database.
+- Agents: explicit HTTP calls to Ollama with TL, Front Dev, and Back Dev roles; sequential calls with a fixed contract.
+- TL generates a structured SPEC and two tasks; developers generate code proposals and checks. Proposals are stored in their own directory and are not run automatically.
+- The reference application in `app/` was implemented by the delegated agents for this delivery, then reviewed and tested separately. Replay uses proposals from that application; it must not be presented as AI generation.
+- The workflow's JSON SPEC is a candidate artifact; this file remains the lab's source of truth until human review.
 
-## Plano
+## Plan
 
-| Responsável | Área | Requisitos | Validação |
+| Owner | Area | Requirements | Validation |
 |---|---|---|---|
-| TL | documentação, RAG, workflow e registro de evidências | REQ-1, 2, 5, 6 | testes de ranking, contrato de delegação, recusas e replay |
-| Dev Front | `app/index.html`, guia de UX/contrato | REQ-3 | revisão de HTML/JS e integração de payload/resultados |
-| Dev Back | `app/DiscountApp.csproj`, cálculo e endpoint C# | REQ-4 | testes de cálculo/validação/contrato sem sockets |
-| Revisor | integração e evidências | todos | revisar diff, conferir testes e apontar bloqueios |
+| TL | Documentation, RAG, workflow, and evidence recording | REQ-1, 2, 5, 6 | Ranking tests, delegation contract, rejections, and replay |
+| Front Dev | `app/index.html`, UX/contract guide | REQ-3 | HTML/JS review and payload/result integration |
+| Back Dev | `app/DiscountApp.csproj`, calculation, and C# endpoint | REQ-4 | Calculation/validation/contract tests without sockets |
+| Reviewer | Integration and evidence | All | Review diff, check tests, and identify blockers |
 
-## Gates e limites
+## Gates and limits
 
-Escopo e contrato definidos antes da implementação. Uma referência válida indica origem recuperada, não comprova que a afirmação gerada seja fiel. Revisão humana continua necessária antes de incorporar propostas. A execução real de Ollama e o servidor HTTP dependem de permissões de rede; se bloqueados, registrar a limitação sem declarar esses cenários aprovados. Não bloquear a demonstração offline por falta de modelos.
+Scope and contract are defined before implementation. A valid reference shows the retrieved source, but does not prove that a generated statement is faithful. Human review remains necessary before incorporating proposals. Real Ollama execution and the HTTP server depend on network permissions; if blocked, record the limitation without claiming those scenarios passed. Do not block the offline demo because models are unavailable.

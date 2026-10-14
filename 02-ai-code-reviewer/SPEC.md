@@ -1,37 +1,37 @@
 # SPEC — AI Code Reviewer
 
-## Objetivo
+## Purpose
 
-Demonstrar uma aplicação de IA aplicada ao desenvolvimento: revisar mudanças do Git com um modelo local via Ollama e retornar possíveis problemas em português.
+Demonstrate an AI application for software development: review Git changes with a local model through Ollama and report potential issues. The current implementation returns its review in Portuguese.
 
-## Comportamento
+## Behavior
 
-- Lê o diff das alterações não staged por padrão ou somente as staged com `--staged`.
-- Envia o diff para o endpoint `/api/generate` do Ollama.
-- Pede ao modelo que priorize bugs, riscos de segurança e regressões, sem sugestões cosméticas.
-- Exibe a resposta no terminal e nunca altera arquivos.
-- Limita o tamanho do diff enviado e informa quando o conteúdo foi truncado.
+- Reads the diff for unstaged changes by default, or only staged changes with `--staged`.
+- Sends the diff to Ollama’s `/api/generate` endpoint.
+- Asks the model to prioritize bugs, security risks, and regressions, without cosmetic suggestions.
+- Displays the response in the terminal and never modifies files.
+- Limits the size of the submitted diff and reports when content was truncated.
 
-## Parâmetros
+## Parameters
 
-| Opção | Padrão | Descrição |
+| Option | Default | Description |
 |---|---|---|
-| `--model` | `llama3.2` | Modelo Ollama instalado |
-| `--url` | `http://localhost:11434` | Endpoint do Ollama |
-| `--staged` | desativado | Revisa somente alterações staged |
-| `--max-diff-chars` | `24000` | Máximo de caracteres enviados ao modelo |
-| `--help` | — | Exibe a ajuda |
+| `--model` | `llama3.2` | Installed Ollama model |
+| `--url` | `http://localhost:11434` | Ollama endpoint |
+| `--staged` | disabled | Reviews staged changes only |
+| `--max-diff-chars` | `24000` | Maximum characters sent to the model |
+| `--help` | — | Displays help |
 
-## Segurança e limites
+## Security and Limitations
 
-- O diff é tratado como conteúdo não confiável. Instruções encontradas no código devem ser ignoradas pelo modelo.
-- O conteúdo não sai do ambiente local se o Ollama estiver rodando localmente.
-- A revisão é uma sugestão probabilística; o desenvolvedor continua responsável por validar os achados.
-- Arquivos não rastreados não aparecem em `git diff` e não são revisados.
+- The diff is treated as untrusted content. The model should ignore instructions found in the code.
+- Content stays in the local environment when Ollama is running locally.
+- The review is probabilistic guidance; the developer remains responsible for validating its findings.
+- Untracked files do not appear in `git diff` and are not reviewed.
 
-## Critérios de aceite
+## Acceptance Criteria
 
-1. Usa somente recursos padrão do .NET e Git instalado.
-2. Retorna orientação clara quando não há diff, Git não está disponível ou Ollama está offline.
-3. Permite selecionar modelo, endpoint, alterações staged e limite de entrada.
-4. Nunca grava nem modifica arquivos do repositório.
+1. Uses only built-in .NET features and installed Git.
+2. Provides clear guidance when there is no diff, Git is unavailable, or Ollama is offline.
+3. Allows selecting the model, endpoint, staged changes, and input limit.
+4. Never writes or modifies repository files.

@@ -1,29 +1,29 @@
-# Revisão adversarial — Marketing e Vendas
+# Adversarial review — Marketing and Sales
 
-Data: 2026-10-11 (America/Sao_Paulo). Papéis: UX, comunicação e implementação frontend. Escopo: página pública KISS AI Labs, sem alterar laboratórios ou suas evidências. Objetivo de conversão: ajudar o visitante a escolher e abrir um exemplo relevante; ao final, conhecer a trajetória e contato do autor. Não foram inferidas ofertas de consultoria, clientes, depoimentos ou resultados comerciais.
+Date: 2026-10-11 (America/Sao_Paulo). Roles: UX, communications, and frontend implementation. Scope: KISS AI Labs public site, without changing the labs or their evidence. Conversion goal: help visitors choose and open a relevant example, then learn about the author's background and contact information. No consulting offers, clients, testimonials, or business results were inferred.
 
-## Achados e correções executadas
+## Findings and fixes
 
-| Prioridade | Achado adversarial | Remediação | Requisito |
+| Priority | Adversarial finding | Remediation | Requirement |
 | --- | --- | --- | --- |
-| Alta | Sobre mim interrompia a exploração dos labs e não estava na posição pedida. | Último item do menu, depois de GitHub; última seção de main, depois do histórico. | REQ-6 |
-| Alta | A abertura listava tecnologias sem explicitar para quem serviam e qual problema resolviam. | Público .NET/Python e exemplos concretos: revisar diff, localizar regras, delegar demanda. | REQ-7 |
-| Alta | Nove escolhas equivalentes aumentavam a dificuldade de iniciar; faltava uma jornada para quem já conhece IA. | Três entradas por problema, com links para 00, 03 e 07; avançar para 05/08 fica explícito na trilha. | REQ-8 |
-| Alta | A linguagem do destaque podia sugerir integração Figma já validada. O card 07 omitia limite de execução real. | Destaque como proposta, evidências acessíveis, pendências Figma/Ollama/SQLite junto dos cards. | REQ-9 |
-| Média | Siglas e dependências eram uma barreira para o visitante decidir. | Resumo expansível de RAG, MCP, SDD, Spec Kit, TL, SDK/Python/Ollama e demonstrações offline. | REQ-9 |
-| Média | CTAs genéricos não explicavam o que abriria depois do clique. | “Escolher minha trilha”, “Ver código e especificação”, “Ver design no Figma”; catálogo avisa que abre GitHub e README. | REQ-10 |
-| Média | A transição de conteúdo técnico para conhecer o autor tinha pouco contexto. | Sobre mim conecta os projetos às experiências profissionais; CTA para currículo e contato. | REQ-6, REQ-7 |
-| Média | Compartilhamento sem metadados sociais não controlava título, resumo e capa. | Canonical, Open Graph, imagem/alt e cartão social; sem afirmações não verificadas. | REQ-10 |
-| Média | O menu precisava tolerar larguras intermediárias ao mudar ordem e texto. | Quebra de linha no menu, grid de trilhas responsivo, ajuste de fluxo em telas estreitas. | REQ-4 |
+| High | About Me interrupted exploration of the labs and was not in the requested position. | Make it the last menu item after GitHub and the last section in `main`, after the history. | REQ-6 |
+| High | The introduction listed technologies without explaining who they were for or what problems they solved. | Identify .NET/Python developers and give concrete examples: review a diff, find rules, delegate a request. | REQ-7 |
+| High | Nine equivalent choices made it hard to get started; there was no path for visitors already familiar with AI. | Provide three problem-based entry points linked to 00, 03, and 07; make the next steps to 05/08 clear in the learning path. | REQ-8 |
+| High | The feature language could imply that Figma integration had been validated. Card 07 omitted the limitation on real execution. | Present it as a proposal, make evidence accessible, and show Figma/Ollama/SQLite gaps beside the cards. | REQ-9 |
+| Medium | Acronyms and prerequisites made it harder for visitors to choose. | Add an expandable overview of RAG, MCP, SDD, Spec Kit, TL, SDK/Python/Ollama, and offline demos. | REQ-9 |
+| Medium | Generic CTAs did not explain what would open after a click. | Use “Choose my learning path,” “View code and spec,” and “View the Figma design”; note that catalog links open GitHub and the README. | REQ-10 |
+| Medium | The transition from technical content to the author's background lacked context. | Connect the projects to professional experience in About Me; add resume and contact CTAs. | REQ-6, REQ-7 |
+| Medium | Social sharing metadata did not control the title, summary, and cover. | Add canonical and Open Graph metadata, image/alt text, and a social card without unverified claims. | REQ-10 |
+| Medium | The menu needed to handle intermediate widths after changing its order and text. | Allow the menu to wrap, make the learning-path grid responsive, and adjust flow on narrow screens. | REQ-4 |
 
-Todos os achados acima foram corrigidos no escopo da página. Aumentos de conversão não foram medidos nem prometidos. Capa, cores, nove laboratórios e links originais foram preservados.
+All findings above were addressed within the page scope. Conversion gains were neither measured nor promised. The cover, colors, nine labs, and original links were preserved.
 
-## Validação executada
+## Validation performed
 
-- Playwright com Edge headless, arquivo local, viewports 320, 390, 768 e 1440 px: sem overflow horizontal; nove cards; três entradas; Sobre mim último link e última seção; todas as âncoras resolvem; imagem carregada.
-- Primeiro foco de teclado: Pular para o conteúdo. Enter no resumo abre requisitos. Movimento reduzido: scroll-behavior auto. Nenhum erro de página.
-- Screenshots completos em 390 e 1440 px inspecionados: hierarquia e espaçamento mantidos; os caminhos ficam empilhados em telas pequenas.
-- Todos os links GitHub para arquivos/diretórios também foram conferidos contra o checkout local: nenhum destino faltante.
-- Checagem HTTP com Node e certificados do sistema: 18 URLs responderam 200, incluindo site, currículo, código e documentação. Figma Community respondeu 403 à requisição automatizada; mantido o link fornecido e aprovado pelo usuário. Isso não valida nem invalida acesso humano ao design, e não é evidência de integração MCP real.
-- A primeira checagem HTTP pelo request do Playwright encontrou erro da cadeia de certificados; repetida com `node --use-system-ca`, sem desabilitar a validação TLS.
-- Deploy desta revisão: responsabilidade do coordenador; esta evidência local não declara nova versão publicada.
+- Playwright with Edge headless, local file, viewports 320, 390, 768, and 1440 px: no horizontal overflow; nine cards; three entry points; About Me is the last link and last section; all anchors resolve; image loaded.
+- First keyboard focus: Skip to content. Pressing Enter on the summary expands the requirements. Reduced motion: `scroll-behavior: auto`. No page errors.
+- Full screenshots at 390 and 1440 px inspected: hierarchy and spacing preserved; paths stack on small screens.
+- Checked all GitHub links to files/directories against the local checkout: no missing destinations.
+- HTTP check with Node and system certificates: 18 URLs returned 200, including the site, resume, code, and documentation. Figma Community returned 403 to the automated request; the user-provided and approved link was retained. This neither validates nor invalidates human access to the design, and is not evidence of real MCP integration.
+- The first HTTP check using Playwright's request encountered a certificate-chain error; it was repeated with `node --use-system-ca`, without disabling TLS validation.
+- Deployment of this revision is the coordinator's responsibility; this local evidence does not claim that a new version was published.

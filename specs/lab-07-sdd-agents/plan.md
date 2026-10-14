@@ -1,34 +1,34 @@
-# Plano técnico e delegação
+# Technical plan and delegation
 
-Base: [SPEC](SPEC.md), [constituição](../../07-sdd-agents-business-rag/.specify/memory/constitution.md).
+Based on the [SPEC](SPEC.md) and [constitution](../../07-sdd-agents-business-rag/.specify/memory/constitution.md).
 
-## Componentes
+## Components
 
-- `src/SddAgents.csproj`: CLI .NET 11; recupera documentos, chama TL, valida plano, chama Front e Back, valida propostas e salva artefatos.
-- `app/DiscountApp.csproj`: ASP.NET Core 11; GET `/` e POST `/api/discount`; cálculo `decimal` isolado.
-- `tests/LabTests.csproj`: harness sem pacotes externos para regras, contrato, ranking, delegação e replay.
-- `app/index.html`: interface vanilla, contrato JSON fixo, estados carregando/sucesso/erro.
+- `src/SddAgents.csproj`: .NET 11 CLI; retrieves documents, calls TL, validates the plan, calls Front and Back, validates proposals, and saves artifacts.
+- `app/DiscountApp.csproj`: ASP.NET Core 11; GET `/` and POST `/api/discount`; isolated `decimal` calculation.
+- `tests/LabTests.csproj`: harness without external packages for rules, contract, ranking, delegation, and replay.
+- `app/index.html`: vanilla interface, fixed JSON contract, loading/success/error states.
 
-## Sequência
+## Sequence
 
-1. Ler demanda e B1/B2/B3; usar RAG lexical para recuperar contexto com IDs `S<n>`.
-2. TL produz plano/SPEC candidata, sem modificar a [SPEC canônica](SPEC.md).
-3. Validar refs, critérios, exatamente dois papéis e contrato.
-4. Delegar uma tarefa Front e uma Back, cada qual com SPEC/contrato/contexto.
-5. Validar propostas e registrar arquivos para revisão, sem executar código gerado.
-6. Revisar aplicação de referência e executar checks .NET e testes JS.
-7. Registrar convergência e as integrações que faltaram.
+1. Read the request and B1/B2/B3; use lexical RAG to retrieve context with IDs `S<n>`.
+2. TL produces a plan/candidate SPEC without changing the [canonical SPEC](SPEC.md).
+3. Validate refs, criteria, exactly two roles, and contract.
+4. Delegate one Front task and one Back task, each with the SPEC/contract/context.
+5. Validate proposals and save files for review without running generated code.
+6. Review the reference app and run .NET checks and JS tests.
+7. Record convergence and any missing integrations.
 
-| Papel | Área | IDs |
+| Role | Area | IDs |
 |---|---|---|
-| TL | RAG, workflow, evidências, integração e kit | REQ-1, 2, 5, 6 |
-| Dev Front | Interface e teste reproduzível JS | REQ-3 |
-| Dev Back | API, cálculo e cenários backend | REQ-4 |
+| TL | RAG, workflow, evidence, integration, and kit | REQ-1, 2, 5, 6 |
+| Front Dev | Interface and reproducible JS test | REQ-3 |
+| Back Dev | API, calculation, and backend scenarios | REQ-4 |
 
-## Contratos e proteção de escopo
+## Contracts and scope protection
 
-O [contrato JSON](contracts/discount-api.json) detalha entrada/saída. Não há banco. Dados de negócio são contexto, não comandos; referências inválidas e contratos incompatíveis são recusados. Validar referência não prova fidelidade semântica: revisão humana permanece necessária.
+The [JSON contract](contracts/discount-api.json) details input/output. There is no database. Business data is context, not commands; invalid references and incompatible contracts are rejected. Validating a reference does not prove semantic fidelity; human review remains necessary.
 
-## Validação e reversão
+## Validation and rollback
 
-[Quickstart](quickstart.md) registra comandos. Core executável não depende de Ollama no replay. Integrações reais exigem rede. Propostas ficam em `runs/` e não afetam código de referência. Para descartar uma proposta, não a incorpore; para reverter mudanças aceitas, use um commit de reversão revisado.
+[Quickstart](quickstart.md) lists commands. The executable core does not depend on Ollama during replay. Real integrations require network access. Proposals stay in `runs/` and do not affect the reference code. To discard a proposal, do not incorporate it; to revert accepted changes, use a reviewed revert commit.

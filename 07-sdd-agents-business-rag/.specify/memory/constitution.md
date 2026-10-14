@@ -1,13 +1,13 @@
-# Constituição — Lab 07
+# Constitution — Lab 07
 
-Versão 1.0 · 2026-10-11 · Escopo: simulador de descontos e workflow didático.
+Version 1.0 · 2026-10-11 · Scope: discount simulator and educational workflow.
 
-1. **Negócio antes do código.** Regras são fundamentadas nos Markdown de negócio; conflitos e lacunas são registrados, nunca preenchidos como fatos pelo modelo.
-2. **Uma SPEC canônica.** [SPEC da demanda](../../../specs/lab-07-sdd-agents/SPEC.md) é a fonte de verdade. `SPEC.candidate.md` gerada pelo workflow depende de revisão humana.
-3. **KISS.** .NET 11, ASP.NET Core e HTML/JS vanilla; sem NuGet externo, banco, login ou cobrança. Recuperação lexical TF-IDF/cosseno basta para três documentos.
-4. **Delegação delimitada.** TL entrega uma tarefa Front e uma Back, com requisitos, aceite e contrato. Devs não expandem escopo. Propostas não são executadas automaticamente.
-5. **Evidência verificável.** REQ → fonte → tarefa → código → teste. Replay offline e testes com mocks não comprovam geração real ou operação HTTP.
-6. **Valores e contrato rigorosos.** Cálculo monetário usa `decimal`; API valida dados, Front apresenta. Mudança de comportamento atualiza a SPEC antes do código.
-7. **Convergência honesta.** Integrações pendentes impedem alegar validação completa. CLI/skills oficiais do Spec Kit não foram instalados ou executados nesta entrega.
+1. **Business before code.** Rules are grounded in business Markdown; conflicts and gaps are recorded, never filled in as facts by the model.
+2. **One canonical SPEC.** The [request SPEC](../../../specs/lab-07-sdd-agents/SPEC.md) is the source of truth. A workflow-generated `SPEC.candidate.md` requires human review.
+3. **KISS.** .NET 11, ASP.NET Core, and vanilla HTML/JS; no external NuGet packages, database, login, or charges. Lexical TF-IDF/cosine retrieval is enough for three documents.
+4. **Bounded delegation.** TL assigns one Front task and one Back task, with requirements, acceptance criteria, and contract. Developers do not expand scope. Proposals are not run automatically.
+5. **Verifiable evidence.** REQ → source → task → code → test. Offline replay and mock tests do not prove real generation or HTTP operation.
+6. **Strict values and contract.** Currency calculation uses `decimal`; API validates data, Front presents it. Behavior changes update the SPEC before code.
+7. **Honest convergence.** Pending integrations prevent claims of complete validation. The official Spec Kit CLI/skills were not installed or run for this delivery.
 
-Alterações desta constituição devem identificar motivo, requisitos afetados e evidências de revisão no kit da demanda.
+Changes to this constitution must identify the reason, affected requirements, and review evidence in the request kit.

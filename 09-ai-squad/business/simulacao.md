@@ -1,7 +1,7 @@
-# Cálculo e validação da simulação
+# Simulation calculation and validation
 
-O valor da compra deve ser um número decimal positivo e não ultrapassar o limite técnico de R$ 1 bilhão. O percentual deve ser numérico, não negativo e respeitar o limite do perfil. Não aceitar campos numéricos enviados como texto, valores ausentes ou perfis desconhecidos.
+The purchase amount must be a positive decimal number and must not exceed the technical limit of R$1 billion. The percentage must be numeric, nonnegative, and within the profile limit. Reject numeric fields sent as text, missing values, and unknown profiles.
 
-Usar aritmética decimal. Arredondar dinheiro para duas casas com MidpointRounding.AwayFromZero. O total é o valor da compra multiplicado por (1 - percentual / 100), arredondado ao final. A resposta informa o percentual aplicado, não um campo de desconto em dinheiro. A apresentação não deve perder centavos ao converter respostas monetárias.
+Use decimal arithmetic. Round currency to two decimal places with MidpointRounding.AwayFromZero. The total is the purchase amount multiplied by (1 - percentage / 100), rounded at the end. The response reports the applied percentage, not a discount amount in currency. Presentation must not lose cents when converting currency responses.
 
-Não há pagamento, persistência, autenticação ou integração com clientes reais. A seleção do perfil existe apenas para exercitar a regra.
+There are no payments, persistence, authentication, or integrations with real customers. Profile selection exists only to exercise the rule.

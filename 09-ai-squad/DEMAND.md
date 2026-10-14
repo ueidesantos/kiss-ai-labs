@@ -1,9 +1,9 @@
-# Uma mudança pequena, um ciclo completo
+# A small change, a complete cycle
 
-Um atendente precisa simular descontos conforme o perfil informado: **Padrão até 10%** e **VIP até 20%**. O valor da compra deve ser positivo, com limite técnico de R$ 1 bilhão. O resultado mostra o valor original, o percentual aplicado e o total, com dinheiro apresentado em duas casas decimais.
+A service representative needs to simulate discounts for the selected profile: **Standard up to 10%** and **VIP up to 20%**. The purchase amount must be positive, with a technical limit of R$1 billion. The result shows the original amount, the applied percentage, and the total, with currency displayed to two decimal places.
 
-A demanda é fictícia. Selecionar VIP não autentica uma pessoa nem concede autorização comercial: este é um simulador didático, sem cobrança, cadastro ou persistência de clientes.
+The request is fictional. Selecting VIP does not authenticate anyone or grant commercial authorization: this is an educational simulator with no charges, customer registration, or customer data persistence.
 
-O desafio de engenharia é acompanhar a mudança da regra até uma aplicação candidata revisável: TL consulta documentos, Front e Back propõem alterações, testes verificam comportamento e um segundo modelo faz revisão adversarial, com evidência e severidade. Uma correção é permitida e exige nova revisão. A entrega não pode ser aprovada só porque o modelo disse que está correta.
+The engineering challenge is to trace a rule change through to a reviewable candidate application: the TL consults documents, Front and Back propose changes, tests verify behavior, and a second model performs an adversarial review with evidence and severity. One correction is allowed and requires another review. A delivery cannot be approved just because the model says it is correct.
 
-Resultado esperado: aplicação funcional, fontes rastreáveis, SPEC candidata, propostas delimitadas, diff e evidências; um draft PR é uma etapa opcional e explícita. A [SPEC canônica](../specs/lab-09-ai-squad/SPEC.md) define o aceite.
+Expected result: a working application, traceable sources, a candidate SPEC, bounded proposals, a diff, and evidence; a draft PR is an optional, explicit step. The [canonical SPEC](../specs/lab-09-ai-squad/SPEC.md) defines acceptance.

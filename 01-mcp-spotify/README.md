@@ -1,12 +1,12 @@
 # 01 — MCP Spotify Server
 
-## Objetivo
+## Purpose
 
-Exemplo mínimo de um **MCP Server** (Model Context Protocol) em .NET 11 que expõe ferramentas (tools) para interagir com a **Spotify Web API**.
+A minimal **MCP Server** (Model Context Protocol) example in .NET 11 that exposes tools for interacting with the **Spotify Web API**.
 
-O protocolo MCP é implementado **manualmente** sobre JSON-RPC 2.0 via stdin/stdout para fins didáticos — sem bibliotecas MCP de terceiros.
+The MCP protocol is implemented **manually** over JSON-RPC 2.0 via stdin/stdout for educational purposes—without third-party MCP libraries.
 
-## Arquitetura
+## Architecture
 
 ```
 ┌─────────────┐  JSON-RPC / stdio  ┌──────────────────┐  HTTPS   ┌──────────┐
@@ -18,21 +18,21 @@ O protocolo MCP é implementado **manualmente** sobre JSON-RPC 2.0 via stdin/std
 └─────────────┘   content[].text   └──────────────────┘          └──────────┘
 ```
 
-- **MCP Client**: qualquer coisa que envie JSON-RPC pelo stdin (no exemplo: você digitando no terminal).
-- **MCP Server**: este projeto Console.
-- **Spotify Web API**: `https://api.spotify.com/v1/...` com Bearer Token.
+- **MCP Client**: anything that sends JSON-RPC over stdin (in this example, you type it in the terminal).
+- **MCP Server**: this console app.
+- **Spotify Web API**: `https://api.spotify.com/v1/...` with a bearer token.
 
-## Pré-requisitos
+## Prerequisites
 
 - .NET 11 SDK
 - Conta Spotify (gratuita ou Premium)
-- Token de acesso Spotify com escopo:
-  - Para `search_track` → **nenhum escopo especial** (qualquer token serve)
-  - Para `get_currently_playing` → `user-read-currently-playing`
+- Spotify access token with the following scope:
+  - For `search_track` → **no special scope** (any token works)
+  - For `get_currently_playing` → `user-read-currently-playing`
 
-Como obter token rapidamente: acesse o [Spotify Web Console](https://developer.spotify.com/console/get-search-item/) → clique **Get Token** → selecione os escopos → copie o `OAuth Token`.
+To get a token quickly, open the [Spotify Web Console](https://developer.spotify.com/console/get-search-item/) → click **Get Token** → select the scopes → copy the `OAuth Token`.
 
-## Como executar
+## How to Run
 
 ```bash
 # 1. Entre na pasta do projeto
@@ -50,11 +50,11 @@ $env:SPOTIFY_ACCESS_TOKEN = "seu-token-aqui"
 dotnet run
 ```
 
-O servidor vai ficar esperando mensagens JSON no stdin (uma por linha).
+The server waits for JSON messages on stdin (one per line).
 
-## Exemplo
+## Example
 
-Cole **uma linha de cada vez** no terminal após `dotnet run`:
+Paste **one line at a time** into the terminal after running `dotnet run`:
 
 ### Handshake + listar tools
 
@@ -69,7 +69,7 @@ Cole **uma linha de cada vez** no terminal após `dotnet run`:
 {"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"search_track","arguments":{"query":"Daft Punk"}}}
 ```
 
-Saída esperada no `content[0].text`:
+Expected output in `content[0].text`:
 ```json
 [
   {"name":"Get Lucky","artist":"Daft Punk","album":"Random Access Memories","uri":"spotify:track:5VnDkUNyX6u5Sk0yZiP8XB"},
@@ -83,10 +83,10 @@ Saída esperada no `content[0].text`:
 {"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"get_currently_playing","arguments":{}}}
 ```
 
-## O que aprender
+## What You Will Learn
 
-1. **MCP é só JSON-RPC sobre stdio**: nenhuma mágica. Mensagens são JSONs com `jsonrpc`, `id`, `method`, `params`.
-2. **Fluxo obrigatório**: `initialize` → `tools/list` → `tools/call`.
-3. **Cada tool tem**: nome, descrição e `inputSchema` (JSON Schema dos argumentos).
-4. **Resposta de tool**: sempre `{ content: [{ type: "text", text: "..." }] }` — texto ou JSON serializado em string.
-5. **Separação de responsabilidades**: MCP só define o protocolo; a lógica de integração com Spotify é HTTP puro.
+1. **MCP is just JSON-RPC over stdio**: no magic. Messages are JSON objects with `jsonrpc`, `id`, `method`, and `params`.
+2. **Required flow**: `initialize` → `tools/list` → `tools/call`.
+3. **Each tool has** a name, description, and `inputSchema` (JSON Schema for its arguments).
+4. **Tool response**: always `{ content: [{ type: "text", text: "..." }] }` — plain text or JSON serialized as a string.
+5. **Separation of responsibilities**: MCP defines only the protocol; Spotify integration uses plain HTTP.

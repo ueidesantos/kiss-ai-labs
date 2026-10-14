@@ -1,16 +1,16 @@
-# Modelo de dados
+# Data model
 
-| Artefato | Conteúdo | Restrição |
+| Artifact | Contents | Constraint |
 |---|---|---|
-| Fontes no relatório | Caminho, trecho, score e SHA256 | Integridade não garante veracidade |
-| Identidades | Modelo desenvolvedor/revisor e digests | Real exige duas identidades distintas |
-| Propostas | Papel e conteúdo JSON | Sem execução de código livre |
-| `policy.json` | Limites Padrão/VIP | Testes protegem 10/20 |
-| `front.json` | `title`, `help`, `standardLabel`, `vipLabel` | Texto apresentado sem interpretar HTML |
-| Revisão | `model`, `summary`, `findings` | Cada achado tem `id`, `severity`, `evidence`, `fix` |
-| Gate | Testes + revisão final | High/critical ou teste falho bloqueia |
-| `report.json` | Estado, política, revisões, testes, histórico, propostas, eventos, fontes e uso de modelos | Offline explicitamente rotulado |
-| `manifest.json` | Integridade dos artefatos da execução | Publicação recusa divergência |
-| `candidate` | App e core materializados | Separados da fonte canônica |
+| Sources in report | Path, excerpt, score, and SHA256 | Integrity does not guarantee truth |
+| Identities | Developer/reviewer models and digests | Real mode requires two distinct identities |
+| Proposals | Role and JSON content | No free-form code execution |
+| `policy.json` | Standard/VIP limits | Tests protect 10/20 |
+| `front.json` | `title`, `help`, `standardLabel`, `vipLabel` | Text is displayed without interpreting HTML |
+| Review | `model`, `summary`, `findings` | Each finding has `id`, `severity`, `evidence`, `fix` |
+| Gate | Tests + final review | `high`/`critical` findings or failed tests block |
+| `report.json` | Status, policy, reviews, tests, history, proposals, events, sources, and model usage | Offline mode explicitly labeled |
+| `manifest.json` | Integrity of run artifacts | Publication rejects mismatches |
+| `candidate` | Materialized app and core | Kept separate from canonical source |
 
-O histórico permite comparar a proposta inicial e a única correção. Registros de tokens são uso retornado pelo provedor quando disponível, não estimativa inventada. Dinheiro usa decimal e arredondamento AwayFromZero; não há cadastro ou pagamentos.
+The history allows comparison of the initial proposal and the single correction. Token counts reflect usage returned by the provider when available, not invented estimates. Currency uses decimal arithmetic and AwayFromZero rounding; there are no accounts or payments.

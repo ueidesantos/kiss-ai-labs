@@ -1,27 +1,27 @@
-# Spec Kit aplicado à demanda KISS
+# Applying Spec Kit to the KISS request
 
-Este lab reúne os artefatos de SDD da demanda de desconto e seu código .NET 11. O processo foi inspirado no [Spec Kit oficial do GitHub](https://github.com/github/spec-kit), cuja documentação descreve constituição e o ciclo specify → plan → tasks → implement → converge. As invocações `speckit-*` pertencem ao chat do agent, não ao terminal.
+This lab brings together SDD artifacts for the discount request and its .NET 11 code. The process was inspired by GitHub's [official Spec Kit](https://github.com/github/spec-kit), whose documentation describes a constitution and the specify → plan → tasks → implement → converge cycle. The `speckit-*` invocations belong in an agent chat, not the terminal.
 
-O kit desta demanda foi escrito neste repositório. Não é uma cópia integral do upstream nem uma instalação do CLI oficial; o CLI e as skills oficiais não foram executados aqui. A aplicação e o workflow são executáveis próprios do lab.
+The kit for this request was written in this repository. It is neither a complete copy of upstream nor an installation of the official CLI; the official CLI and skills were not run here. The application and workflow are executables specific to this lab.
 
-| Etapa | Artefato desta entrega | Como usar |
+| Stage | Artifact in this delivery | How to use it |
 |---|---|---|
-| Constitution | [Princípios](.specify/memory/constitution.md) | Limitar arquitetura, delegação e alegações de evidência |
-| Specify | [Demanda](DEMAND.md) e [SPEC canônica](../specs/lab-07-sdd-agents/SPEC.md) | Entender resultado, REQ-1..6 e AC-1..6 |
-| Clarify | [Decisões](../specs/lab-07-sdd-agents/clarifications.md) | Resolver stack, domínio e limites antes de implementar |
-| Research | [Pesquisa](../specs/lab-07-sdd-agents/research.md) | Entender escolhas e alternativas descartadas |
-| Plan | [Plano](../specs/lab-07-sdd-agents/plan.md), [dados](../specs/lab-07-sdd-agents/data-model.md), [contrato](../specs/lab-07-sdd-agents/contracts/discount-api.json) | Compartilhar desenho entre TL, Front e Back |
-| Tasks | [Tarefas](../specs/lab-07-sdd-agents/tasks.md) | Delegar por requisito e verificar conclusão |
-| Implement | [Workflow](src/Workflow.cs), [API](app/Program.cs), [Front](app/index.html) | Entregar o incremento delimitado pela SPEC |
-| Analyze/checklist | [Análise](../specs/lab-07-sdd-agents/analysis.md), [checklist](../specs/lab-07-sdd-agents/checklists/requirements.md) | Conferir coerência e rastreabilidade |
-| Converge | [Convergência](../specs/lab-07-sdd-agents/convergence.md) | Distinguir core validado de integrações pendentes |
+| Constitution | [Principles](.specify/memory/constitution.md) | Constrain architecture, delegation, and evidence claims |
+| Specify | [Request](DEMAND.md) and [canonical SPEC](../specs/lab-07-sdd-agents/SPEC.md) | Understand outcome, REQ-1..6, and AC-1..6 |
+| Clarify | [Decisions](../specs/lab-07-sdd-agents/clarifications.md) | Resolve stack, domain, and limits before implementation |
+| Research | [Research](../specs/lab-07-sdd-agents/research.md) | Understand choices and discarded alternatives |
+| Plan | [Plan](../specs/lab-07-sdd-agents/plan.md), [data](../specs/lab-07-sdd-agents/data-model.md), [contract](../specs/lab-07-sdd-agents/contracts/discount-api.json) | Share the design across TL, Front, and Back |
+| Tasks | [Tasks](../specs/lab-07-sdd-agents/tasks.md) | Delegate by requirement and verify completion |
+| Implement | [Workflow](src/Workflow.cs), [API](app/Program.cs), [Front](app/index.html) | Deliver the increment bounded by the SPEC |
+| Analyze/checklist | [Analysis](../specs/lab-07-sdd-agents/analysis.md), [checklist](../specs/lab-07-sdd-agents/checklists/requirements.md) | Check consistency and traceability |
+| Converge | [Convergence](../specs/lab-07-sdd-agents/convergence.md) | Distinguish validated core from pending integrations |
 
-## Dois fluxos que se complementam
+## Two complementary workflows
 
-O kit registra o desenvolvimento da aplicação de referência: TL coordenou, Front criou interface, Back implementou cálculo e contrato, e validações fornecem evidências. No runtime, o workflow também demonstra TL → SPEC candidata → duas tarefas → propostas dos devs. O runtime usa RAG lexical sobre Markdown e faz três chamadas sequenciais ao Ollama no modo real; não inicia agentes autônomos em paralelo.
+The kit records development of the reference application: TL coordinated, Front created the interface, Back implemented the calculation and contract, and validations provide evidence. At runtime, the workflow also demonstrates TL → candidate SPEC → two tasks → developer proposals. Runtime uses lexical RAG over Markdown and makes three sequential calls to Ollama in real mode; it does not start autonomous agents in parallel.
 
-`--offline` usa respostas preparadas e arquivos de referência. É replay para inspecionar o fluxo sem modelo, não geração de IA. As propostas de ambos os modos ficam para revisão; elas não substituem a SPEC canônica nem são executadas.
+`--offline` uses prepared responses and reference files. It is replay for inspecting the workflow without a model, not AI generation. Proposals from either mode remain for review; they do not replace the canonical SPEC and are not executed.
 
-## Experimentar
+## Try it
 
-Siga o [quickstart](../specs/lab-07-sdd-agents/quickstart.md). O core tem 66 checks .NET e nove testes JS aprovados, informados pelo coordenador. Três projetos .NET compilaram sem warnings. HTTP real, Ollama real e publicação GitHub permanecem pendentes devido às restrições de rede desta execução.
+Follow the [quickstart](../specs/lab-07-sdd-agents/quickstart.md). The coordinator reported 66 passing .NET checks and nine passing JS tests in the core. Three .NET projects built without warnings. Real HTTP, real Ollama, and GitHub publication remain pending due to network restrictions in this run.

@@ -1,45 +1,45 @@
 # SPEC — Hello Ollama
 
-## Objetivo
+## Purpose
 
-Demonstrar a integração mais simples possível entre uma aplicação .NET 11 Console e um LLM executado localmente via **Ollama**, usando apenas chamadas HTTP nativas.
+Demonstrate the simplest possible integration between a .NET 11 Console application and an LLM running locally through **Ollama**, using only native HTTP calls.
 
-## Comportamento Esperado
+## Expected Behavior
 
-A aplicação envia um prompt para um modelo do Ollama (via API REST local) e exibe a resposta completa no console.
+The application sends a prompt to an Ollama model (through its local REST API) and displays the complete response in the console.
 
-## Entrada
+## Input
 
-| Parâmetro       | Tipo   | Default       | Descrição                              |
+| Parameter       | Type   | Default       | Description                             |
 |-----------------|--------|---------------|----------------------------------------|
-| `--model`       | string | `llama3.2`    | Nome do modelo Ollama já instalado    |
-| `--prompt`      | string | `Olá!`        | Mensagem enviada ao modelo             |
-| `--url`         | string | `http://localhost:11434` | Endereço do Ollama          |
+| `--model`       | string | `llama3.2`    | Name of an installed Ollama model       |
+| `--prompt`      | string | `Olá!`         | Message sent to the model               |
+| `--url`         | string | `http://localhost:11434` | Ollama address                 |
 
-## Saída
+## Output
 
-- **Console**: Resposta do modelo Ollama, linha a linha conforme stream (ou completa se streaming falhar).
+- **Console**: Ollama model response, printed line by line as it streams (or in full if streaming fails).
 - **Exit Code**:
-  - `0` = sucesso
-  - `1` = erro (ex: Ollama offline, modelo não instalado)
+  - `0` = success
+  - `1` = error (for example, Ollama is offline or the model is not installed)
 
-Mensagens de erro devem ser claras e didáticas (ex: "Verifique se o Ollama está rodando").
+Error messages should be clear and helpful (for example, "Check that Ollama is running").
 
-## Dependências
+## Dependencies
 
-- [Ollama](https://ollama.com/) instalado e rodando localmente (porta 11434)
+- [Ollama](https://ollama.com/) installed and running locally (port 11434)
 - .NET 11 SDK
-- Modelo Ollama baixado (ex: `ollama pull llama3.2`)
+- Ollama model downloaded (for example, `ollama pull llama3.2`)
 
-## Critérios de Aceite
+## Acceptance Criteria
 
-1. ✅ `dotnet run` executa sem erros com valores default
-2. ✅ `dotnet run -- --model qwen3 --prompt "Oi"` usa parâmetros customizados
-3. ✅ Retorna mensagem amigável se Ollama não estiver rodando
-4. ✅ Retorna mensagem amigável se modelo não estiver instalado
-5. ✅ Nenhuma dependência NuGet além do SDK padrão (sem bibliotecas de terceiros)
+1. ✅ `dotnet run` runs without errors using the defaults
+2. ✅ `dotnet run -- --model qwen3 --prompt "Oi"` uses custom parameters
+3. ✅ Returns a helpful message if Ollama is not running
+4. ✅ Returns a helpful message if the model is not installed
+5. ✅ No NuGet dependencies beyond the standard SDK (no third-party libraries)
 
-## Como Executar
+## How to Run
 
 ```bash
 # 1. Instale e inicie o Ollama (se ainda não estiver rodando)

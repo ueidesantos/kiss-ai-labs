@@ -1,7 +1,7 @@
-# Demanda
+# Request
 
-Como atendente, quero informar o valor de um pedido e o percentual de desconto para visualizar o valor final antes de apresentar uma proposta ao cliente.
+As a service representative, I want to enter an order amount and discount percentage so I can see the final amount before presenting a proposal to the customer.
 
-Exemplo: pedido de R$ 100,00 com 10% de desconto resulta em R$ 90,00. O percentual permitido e as validações devem vir da documentação de negócio.
+Example: a R$100.00 order with a 10% discount results in R$90.00. The allowed percentage and validations must come from the business documentation.
 
-Este exemplo não registra o pedido, não cobra o cliente e não cria um fluxo de aprovação.
+This example does not record the order, charge the customer, or create an approval workflow.

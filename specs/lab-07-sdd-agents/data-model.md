@@ -1,18 +1,18 @@
-# Dados e invariantes
+# Data and invariants
 
-Referência: [SPEC](SPEC.md). Não há tabelas ou persistência de pedidos.
+Reference: [SPEC](SPEC.md). No tables or order persistence.
 
-| Objeto | Campos | Invariantes |
+| Object | Fields | Invariants |
 |---|---|---|
-| Pedido de simulação | `amount`, `discount` | Exatamente dois campos JSON numéricos; representáveis como decimal; amount > 0; discount ∈ [0,20] |
-| Resultado | `original`, `discount`, `total` | Strings decimais invariantes; dinheiro com duas casas |
-| Source | `Id`, `Path`, `Text`, `Score` | ID estável na ordenação de arquivos; caminho de origem e score de cosseno |
-| Requirement | `Id`, `Text`, `Sources` | Requisito cita IDs do contexto recuperado |
-| Acceptance | `Id`, `Requirements`, `Scenario` | Critério refere requisitos existentes |
-| DevTask | `Role`, `Requirements`, `Acceptance`, `Instruction` | Exatamente uma tarefa front e uma back |
-| Contract | `Method`, `Path`, `Request`, `Success`, `Error` | Preserva contrato aprovado da API |
-| Proposal | `Role`, `Requirements`, `Sources`, `Code`, `Checks` | Papel e requisitos correspondem à tarefa; checks são sugestões, não execução |
+| Simulation request | `amount`, `discount` | Exactly two numeric JSON fields; representable as decimal; amount > 0; discount ∈ [0,20] |
+| Result | `original`, `discount`, `total` | Invariant decimal strings; currency uses two decimal places |
+| Source | `Id`, `Path`, `Text`, `Score` | Stable ID by file order; source path and cosine score |
+| Requirement | `Id`, `Text`, `Sources` | Requirement cites IDs from retrieved context |
+| Acceptance | `Id`, `Requirements`, `Scenario` | Criterion references existing requirements |
+| DevTask | `Role`, `Requirements`, `Acceptance`, `Instruction` | Exactly one Front task and one Back task |
+| Contract | `Method`, `Path`, `Request`, `Success`, `Error` | Preserves the approved API contract |
+| Proposal | `Role`, `Requirements`, `Sources`, `Code`, `Checks` | Role and requirements match the task; checks are suggestions, not execution |
 
-Fluxo de estado da página: aguardando entrada → calculando → sucesso ou erro → nova simulação. Resultado anterior é ocultado ao iniciar nova tentativa. O botão desabilitado evita duplicação durante a requisição.
+Page state flow: waiting for input → calculating → success or error → new simulation. The previous result is hidden when a new attempt starts. The button is disabled to prevent duplicate requests.
 
-Artefatos de execução: `sources.json`, `plan.json`, `handoffs.json`, `SPEC.candidate.md`, `tasks.md`, `front.proposal.html`, `back.proposal.cs`, `review.json`. `review.json` informa modo, revisão pendente e que código gerado não foi executado.
+Run artifacts: `sources.json`, `plan.json`, `handoffs.json`, `SPEC.candidate.md`, `tasks.md`, `front.proposal.html`, `back.proposal.cs`, `review.json`. `review.json` records the mode, pending review, and that generated code was not run.

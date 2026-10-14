@@ -1,21 +1,21 @@
-# Análise de coerência
+# Coherence analysis
 
-O lab transforma a promessa de “time de IA” em um fluxo observável e pequeno: quatro papéis, contratos de saída e uma correção. A parte demonstrável é a passagem de propostas por testes que os agentes não controlam.
+The lab turns the promise of an “AI team” into a small, observable workflow: four roles, output contracts, and one correction. The demonstrable part is proposals passing through tests the agents do not control.
 
-## Riscos que a apresentação deve evitar
+## Presentation risks to avoid
 
-- Confundir o runner sequencial com agentes autônomos programando em paralelo.
-- Chamar recuperação TF-IDF de embeddings semânticos.
-- Apresentar erro injetado no offline como descoberta espontânea do modelo.
-- Prometer código livre quando o mecanismo usa templates.
-- Tratar comentário do QA como prova de correção.
-- Tratar existência de relatório ou PR como aprovação humana.
-- Afirmar captura Figma quando há somente link de referência.
+- Confusing the sequential runner with autonomous agents coding in parallel.
+- Calling TF-IDF retrieval semantic embeddings.
+- Presenting an injected offline error as the model's spontaneous discovery.
+- Promising free-form code when the mechanism uses templates.
+- Treating QA commentary as proof of correctness.
+- Treating a report or PR's existence as human approval.
+- Claiming a Figma capture when there is only a reference link.
 
-REQ-1 e REQ-6 exigem rótulos de modo nos eventos e relatórios. REQ-3 exige explicar a materialização por templates. REQ-4 impede aprovação com testes reprovados. REQ-7 mantém revisão humana no draft PR.
+REQ-1 and REQ-6 require mode labels in events and reports. REQ-3 requires explaining template materialization. REQ-4 prevents approval when tests fail. REQ-7 retains human review in the draft PR.
 
-## Limites de cobertura
+## Coverage limits
 
-Testes fixos demonstram os casos previstos, não ausência de todos os defeitos. Executar a demo não comprova compatibilidade com um modelo específico do Ollama. Build não comprova acessibilidade visual nem operação do GitHub. Essas verificações devem aparecer separadas no registro final.
+Fixed tests demonstrate expected cases, not the absence of all defects. Running the demo does not prove compatibility with a specific Ollama model. A build does not prove visual accessibility or GitHub operation. These checks must appear separately in the final record.
 
-A revisão de outro modelo acrescenta um gate adversarial. Não equiparar dois aliases a dois modelos nem apresentar o modo preparado como revisão real. A identidade é verificável; a independência de raciocínio não é garantida. Após mudança da candidata, a revisão anterior deixa de valer: a correção passa por nova rodada.
+Review by another model adds an adversarial gate. Do not equate two aliases with two models or present prepared mode as real review. Identity is verifiable; reasoning independence is not guaranteed. After a candidate changes, the previous review is no longer valid: the correction goes through a new round.

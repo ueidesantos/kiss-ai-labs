@@ -1,33 +1,33 @@
-# SPEC — RAG com Top-K Configurável
+# SPEC — RAG with Configurable Top-K
 
-## Objetivo
+## Purpose
 
-Comparar a quantidade de documentos recuperados para uma mesma pergunta, tornando visíveis contexto, relevância e ruído sem adicionar banco vetorial ou framework de RAG.
+Compare the number of documents retrieved for the same question, making context, relevance, and noise visible without adding a vector database or RAG framework.
 
-## Comportamento
+## Behavior
 
-- Indexa arquivos Markdown inteiros e calcula o ranking por cosseno uma vez por execução.
-- `--top-k N` executa uma rodada (padrão: 3); `--compare 1,3,5` executa várias rodadas com os mesmos embeddings e ranking.
-- Preserva a ordem dos valores solicitados e remove valores repetidos.
-- Limita a recuperação ao número de arquivos disponíveis e mostra K solicitado e quantidade efetiva.
-- Exibe arquivos, scores, contexto completo, tamanho em caracteres UTF-16, resposta e fontes com IDs `[S1]`.
-- Usa os mesmos modelos, pergunta, temperatura zero, seed 42 e limite de 384 tokens de saída nas rodadas; não promete respostas idênticas entre máquinas.
-- Valida opções antes de chamar Ollama e encerra com código 1 em erros.
+- Indexes complete Markdown files and calculates the cosine ranking once per run.
+- `--top-k N` runs one round (default: 3); `--compare 1,3,5` runs multiple rounds using the same embeddings and ranking.
+- Preserves the requested value order and removes duplicates.
+- Limits retrieval to the number of available files and shows the requested K and the effective count.
+- Displays files, scores, full context, size in UTF-16 characters, the answer, and sources with `[S1]` IDs.
+- Uses the same models, question, temperature zero, seed 42, and 384-token output limit across rounds; identical responses across machines are not guaranteed.
+- Validates options before calling Ollama and exits with code 1 on errors.
 
-## Limites
+## Limitations
 
-- Cada arquivo é um chunk; não há chunking, persistência nem filtro mínimo de similaridade.
-- K maior inclui resultados menos próximos: mais contexto não garante mais precisão.
-- Não mede qualidade automaticamente; a comparação exige conferir resposta e fontes.
-- Caracteres não são tokens. Contexto de geração continua limitado pelo modelo e pode ser truncado pelo Ollama; use documentos pequenos.
-- A API de embeddings recebe `truncate=false` para rejeitar documentos maiores que a janela do modelo de embeddings.
-- Texto dos documentos e da pergunta vai ao endpoint configurado; processamento local exige endpoint local.
-- Citações geradas são probabilísticas; a lista de fontes exibida permite conferência manual.
+- Each file is one chunk; there is no chunk splitting, persistence, or minimum-similarity threshold.
+- A higher K includes less similar results: more context does not guarantee greater accuracy.
+- Quality is not measured automatically; comparison requires checking the answer and sources.
+- Characters are not tokens. Generation context is still limited by the model and may be truncated by Ollama; use small documents.
+- The embeddings API receives `truncate=false` to reject documents larger than the embedding model’s context window.
+- Document and question text is sent to the configured endpoint; local processing requires a local endpoint.
+- Generated citations are probabilistic; the displayed source list allows manual verification.
 
-## Critérios de aceite
+## Acceptance Criteria
 
-1. `--compare 1,3,5` usa um embedding por arquivo e um da pergunta, com uma geração por K distinto.
-2. Com três documentos, as rodadas recuperam respectivamente 1, 3 e 3 arquivos.
-3. Ranking e IDs permanecem consistentes entre rodadas; o contexto impresso corresponde ao enviado à geração.
-4. Zero, negativos, lista malformada, valor ausente e combinação de `--top-k` com `--compare` falham claramente.
-5. Compila em .NET 11 e funciona com a API HTTP do Ollama.
+1. `--compare 1,3,5` uses one embedding per file and one for the question, with one generation per distinct K.
+2. With three documents, the rounds retrieve 1, 3, and 3 files, respectively.
+3. Ranking and IDs remain consistent across rounds; the printed context matches the context sent for generation.
+4. Zero, negative values, malformed lists, missing values, and combining `--top-k` with `--compare` fail clearly.
+5. Builds on .NET 11 and works with the Ollama HTTP API.

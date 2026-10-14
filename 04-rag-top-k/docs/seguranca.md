@@ -1,5 +1,5 @@
-# Segurança de credenciais
+# Credential Security
 
-Credenciais não devem ser armazenadas no código-fonte nem em arquivos versionados. Use variáveis de ambiente ou um gerenciador de segredos para fornecer tokens durante a execução.
+Credentials must not be stored in source code or versioned files. Use environment variables or a secrets manager to provide tokens at runtime.
 
-Ao suspeitar de exposição, revogue o token afetado, emita uma nova credencial e revise os logs de acesso. Não inclua valores de segredo em mensagens de erro ou logs.
+If you suspect a credential was exposed, revoke the affected token, issue a new credential, and review access logs. Do not include secret values in error messages or logs.

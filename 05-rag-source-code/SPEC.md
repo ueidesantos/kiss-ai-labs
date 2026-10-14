@@ -1,24 +1,24 @@
-# SPEC — RAG sobre Código-Fonte
+# SPEC — RAG over Source Code
 
-## Problema
+## Problem
 
-Encontrar a classe que valida uma regra e onde ela é aplicada em uma pequena pasta de código C#, com referências para conferir a resposta.
+Find the class that validates a rule and where it is applied in a small C# code folder, with references to verify the answer.
 
-## Requisitos
+## Requirements
 
-- Console em C#/.NET 11, HTTP explícito para Ollama, sem dependências externas.
-- Descobrir `.cs` recursivamente, ignorando links e pastas geradas (`bin`, `obj`, `.git`, `.vs`, `node_modules`).
-- Gerar embedding por arquivo e para a pergunta; ranquear por cosseno em memória.
-- Recuperar Top-K positivo configurável e mostrar contexto, scores, resposta e fontes com caminho e linhas.
-- Pedir resposta em português baseada apenas no contexto e com IDs de fontes.
-- Configurar pasta, pergunta, endpoint, modelos e execução opcional na CPU; reportar falhas com código 1.
+- C#/.NET 11 console app, explicit HTTP calls to Ollama, no external dependencies.
+- Recursively discover `.cs` files, ignoring links and generated folders (`bin`, `obj`, `.git`, `.vs`, `node_modules`).
+- Generate one embedding per file and one for the question; rank by cosine similarity in memory.
+- Retrieve a configurable positive Top-K and show context, scores, the answer, and sources with paths and line ranges.
+- Request an answer in Portuguese based only on the context and including source IDs.
+- Configure the folder, question, endpoint, models, and optional CPU execution; report failures with exit code 1.
 
-## Critérios de aceite
+## Acceptance Criteria
 
-- Build sem avisos/erros; teste HTTP verifica descoberta, exclusões, ranking, fontes, contexto e entradas inválidas.
-- Demonstração com Ollama local identifica a regra de desconto nos exemplos; registrar modelos, pergunta e saída real.
-- README explica execução, trânsito de dados, limitações e ausência de análise sintática.
+- Build with no warnings or errors; HTTP test checks discovery, exclusions, ranking, sources, context, and invalid inputs.
+- Demo with local Ollama identifies the discount rule in the samples; record the models, question, and actual output.
+- README explains how to run the lab, data flows, limitations, and the lack of syntax analysis.
 
-## Limites
+## Limitations
 
-Arquivos inteiros e embeddings em memória. Sem parser, divisão por métodos, grafo de chamadas, persistência ou validação automática das afirmações/citações. Intervalos de linhas representam o arquivo completo. Busca semântica pode omitir relações reais ou recuperar contexto irrelevante.
+Whole files and embeddings remain in memory. There is no parser, method-level splitting, call graph, persistence, or automatic validation of claims/citations. Line ranges refer to the entire file. Semantic search may miss real relationships or retrieve irrelevant context.

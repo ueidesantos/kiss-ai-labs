@@ -1,33 +1,32 @@
 # Backlog — KISS AI Labs
 
-Trilha atual: recuperação semântica em memória, fontes, comparação de Top-K, consulta a código-fonte e persistência local.
+Current learning path: in-memory semantic retrieval, sources, Top-K comparison, source-code search, and local persistence.
 
-| Ordem | Laboratório | Stack | Resultado esperado | Dependência | Estado |
+| Order | Lab | Stack | Expected outcome | Dependency | Status |
 |---:|---|---|---|---|---|
-| 1 | **RAG Local sem Vector Database** | C#, .NET 11, Ollama, embeddings | Perguntar sobre Markdown; gerar embeddings, ranquear por cosseno em memória e responder com contexto recuperado. | — | Concluído em `03-rag-local-memory/` |
-| 2 | **RAG com Citação da Fonte** | C#, .NET 11, Ollama, embeddings | Exibir arquivo e trecho usados para responder. | 1 | Incorporado ao `03-rag-local-memory/` |
-| 3 | **RAG com Top-K Configurável** | C#, .NET 11, Ollama | Variar a quantidade de trechos recuperados e observar contexto, precisão e ruído. | 1 | Concluído em `04-rag-top-k/` |
-| 4 | **RAG sobre Código-Fonte** | C#, .NET 11, Ollama, embeddings | Indexar `.cs` e localizar regras, classes e validações. | 1, 2 | Concluído em `05-rag-source-code/` |
-| 5 | **RAG Local com SQLite-vec** | Python, Ollama, SQLite-vec | Persistir embeddings localmente para indexação reproduzível sem serviço externo. | Conceitos do 1 | Implementado em `06-rag-sqlite-vec/`; validação nativa e publicação pendentes |
+| 1 | **Local RAG without a Vector Database** | C#, .NET 11, Ollama, embeddings | Ask questions about Markdown; generate embeddings, rank by cosine similarity in memory, and answer using retrieved context. | — | Completed in `03-rag-local-memory/` |
+| 2 | **RAG with Source Citations** | C#, .NET 11, Ollama, embeddings | Show the file and excerpt used to answer. | 1 | Included in `03-rag-local-memory/` |
+| 3 | **RAG with Configurable Top-K** | C#, .NET 11, Ollama | Vary the number of retrieved excerpts and observe context, precision, and noise. | 1 | Completed in `04-rag-top-k/` |
+| 4 | **RAG over Source Code** | C#, .NET 11, Ollama, embeddings | Index `.cs` files and find rules, classes, and validations. | 1, 2 | Completed in `05-rag-source-code/` |
+| 5 | **Local RAG with SQLite-vec** | Python, Ollama, SQLite-vec | Persist embeddings locally for repeatable indexing without an external service. | Concepts from 1 | Implemented in `06-rag-sqlite-vec/`; native validation and publication are pending |
 
-## SDD, agents e design
+## SDD, agents, and design
 
-Adicionados por solicitação direta do usuário. Os itens retirados do roadmap permanecem fora da trilha.
+Added at the user's direct request. Items removed from the roadmap remain outside the learning path.
 
-| Lab | Entrega | Estado |
+| Lab | Deliverable | Status |
 |---|---|---|
-| 07 | SDD + agents + RAG de negócio; kit completo e simulador .NET 11 | Núcleo/testes aprovados; integração real e publicação pendentes |
-| 08 | Especificação pelo Figma via MCP + TL/Front/Back + RAG | Cliente e replay implementados; link Figma entregue como alternativa aceita; captura MCP e revisão visual não validadas |
+| 07 | SDD + agents + business RAG; complete kit and .NET 11 simulator | Core/tests approved; real integration and publication pending |
+| 08 | Figma-based specification via MCP + TL/Front/Back + RAG | Client and replay implemented; Figma link delivered as an accepted alternative; MCP capture and visual review not validated |
+| 09 | KISS AI Squad: SDD + RAG + development and review by separate models | Implemented; evidence and limitations in [VALIDATION.md](09-ai-squad/VALIDATION.md) |
 
-| 09 | KISS AI Squad: SDD + RAG + desenvolvimento e revisão por modelos distintos | Implementado; evidências e limites em [VALIDATION.md](09-ai-squad/VALIDATION.md) |
+## Shared completion criteria
 
-## Critérios comuns de conclusão
+- Every lab has a `SPEC.md`, run instructions, and a demo question.
+- Endpoints and models can be configured; prerequisites and common failures are documented.
+- The example explains what stays local and what data is sent to the configured model.
+- Code keeps the flow explicit and avoids abstractions that are not needed to teach the concept.
 
-- Cada laboratório tem `SPEC.md`, instruções para executar e uma pergunta de demonstração.
-- Endpoint e modelos podem ser configurados; os pré-requisitos e falhas comuns são descritos.
-- O exemplo explica o que fica local e quais dados são enviados ao modelo configurado.
-- O código mantém o fluxo explícito e evita abstrações não necessárias ao conceito ensinado.
+## Delivery pending validation/publication
 
-## Entrega pendente de validação/publicação
-
-O lab 06 já tem código, documentação e testes preparados. Conclua os testes com SQLite-vec instalado e a demo com Ollama antes de declarar esse lab concluído. Consulte `06-rag-sqlite-vec/VALIDATION.md`.
+Lab 06 already has code, documentation, and prepared tests. Run the tests with SQLite-vec installed and the demo with Ollama before calling this lab complete. See `06-rag-sqlite-vec/VALIDATION.md`.

@@ -1,18 +1,18 @@
-# Esclarecimentos da demanda
+# Request clarifications
 
-[SPEC canônica](SPEC.md) registra o resultado aprovado para implementação.
+The [canonical SPEC](SPEC.md) records the approved implementation outcome.
 
-| Tema | Decisão registrada |
+| Topic | Recorded decision |
 |---|---|
-| Usuário e necessidade | Atendente quer simular desconto antes de apresentar proposta |
-| Stack | .NET 11, ASP.NET Core, C#; HTML/CSS/JS sem dependências |
-| Domínio | Fictício; documentação deste lab não é política de uma empresa real |
-| Limite | Pedido > 0; desconto de 0 a 20%, inclusive |
-| Arredondamento | HALF_UP para dinheiro positivo, em duas casas |
-| Responsabilidade | API aplica regra; Front coleta e apresenta; TL coordena e verifica |
-| Agents runtime | Chamadas Ollama com papéis distintos; devs recebem só sua tarefa |
-| Fonte de verdade | SPEC desta pasta; saída de modelo continua candidata |
-| Ação comercial | Nenhuma cobrança, gravação de pedidos ou aprovação gerencial |
-| Publicação | Coordenador tenta commit/push; resultado deve informar bloqueio real |
+| User and need | A service representative wants to simulate a discount before presenting a proposal |
+| Stack | .NET 11, ASP.NET Core, C#; HTML/CSS/JS without dependencies |
+| Domain | Fictional; this lab's documentation is not a real company's policy |
+| Limit | Order > 0; discount from 0 to 20%, inclusive |
+| Rounding | HALF_UP for positive currency, to two decimal places |
+| Responsibility | API applies the rule; Front collects/displays; TL coordinates and verifies |
+| Runtime agents | Ollama calls with distinct roles; developers receive only their task |
+| Source of truth | SPEC in this folder; model output remains a candidate |
+| Commercial action | No charges, order recording, or management approval |
+| Publication | Coordinator attempts commit/push; report actual block if any |
 
-Não há ambiguidade de produto impeditiva do incremento. Há dependências operacionais pendentes: HTTP real, Ollama real e acesso ao GitHub. Elas não alteram critérios de aceite para fazer o trabalho parecer aprovado.
+There is no product ambiguity that blocks this increment. Operational dependencies remain pending: real HTTP, real Ollama, and GitHub access. They do not change acceptance criteria to make the work appear approved.

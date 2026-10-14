@@ -1,6 +1,6 @@
-# Glossário — B2
+# Glossary — B2
 
-Valor original: preço do pedido antes do desconto, em reais.
-Percentual de desconto: número de 0 a 20 aplicado sobre o valor original.
-Valor final: preço após aplicar o desconto e arredondar a duas casas decimais.
-Simular: calcular e apresentar o resultado sem efetuar uma compra.
+Original amount: the order price before the discount, in reais.
+Discount percentage: a number from 0 to 20 applied to the original amount.
+Final amount: the price after applying the discount and rounding to two decimal places.
+Simulate: calculate and display the result without making a purchase.

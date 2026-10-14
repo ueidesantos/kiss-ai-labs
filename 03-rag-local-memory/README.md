@@ -1,29 +1,29 @@
-# 03 — RAG Local sem Vector Database
+# 03 — Local RAG Without a Vector Database
 
-![KISS AI Labs: painel RAG LOCAL com Markdown, embeddings, cosseno em memória e fontes](../assets/kiss_ai_lab.png)
+![KISS AI Labs: LOCAL RAG with Markdown, embeddings, in-memory cosine similarity, and sources](../assets/kiss_ai_lab.png)
 
-Um RAG didático: o programa lê Markdown, cria embeddings com Ollama, compara vetores usando similaridade de cosseno em memória e passa os documentos mais relevantes a um modelo de chat. A resposta pede IDs de citação e o terminal lista arquivo e trecho de cada fonte recuperada.
+An educational RAG example: the program reads Markdown, creates embeddings with Ollama, compares vectors using in-memory cosine similarity, and passes the most relevant documents to a chat model. The prompt requests citation IDs, and the terminal lists the file and excerpt for each retrieved source.
 
-## Pré-requisitos
+## Prerequisites
 
 - .NET 11 SDK
-- [Ollama](https://ollama.com/) rodando localmente
-- Modelos de embedding e geração baixados:
+- [Ollama](https://ollama.com/) running locally
+- Embedding and generation models downloaded:
 
 ```bash
 ollama pull nomic-embed-text
 ollama pull llama3.2
 ```
 
-## Executar
+## Run
 
-Na raiz do repositório:
+From the repository root:
 
 ```bash
 dotnet run --project 03-rag-local-memory/src -- --question "Como protegemos credenciais?"
 ```
 
-O diretório `docs/` contém notas de exemplo. Para consultar outra pasta e ajustar modelos:
+The `docs/` directory contains sample notes. To query another folder and choose different models:
 
 ```bash
 dotnet run --project 03-rag-local-memory/src -- \
@@ -31,9 +31,9 @@ dotnet run --project 03-rag-local-memory/src -- \
   --embedding-model nomic-embed-text --model llama3.2 --top-k 2
 ```
 
-Opções: `--docs`, `--question`, `--url`, `--embedding-model`, `--model` e `--top-k`. Use `--help` para consultar os valores padrão.
+Options: `--docs`, `--question`, `--url`, `--embedding-model`, `--model`, and `--top-k`. Use `--help` to see the default values.
 
-## Fluxo
+## Flow
 
 ```text
 Markdown local ──▶ Ollama /embed ──▶ embeddings em memória
@@ -43,6 +43,6 @@ Pergunta ──▶ Ollama /embed ──▶ cosseno ──▶ Top-K documentos
 Terminal ◀── resposta + fontes [S1] ◀── Ollama /generate ◀─┘
 ```
 
-O exemplo mantém explícita a etapa de ranking, sem banco vetorial ou framework de RAG. Cada resposta termina com as fontes recuperadas, seus IDs, o caminho do arquivo e uma prévia do trecho. Como o ID é incluído no contexto enviado ao modelo, a citação textual gerada pelo LLM deve ser conferida com a lista de fontes exibida pelo programa. Os documentos ficam no processo local; texto da pergunta, documentos selecionados e geração passam pelo endpoint Ollama configurado.
+This example makes the ranking step explicit, without a vector database or RAG framework. Each response is followed by the retrieved sources, their IDs, file paths, and a preview of each excerpt. Because the ID is included in the context sent to the model, verify LLM-generated citations against the source list displayed by the program. Documents stay in the local process; the question text, selected documents, and generation request go through the configured Ollama endpoint.
 
-Veja [`SPEC.md`](SPEC.md) para o escopo e os critérios de aceite.
+See [`SPEC.md`](SPEC.md) for scope and acceptance criteria.

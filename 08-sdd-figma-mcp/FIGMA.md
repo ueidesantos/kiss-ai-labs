@@ -1,44 +1,44 @@
-# Figma como especificação visual
+# Figma as a visual specification
 
-**Arquivo Figma obrigatório ainda não criado nesta execução.** O usuário autorizou a criação. Screenshot fornecido comprova conector instalado e conectado, mas as ferramentas Figma não estão expostas no inventário callable desta sessão; navegação Figma foi explicitamente negada. Isso bloqueia criação/captura real e aprovação visual. Nenhuma URL ou ID de arquivo foi inventado.
+**The required Figma file has not yet been created in this run.** The user authorized its creation. The supplied screenshot confirms the connector is installed and connected, but Figma tools are not exposed in this session's callable inventory; Figma navigation was explicitly denied. This blocks real creation/capture and visual approval. No URL or file ID has been invented.
 
-## Duas integrações distintas
+## Two separate integrations
 
-| Caminho | Função | Estado/limite |
+| Path | Purpose | Status/limit |
 |---|---|---|
-| Conector Figma do Codex | Criação/edição/leitura via ferramentas suportadas e autenticação OAuth da plataforma | Instalado/conectado segundo screenshot; ferramentas não disponíveis nesta sessão |
-| Cliente .NET deste lab | Leitura de nodes via MCP desktop em `http://127.0.0.1:3845/mcp` | Implementado e testado com mocks; servidor real não comprovado |
+| Codex Figma connector | Create/edit/read through supported tools and platform OAuth | Installed/connected per screenshot; tools unavailable in this session |
+| This lab's .NET client | Read nodes through desktop MCP at `http://127.0.0.1:3845/mcp` | Implemented and tested with mocks; real server unverified |
 
-O conector identificado nesta sessão é `connector_68df038e0ba48191908c8434991bbac2`. Não é necessário pedir reinstalação como resposta à ausência de ferramentas. O cliente .NET não reaproveita tokens OAuth do conector, não implementa OAuth remoto e não contorna restrições de clientes. A documentação oficial descreve o [servidor remoto e OAuth](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/) e o [servidor desktop](https://developers.figma.com/docs/figma-mcp-server/local-server-installation/). A compatibilidade do cliente próprio com o ambiente real precisa ser validada respeitando os clientes suportados pelo Figma.
+The connector identified in this session is `connector_68df038e0ba48191908c8434991bbac2`. There is no need to request reinstallation because tools are unavailable. The .NET client does not reuse the connector's OAuth tokens, implement remote OAuth, or bypass client restrictions. Official documentation describes the [remote server and OAuth](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/) and the [desktop server](https://developers.figma.com/docs/figma-mcp-server/local-server-installation/). The custom client's compatibility with the real environment must be validated while respecting Figma-supported clients.
 
-## Arquivo a criar quando as ferramentas estiverem disponíveis
+## File to create when tools are available
 
-Nome: `KISS AI Lab 08 — Simulador de descontos`. Página: `Especificação`. Este é um briefing de criação, não evidência de um design existente.
+Name: `KISS AI Lab 08 — Discount simulator`. Page: `Specification`. This is a creation brief, not evidence of an existing design.
 
-| Frame proposto | Dimensão | Conteúdo/estado |
+| Proposed frame | Size | Content/state |
 |---|---|---|
-| 01 Inicial | 1440 × 900 | Valor 100, desconto 10, ajuda de limite, Simular habilitado |
-| 02 Calculando | 1440 × 900 | Botão desabilitado, texto Calculando…, resultado anterior oculto |
-| 03 Sucesso | 1440 × 900 | Original R$100,00; desconto 10%; total R$90,00 |
-| 04 Erro | 1440 × 900 | Desconto 21%; mensagem de limite; sem resultado anterior |
-| 05 Mobile | 390 × 844 | Mesmo formulário, layout vertical sem rolagem horizontal |
+| 01 Initial | 1440 × 900 | Amount 100, discount 10, limit help text, Simulate enabled |
+| 02 Calculating | 1440 × 900 | Button disabled, “Calculating…” text, previous result hidden |
+| 03 Success | 1440 × 900 | Original R$100.00; discount 10%; total R$90.00 |
+| 04 Error | 1440 × 900 | Discount 21%; limit message; no previous result |
+| 05 Mobile | 390 × 844 | Same form, vertical layout without horizontal scrolling |
 
-Conteúdo obrigatório: título `Simulador de desconto`, descrição de simulação sem cobrança/gravação, labels `Valor do pedido (R$)` e `Desconto (%)`, ajuda `Desconto permitido de 0 a 20%`. Usar Auto Layout vertical e hierarquia explícita de título, descrição, campos, ajuda, botão, status e resultado.
+Required content: title `Discount simulator`, description that it simulates without charging/saving, labels `Order amount (R$)` and `Discount (%)`, help text `Discount allowed from 0 to 20%`. Use vertical Auto Layout and an explicit hierarchy of title, description, fields, help, button, status, and result.
 
-Tokens propostos: fundo `#F1F5F7`, superfície `#FFFFFF`, texto `#172B36`, ação `#165C72`, erro `#A01919`; fonte Inter; espaçamento 8/16/24/32; raios 6/16. Estes valores são instruções para criar, não valores extraídos do MCP. Depois da criação, derivar tokens/geometry realmente usados do capture e registrar desvios.
+Proposed tokens: background `#F1F5F7`, surface `#FFFFFF`, text `#172B36`, action `#165C72`, error `#A01919`; Inter font; spacing 8/16/24/32; radii 6/16. These are creation instructions, not values extracted from MCP. After creation, derive the tokens/geometry actually used from the capture and record deviations.
 
-## Da criação à delegação
+## From creation to delegation
 
-1. Criar o arquivo através do conector suportado; registrar URL real e IDs dos cinco frames. Confirmar acesso e conteúdo sem usar IDs fictícios.
-2. No Figma desktop, abrir o arquivo e habilitar servidor MCP em Dev Mode conforme [guia oficial](https://developers.figma.com/docs/figma-mcp-server/local-server-installation/).
-3. Copiar o link de cada frame para obter node ID; capturar com o CLI do lab. O cliente chama initialize → initialized → tools/list → metadata/design context/screenshot, conforme [ciclo MCP 2025-06-18](https://modelcontextprotocol.io/specification/2025-06-18/basic/lifecycle).
-4. Guardar captura e screenshot originais. Captura de um frame comprova apenas aquele frame; repetir para cobrir os estados obrigatórios.
-5. TL incorpora a fonte `FIGMA` real junto aos documentos de negócio na SPEC candidata e delega. `FIGMA-FIXTURE` de demo continua fictícia e não fecha o gate visual.
-6. Dev Front implementa somente após contexto real suficiente; Dev Back preserva contrato e regra decimal do lab 07. Revisar UI versus screenshots em desktop/mobile e estados.
+1. Create the file through the supported connector; record the real URL and IDs for all five frames. Confirm access and content without using fake IDs.
+2. In Figma desktop, open the file and enable the MCP server in Dev Mode per the [official guide](https://developers.figma.com/docs/figma-mcp-server/local-server-installation/).
+3. Copy each frame link to get its node ID; capture it with the lab CLI. The client calls initialize → initialized → tools/list → metadata/design context/screenshot, per the [MCP 2025-06-18 lifecycle](https://modelcontextprotocol.io/specification/2025-06-18/basic/lifecycle).
+4. Keep the original capture and screenshot. A capture proves only that frame; repeat to cover all required states.
+5. TL adds the real `FIGMA` source alongside business documents to the candidate SPEC and delegates. The demo's `FIGMA-FIXTURE` remains fictional and does not close the visual gate.
+6. Front Dev implements only after sufficient real context is available; Back Dev preserves Lab 07's contract and decimal rule. Review the UI against desktop/mobile screenshots and states.
 
-## Evidências e gates
+## Evidence and gates
 
-- Entrega obrigatória: URL do arquivo, node IDs, capturas, contexto de design, screenshots e revisão visual ligada a F-2..F-5.
-- Disponível: 19 checks MCP com transporte simulado, informados pelo coordenador. Isso valida protocolo e recusas, não criação ou acesso real.
-- Pendente: arquivo real, captura real, conformidade Front e publicação GitHub.
-- Não aprovar visual por screenshot ilustrativo, fixture ou apenas pelo sucesso de mocks. Seguir [convergência](../specs/lab-08-figma-mcp/convergence.md).
+- Required delivery: file URL, node IDs, captures, design context, screenshots, and visual review linked to F-2..F-5.
+- Available: 19 MCP checks with simulated transport, reported by the coordinator. They validate protocol and rejections, not real creation or access.
+- Pending: real file, real capture, Front conformance, and GitHub publication.
+- Do not approve visuals based on an illustrative screenshot, fixture, or mock success alone. Follow [convergence](../specs/lab-08-figma-mcp/convergence.md).

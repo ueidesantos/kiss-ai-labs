@@ -1,8 +1,8 @@
-# Executar e verificar
+# Run and verify
 
-Pré-requisito: SDK .NET 11. Comandos na raiz do repositório. Consulte [README](../../09-ai-squad/README.md) para visão do fluxo.
+Prerequisites: .NET 11 SDK and Git (for generating the diff). Run commands from the repository root. See the [README](../../09-ai-squad/README.md) for an overview of the workflow.
 
-## Demonstração reproduzível
+## Reproducible demo
 
 ```powershell
 dotnet run --project 09-ai-squad/runner -- --offline --out 09-ai-squad/runs/demo
@@ -10,30 +10,30 @@ $env:SQUAD_RUN = (Resolve-Path 09-ai-squad/runs/demo).Path
 dotnet run --project 09-ai-squad/app
 ```
 
-Abra http://127.0.0.1:8089. `SQUAD_RUN` aceita diretório ou `report.json`. Use nova pasta de saída por execução. Padrão 100/10% resulta 90; Padrão 100/15% é recusado; VIP 100/15% resulta 85.
+Open http://127.0.0.1:8089. `SQUAD_RUN` accepts a directory or `report.json`. Use a new output folder for each run. Standard 100/10% returns 90; Standard 100/15% is rejected; VIP 100/15% returns 85.
 
-Propostas e revisões offline são preparadas. A proposta inicial 20% para Padrão é reprovada por testes reais; a correção 10% é testada e revisada novamente. Sem `SQUAD_RUN`, o simulador de referência funciona e o painel informa ausência de evidência.
+Offline proposals and reviews are prepared. The initial 20% proposal for Standard is rejected by real tests; the 10% correction is tested and reviewed again. Without `SQUAD_RUN`, the reference simulator works and the dashboard reports that evidence is missing.
 
-## Dois modelos locais
+## Two local models
 
-Com Ollama em localhost:11434 e dois modelos instalados:
-
-```powershell
-dotnet run --project 09-ai-squad/runner -- --model MODELO_DESENVOLVEDOR --review-model MODELO_REVISOR --out 09-ai-squad/runs/real
-```
-
-Substitua os identificadores. Nomes e digests precisam ser diferentes; aliases de um mesmo modelo são recusados. O modo real não faz replay offline. Ele é uma integração Ollama, não um adaptador das APIs Claude ou Codex. O parâmetro opcional `--lab` identifica o diretório do laboratório.
-
-## Inspeção e publicação opcional
-
-Leia `report.json`, `changes.diff`, `build.log`, `PR.md` e `candidate`. Verifique fontes, modelos, revisões, testes e estado final. Sem testes aprovados e resolução de achados high/critical, o gate permanece fechado. A correção única sempre exige nova revisão.
-
-Com Git, Python e `gh` autenticado:
+With Ollama on localhost:11434 and two models installed:
 
 ```powershell
-python 09-ai-squad/scripts/publish.py --run 09-ai-squad/runs/demo --repo SEU_USUARIO/SEU_REPOSITORIO
+dotnet run --project 09-ai-squad/runner -- --model DEVELOPER_MODEL --review-model REVIEWER_MODEL --out 09-ai-squad/runs/real
 ```
 
-O script confere gate/manifesto, cria clone temporário, publica branch e abre draft PR. Nenhum merge automático. URL de PR somente é evidência quando retornada por uma publicação concluída.
+Replace the identifiers. Names and digests must differ; aliases for the same model are rejected. Real mode does not replay offline results. It is an Ollama integration, not an adapter for the Claude or Codex APIs. The optional `--lab` parameter identifies the lab directory.
 
-[Convergência](convergence.md) separa testes de integração preparados e chamadas reais aos modelos.
+## Inspection and optional publication
+
+Read `report.json`, `changes.diff`, `build.log`, `PR.md`, and `candidate`. Check sources, models, reviews, tests, and final status. The gate stays closed unless tests pass and `high`/`critical` findings are resolved. The one allowed correction always requires a new review.
+
+With Git, Python, and authenticated `gh`:
+
+```powershell
+python 09-ai-squad/scripts/publish.py --run 09-ai-squad/runs/demo --repo YOUR_USER/YOUR_REPOSITORY
+```
+
+The script checks the gate/manifest, creates a temporary clone, publishes a branch, and opens a draft PR. It never merges automatically. A PR URL counts as evidence only when returned by a completed publication.
+
+[Convergence](convergence.md) distinguishes prepared integration tests from real calls to the models.

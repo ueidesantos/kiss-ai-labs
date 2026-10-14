@@ -1,61 +1,61 @@
-# SPEC — LAB-08: especificação pelo Figma via MCP
+# SPEC — LAB-08: Figma specification through MCP
 
-## Demanda KISS e fontes de verdade
+## KISS request and sources of truth
 
-Evoluir o simulador de descontos do lab 07 a partir de um arquivo Figma com estados inicial, calculando, sucesso e erro. A especificação visual nasce dos frames reais consultados por MCP; documentos de negócio continuam definindo limites e cálculo. Não substituir Figma por uma imagem gerada ou um Markdown de design.
+Evolve Lab 07's discount simulator from a Figma file with initial, calculating, success, and error states. The visual specification must come from real frames queried through MCP; business documents continue to define limits and calculations. Do not replace Figma with a generated image or design Markdown.
 
-Stack: .NET 11/C#, ASP.NET Core para a aplicação de referência e HTML/JS. Reutilizar contrato e cálculo do lab 07; não duplicar checkout, login ou banco. Sem pacotes NuGet externos.
+Stack: .NET 11/C#, ASP.NET Core for the reference application, and HTML/JS. Reuse Lab 07's contract and calculation; do not duplicate checkout, login, or database. No external NuGet packages.
 
-O usuário autorizou criar um arquivo novo e comprovou que o Figma está instalado/conectado. Nesta sessão, ferramentas do conector não foram expostas ao agent e a navegação foi recusada pela política do navegador; criação real permanece pendente de acesso operacional. Nenhum ID/URL de arquivo deve ser inventado.
+The user authorized creation of a new file and confirmed that Figma is installed/connected. In this session, the connector tools were not exposed to the agent and browser navigation was denied by policy; real creation remains pending operational access. Do not invent a file ID or URL.
 
-Depois o usuário forneceu o arquivo `jms60WykB5z30uSU0phFqe`, nó `0:1`, com links Design e Prototype registrados em `08-sdd-figma-mcp/figma.source.json`. Esse é o alvo para consulta e edição quando o conector estiver disponível. Conteúdo e tipo do nó ainda não foram lidos; consultar metadados e selecionar os frames antes de implementar. O arquivo fornecido não foi criado por este agent.
+The user later provided file `jms60WykB5z30uSU0phFqe`, node `0:1`, with Design and Prototype links recorded in `08-sdd-figma-mcp/figma.source.json`. This is the target for lookup and editing when the connector is available. Its contents and node type have not yet been read; consult metadata and select the frames before implementation. This agent did not create the supplied file.
 
-O alvo mais recente é a cópia `ZUseBZLMJIIEN5HjFBB0fu`, `KissProject4Codex`, também fornecida pelo usuário. Ela é a referência preferida em `figma.source.json`; os links anteriores foram preservados para procedência. Nenhum desses links foi apresentado como uma captura MCP ou como conteúdo já implementado.
+The latest target is the copy `ZUseBZLMJIIEN5HjFBB0fu`, `KissProject4Codex`, preferred in `figma.source.json`; earlier links were preserved for provenance. None of these links has been presented as an MCP capture or as content already implemented.
 
-## Requisitos
+## Requirements
 
-| ID | Requisito | Critério verificável |
+| ID | Requirement | Verifiable criterion |
 |---|---|---|
-| F-1 | Conectar ao servidor MCP desktop do Figma por Streamable HTTP | initialize, notifications/initialized, tools/list e tools/call com sessão e versão de protocolo |
-| F-2 | Descobrir ferramentas e consultar um node/frame real | get_metadata, get_design_context e get_screenshot; resposta de erro ou tool ausente não é sucesso |
-| F-3 | Persistir contexto, metadados e screenshot retornados pelo MCP | arquivo de evidência identifica endpoint, node, modo real/mock, horário e cada resultado |
-| F-4 | TL combina especificação do Figma com RAG de negócio e delega Front/Back | requisito e proposta de Front referenciam FIGMA; contrato e regras de negócio seguem lab 07 |
-| F-5 | Explicitar detalhe de design e estados sem inventar evidências | dimensões, layout, estilos, labels, estados e IDs derivam do capture; ausências bloqueiam aprovação visual |
-| F-6 | Demo e testes independem de credenciais, sem alegar conexão real | mock transport reproduz contrato MCP; fixtures rotuladas como fictícias; testes sem sockets |
+| F-1 | Connect to the Figma desktop MCP server using Streamable HTTP | initialize, notifications/initialized, tools/list, and tools/call with session and protocol version |
+| F-2 | Discover tools and query a real node/frame | get_metadata, get_design_context, and get_screenshot; an error or missing tool is not success |
+| F-3 | Persist MCP-returned context, metadata, and screenshot | Evidence file identifies endpoint, node, real/mock mode, time, and each result |
+| F-4 | TL combines Figma specification with business RAG and delegates to Front/Back | Front requirement and proposal reference FIGMA; contract and business rules follow Lab 07 |
+| F-5 | Specify design details and states without inventing evidence | Dimensions, layout, styles, labels, states, and IDs come from capture; missing information blocks visual approval |
+| F-6 | Demo and tests work without credentials and make no claim of real connection | Mock transport reproduces the MCP contract; fixtures labeled fictional; tests run without sockets |
 
-## Contrato MCP
+## MCP contract
 
-- Endpoint padrão: `http://127.0.0.1:3845/mcp`, servidor desktop habilitado no Figma.
-- Transporte JSON-RPC 2.0 com HTTP POST, `Accept: application/json, text/event-stream`.
-- Negociar protocolo `2025-06-18`, confirmar versão retornada, enviar `MCP-Protocol-Version` nos pedidos seguintes e propagar `Mcp-Session-Id` quando recebido.
-- Notificação initialized sem id; aceitar 202 sem JSON. Suportar respostas JSON e SSE para requests; recusar resposta de outro id e mensagens JSON-RPC error.
-- Chamar ferramentas presentes em tools/list; usar argumentos compatíveis com o inputSchema retornado. Node obrigatório no modo real. Cliente standalone deste lab não implementa OAuth do servidor remoto nem contorna controle de clientes do Figma.
-- Limitar timeout, tamanho de respostas e registrar tool errors sem salvar credenciais. Não executar código recebido do Figma.
+- Default endpoint: `http://127.0.0.1:3845/mcp`, with the desktop server enabled in Figma.
+- JSON-RPC 2.0 transport over HTTP POST, `Accept: application/json, text/event-stream`.
+- Negotiate protocol `2025-06-18`, confirm the returned version, send `MCP-Protocol-Version` in subsequent requests, and forward `Mcp-Session-Id` when received.
+- Send initialized notification without an id; accept 202 without JSON. Support JSON and SSE request responses; reject a response with a different id and JSON-RPC error messages.
+- Call tools listed by tools/list; use arguments compatible with the returned inputSchema. Node is required in real mode. This lab's standalone client does not implement OAuth for the remote server or bypass Figma client controls.
+- Limit timeouts and response sizes; record tool errors without saving credentials. Do not execute code received from Figma.
 
-## Arquivo Figma a criar quando conectado
+## Figma file to create once connected
 
-Nome: `KISS AI Lab 08 — Simulador de descontos`.
+Name: `KISS AI Lab 08 — Discount simulator`.
 
-Uma página `Especificação` com quatro frames desktop (1440×900) e um frame mobile (390×844). Nomes: `01 Inicial`, `02 Calculando`, `03 Sucesso`, `04 Erro`, `05 Mobile`.
+A page `Specification` with four desktop frames (1440×900) and one mobile frame (390×844). Names: `01 Initial`, `02 Calculating`, `03 Success`, `04 Error`, `05 Mobile`.
 
-- Título: Simulador de desconto; descrição: simulação sem cobrança ou gravação.
-- Campos rotulados: Valor do pedido (R$), Desconto (%). Defaults 100 e 10.
-- Ajuda: Desconto permitido de 0 a 20%.
-- Botão: Simular; carregando: Calculando… e desabilitado.
-- Sucesso: valor original R$100,00, desconto10%, total R$90,00.
-- Erro: percentual21%, mensagem de limite legível, sem resultado antigo visível.
-- Auto-layout: formulário vertical; layout responsivo sem rolagem horizontal.
-- Tokens propostos para o desenho: fundo#F1F5F7, superfície#FFFFFF, texto#172B36, ação#165C72, erro#A01919; Inter, espaçamentos8/16/24/32, raios6/16.
-- Essas são instruções para criar o arquivo, ainda não evidências de um design existente. Depois da criação, registrar URL, IDs e screenshot do MCP antes de implementar Front.
+- Title: Discount simulator; description: simulation without charges or recording.
+- Labeled fields: Order amount (R$), Discount (%). Defaults: 100 and 10.
+- Help text: Discount allowed from 0 to 20%.
+- Button: Simulate; loading state: Calculating… and disabled.
+- Success: original R$100.00, discount 10%, total R$90.00.
+- Error: percentage 21%, readable limit message, no previous result visible.
+- Auto layout: vertical form; responsive layout without horizontal scrolling.
+- Proposed design tokens: background `#F1F5F7`, surface `#FFFFFF`, text `#172B36`, action `#165C72`, error `#A01919`; Inter font, spacing 8/16/24/32, radii 6/16.
+- These are instructions for creating the file, not evidence of an existing design. After creation, record the URL, IDs, and MCP screenshot before implementing Front.
 
-## Delegação
+## Delegation
 
-TL: consultar MCP e negócio, emitir SPEC candidata rastreável, definir contrato e distribuir tarefas. Dev Front: implementar exclusivamente a partir do contexto de design e screenshot reais, adaptar à stack e validar estados/geometry. Dev Back: preservar endpoint POST/api/discount e validação decimal do lab07. A API de referência pode ser executada independentemente; conformidade visual do lab08 permanece pendente até Figma conectado.
+TL: consult MCP and business sources, issue a traceable candidate SPEC, define the contract, and assign tasks. Front Dev: implement only from real design context and screenshots, adapt to the stack, and validate states/geometry. Back Dev: preserve Lab 07's `POST /api/discount` endpoint and decimal validation. The reference API can run independently; Lab 08 visual conformance remains pending until Figma is connected.
 
 ## Gates
 
-G1: escopo definido. G2 técnico: contrato MCP e API definidos. G2 visual: pendente de arquivo real e contexto de alta fidelidade. G3/G4: código de integração testado com mock, sem confundir mock com Figma conectado. Entrega final requer criação/captura no Figma, verificação visual e publicação.
+G1: scope defined. G2 technical: MCP and API contracts defined. G2 visual: pending a real file and high-fidelity context. G3/G4: integration code tested with mocks, without confusing mocks for a connected Figma. Final delivery requires creation/capture in Figma, visual verification, and publication.
 
-## Ajuste de entrega autorizado pelo usuário — 2026-10-11
+## Delivery adjustment authorized by the user — 2026-10-11
 
-O usuário confirmou como referência principal o [arquivo da comunidade](https://www.figma.com/community/file/1691245874203095002/kissproject-4-codex?fuid=999015154036575904) e autorizou manter pelo menos o link quando o acesso não for possível. A cópia Design mais recente é `L9IkL9GoyMixBb3bbUXihp`, nó informado `0:1`, sem conteúdo inspecionado. A entrega documental pode seguir com esse link; captura MCP e conformidade visual continuam sem validação e não devem ser declaradas concluídas. Essa exceção substitui a exigência de acesso real como bloqueio para publicar a documentação. A hipótese de limitação por assinatura não foi confirmada.
+The user confirmed the [community file](https://www.figma.com/community/file/1691245874203095002/kissproject-4-codex?fuid=999015154036575904) as the primary reference and authorized retaining at least the link if access is unavailable. The latest Design copy is `L9IkL9GoyMixBb3bbUXihp`, with supplied node `0:1`, and has not been inspected. Documentation delivery may proceed with this link; MCP capture and visual conformance remain unvalidated and must not be reported as complete. This exception removes real access as a blocker to publishing the documentation. The subscription-limitation hypothesis has not been confirmed.

@@ -1,88 +1,88 @@
-# SPEC — <nome do trabalho>
+# SPEC — <work name>
 
-- **ID:** <ex.: LAB-010>
-- **Estado:** Rascunho | Em revisão | Aprovada | Em implementação | Validada
-- **Responsável de produto:** <nome/papel>
-- **Coordenador:** <nome/papel>
-- **Última atualização:** <AAAA-MM-DD>
+- **ID:** <e.g., LAB-010>
+- **Status:** Draft | In review | Approved | In progress | Validated
+- **Product owner:** <name/role>
+- **Coordinator:** <name/role>
+- **Last updated:** <YYYY-MM-DD>
 
-## 1. Problema e contexto
+## 1. Problem and context
 
-Que problema existe? Para quem? Como é resolvido hoje e qual evidência motiva a mudança?
+What problem exists? Who is affected? How is it handled today, and what evidence motivates the change?
 
-## 2. Objetivo e resultado esperado
+## 2. Goal and expected outcome
 
-Descreva o resultado observável e como saberemos que resolveu o problema.
+Describe the observable result and how we will know the problem was solved.
 
-## 3. Usuários e jornadas
+## 3. Users and journeys
 
-- **Usuários:**
-- **Jornada principal:**
-- **Estados relevantes:** inicial, carregamento, sucesso, vazio, erro e recuperação.
+- **Users:**
+- **Primary journey:**
+- **Relevant states:** initial, loading, success, empty, error, and recovery.
 
-## 4. Escopo
+## 4. Scope
 
-### Incluído
+### In scope
 -
 
-### Fora do escopo
+### Out of scope
 -
 
-## 5. Requisitos funcionais
+## 5. Functional requirements
 
-Escreva requisitos atômicos, observáveis e numerados. Evite prescrever implementação sem necessidade.
+Write atomic, observable, numbered requirements. Avoid prescribing an implementation unless needed.
 
-| ID | Requisito | Prioridade | Critério(s) de aceite |
+| ID | Requirement | Priority | Acceptance criterion/criteria |
 |---|---|---|---|
-| REQ-1 | <O sistema deve...> | Must | AC-1 |
+| REQ-1 | <The system must...> | Must | AC-1 |
 
-## 6. Requisitos não funcionais e restrições
+## 6. Non-functional requirements and constraints
 
-| ID | Requisito/restrição | Como verificar |
+| ID | Requirement/constraint | How to verify |
 |---|---|---|
-| NFR-1 | <segurança, privacidade, desempenho, acessibilidade, compatibilidade...> | <evidência mensurável> |
+| NFR-1 | <security, privacy, performance, accessibility, compatibility...> | <measurable evidence> |
 
-## 7. Critérios de aceite
+## 7. Acceptance criteria
 
-Use cenários verificáveis, por exemplo Given/When/Then. Cada cenário deve referenciar requisito(s).
+Use verifiable scenarios, such as Given/When/Then. Each scenario must reference one or more requirements.
 
-### AC-1 — <nome> (REQ-1)
-- **Dado que**
-- **Quando**
-- **Então**
+### AC-1 — <name> (REQ-1)
+- **Given**
+- **When**
+- **Then**
 
-## 8. Dados, interfaces e integrações
+## 8. Data, interfaces, and integrations
 
-Descreva entradas/saídas, contratos externos, dados sensíveis, retenção e comportamento em falhas. Marque itens desconhecidos como perguntas.
+Describe inputs/outputs, external contracts, sensitive data, retention, and failure behavior. Mark unknowns as questions.
 
-## 9. UX e conteúdo
+## 9. UX and content
 
-Links para fluxos/protótipos ou descrição dos estados, mensagens, navegação e requisitos de acessibilidade.
+Link to flows/prototypes or describe states, messages, navigation, and accessibility requirements.
 
-## 10. Design técnico
+## 10. Technical design
 
-Preencher após Gate 1: componentes, responsabilidades, contratos, dados, segurança e observabilidade. Referenciar ADRs em `ADR-*.md`.
+Complete after Gate 1: components, responsibilities, contracts, data, security, and observability. Reference ADRs in `ADR-*.md`.
 
-## 11. Plano de implementação
+## 11. Implementation plan
 
-| Tarefa | Requisitos | Responsável | Dependências | Estado |
+| Task | Requirements | Owner | Dependencies | Status |
 |---|---|---|---|---|
-| | | | | Pendente |
+| | | | | Pending |
 
-## 12. Plano e evidências de validação
+## 12. Validation plan and evidence
 
-| Cenário/REQ | Camada | Comando ou procedimento | Resultado/evidência |
+| Scenario/REQ | Layer | Command or procedure | Result/evidence |
 |---|---|---|---|
-| AC-1 | FrontEnd/BackEnd/Integração | | Pendente |
+| AC-1 | FrontEnd/BackEnd/Integration | | Pending |
 
-## 13. Riscos, perguntas e decisões pendentes
+## 13. Risks, questions, and pending decisions
 
-| Item | Impacto | Responsável | Resolução |
+| Item | Impact | Owner | Resolution |
 |---|---|---|---|
-| | | | Aberto |
+| | | | Open |
 
-## 14. Histórico de mudanças
+## 14. Change history
 
-| Data | Mudança | Motivo/aprovador |
+| Date | Change | Reason/approver |
 |---|---|---|
 | | | |

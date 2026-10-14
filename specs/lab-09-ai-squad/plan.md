@@ -1,29 +1,29 @@
-# Plano técnico
+# Technical plan
 
 ```mermaid
 flowchart TD
-  D[Demanda + documentação de negócio] --> R[RAG lexical com fontes]
-  R --> TL[Modelo A · TL planeja]
-  TL --> F[Modelo A · Front propõe textos]
-  TL --> B[Modelo A · Back propõe política]
-  F --> C[Templates geram candidata]
+  D[Request + business documentation] --> R[Lexical RAG with sources]
+  R --> TL[Model A · TL plans]
+  TL --> F[Model A · Front proposes copy]
+  TL --> B[Model A · Back proposes policy]
+  F --> C[Templates generate candidate]
   B --> C
-  C --> T[Build + testes determinísticos]
-  T --> Q[Modelo B · revisão adversarial]
-  Q --> G{Testes passam e sem high/critical?}
-  G -->|Sim| E[Evidências + draft PR opt-in]
-  G -->|Não · primeira tentativa| B
-  G -->|Não · após correção| X[Reprovado]
+  C --> T[Build + deterministic tests]
+  T --> Q[Model B · adversarial review]
+  Q --> G{Tests pass and no high/critical findings?}
+  G -->|Yes| E[Evidence + opt-in draft PR]
+  G -->|No · first attempt| B
+  G -->|No · after correction| X[Rejected]
 ```
 
-O coordenador verifica nomes e digests distintos antes das chamadas reais. TL, Front e Back compartilham o modelo desenvolvedor; a revisão usa o segundo modelo. O runner coordena etapas sequenciais, sem afirmar autonomia geral ou paralelismo.
+The coordinator checks that names and digests differ before real calls. TL, Front, and Back share the developer model; review uses the second model. The runner coordinates sequential steps without claiming general autonomy or parallelism.
 
-## Responsabilidades
+## Responsibilities
 
-Coordenador/TL fixa escopo e contratos; Front/UX cuida de textos e estados; Back mantém domínio decimal e templates; QA adversarial recebe evidências, registra achados e reavalia a única correção permitida. Testes e regras de aprovação ficam fora do controle de ambos os modelos.
+Coordinator/TL sets scope and contracts; Front/UX handles copy and states; Back maintains the decimal domain and templates; adversarial QA receives evidence, records findings, and reevaluates the single allowed correction. Tests and approval rules remain outside both models' control.
 
-## Falhas e reversão
+## Failures and rollback
 
-Resposta inválida, indisponibilidade ou revisão grave impede aprovação. Artefatos ficam em diretório próprio; a SPEC canônica não é sobrescrita. O script de publicação verifica manifesto e gate, cria draft PR separado e nunca faz merge. Para descartar uma candidata publicada, fechar seu PR.
+An invalid response, unavailable service, or severe review finding prevents approval. Artifacts stay in their own directory; the canonical SPEC is not overwritten. The publication script verifies the manifest and gate, creates a separate draft PR, and never merges. To discard a published candidate, close its PR.
 
-A capa dá protagonismo ao lab 09, preservando o cenário e a referência ao lab 08. Validação e limitações constam em [convergence.md](convergence.md).
+The cover features Lab 09 while preserving the scene and reference to Lab 08. Validation and limitations are listed in [convergence.md](convergence.md).

@@ -1,10 +1,10 @@
 # 02 — AI Code Reviewer
 
-![AI Code Reviewer: fluxo local de revisão de código com Git diff, .NET e Ollama](assets/ai-code-reviewer-banner.png)
+![AI Code Reviewer: local code review flow with Git diff, .NET, and Ollama](assets/ai-code-reviewer-banner.png)
 
-Um revisor de código local, pequeno e direto: pega um diff do Git, envia para o Ollama e pede uma revisão focada em bugs, segurança e regressões. A resposta aparece no terminal; nenhum arquivo é alterado.
+A small, straightforward local code reviewer: it takes a Git diff, sends it to Ollama, and requests a review focused on bugs, security, and regressions. The response appears in the terminal; no files are changed.
 
-## Como funciona
+## How It Works
 
 ```text
 Git diff ──▶ App .NET ──HTTP──▶ Ollama / modelo local
@@ -12,22 +12,22 @@ Git diff ──▶ App .NET ──HTTP──▶ Ollama / modelo local
 Terminal ◀── revisão em português ◀┘
 ```
 
-O diff é limitado por tamanho e apresentado ao modelo como conteúdo não confiável, para reduzir a chance de instruções escritas dentro do código desviarem a revisão.
+The diff is size-limited and presented to the model as untrusted content, reducing the chance that instructions embedded in the code will derail the review.
 
-## Pré-requisitos
+## Prerequisites
 
 - .NET 11 SDK
 - Git no `PATH`
-- Ollama instalado e rodando
-- Um modelo baixado, por exemplo:
+- Ollama installed and running
+- One model downloaded, for example:
 
 ```bash
 ollama pull llama3.2
 ```
 
-## Executar
+## Run
 
-Na raiz do repositório:
+From the repository root:
 
 ```bash
 # Revisa mudanças ainda não staged
@@ -40,7 +40,7 @@ dotnet run --project 02-ai-code-reviewer/src -- --staged
 dotnet run --project 02-ai-code-reviewer/src -- --model qwen3 --url http://localhost:11434
 ```
 
-## Opções
+## Options
 
 ```text
 --model <nome>             Modelo Ollama (padrão: llama3.2)
@@ -50,13 +50,13 @@ dotnet run --project 02-ai-code-reviewer/src -- --model qwen3 --url http://local
 --help                     Mostra a ajuda
 ```
 
-Se não houver alterações para revisar, o programa informa isso e encerra sem chamar o modelo. Diffs grandes são truncados com um aviso visível.
+If there are no changes to review, the program reports that and exits without calling the model. Large diffs are truncated with a visible warning.
 
-## O que aprender
+## What You Will Learn
 
-1. Como chamar um LLM local usando `HttpClient` e a API REST do Ollama.
-2. Como alimentar uma tarefa real de desenvolvimento com contexto obtido pelo Git.
-3. Como limitar entrada e orientar o modelo a ignorar instruções presentes no conteúdo analisado.
-4. Por que revisão por IA ajuda na triagem, mas não substitui revisão humana.
+1. How to call a local LLM using `HttpClient` and Ollama’s REST API.
+2. How to give a real development task context obtained from Git.
+3. How to limit input and instruct the model to ignore instructions found in the content being analyzed.
+4. Why AI review helps with triage but does not replace human review.
 
-Consulte [`SPEC.md`](SPEC.md) para os requisitos e limites do exemplo.
+See [`SPEC.md`](SPEC.md) for the example requirements and limitations.

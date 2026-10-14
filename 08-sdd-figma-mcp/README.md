@@ -1,66 +1,66 @@
-# 08 — Figma como especificação via MCP
+# Lab 08 — Figma as a specification through MCP
 
-![Arquitetura do lab08](assets/project-flow.png)
+![Lab 08 architecture](assets/project-flow.png)
 
-**Figma faz parte obrigatória da entrega.** Ele define a especificação visual; documentos de negócio definem as regras; o TL combina as duas fontes e delega Front/Back. Stack .NET11/C#, sem pacotes externos.
+**Figma is a required part of the delivery.** It defines the visual specification; business documents define the rules; the TL combines both sources and delegates to Front/Back. Stack: .NET 11/C#, no external packages.
 
-O design de referência está no [Figma — KissProject 4 Codex](https://www.figma.com/community/file/1691245874203095002/kissproject-4-codex?fuid=999015154036575904). Este é o link principal confirmado pelo usuário; a [cópia editável](https://www.figma.com/design/L9IkL9GoyMixBb3bbUXihp/KissProject-4-Codex--Community-?node-id=0-1) e a procedência estão em [figma.source.json](figma.source.json). O usuário aceitou a entrega com o link quando o acesso não estiver disponível. **Conteúdo e integração MCP real ainda não validados.** A imagem acima explica a arquitetura e não é uma captura do Figma. Não foi confirmado que a falta de assinatura seja a causa da limitação.
+The reference design is [Figma — KissProject 4 Codex](https://www.figma.com/community/file/1691245874203095002/kissproject-4-codex?fuid=999015154036575904). This is the primary link confirmed by the user; the [editable copy](https://www.figma.com/design/L9IkL9GoyMixBb3bbUXihp/KissProject-4-Codex--Community-?node-id=0-1) and provenance are in [figma.source.json](figma.source.json). The user accepted delivery with the link if access is unavailable. **The content and real MCP integration have not yet been validated.** The image above explains the architecture; it is not a Figma capture. It has not been confirmed that a subscription is the cause of the limitation.
 
-## Demanda KISS
+## KISS request
 
-Evoluir o simulador de descontos do lab07 com uma tela especificada no Figma: inicial, calculando, sucesso, erro e mobile. O contrato/cálculo continuam no [lab07](../07-sdd-agents-business-rag/README.md); não há novo checkout, login ou banco.
+Evolve Lab 07's discount simulator with a Figma-specified screen: initial, calculating, success, error, and mobile. The contract/calculation remain in [Lab 07](../07-sdd-agents-business-rag/README.md); there is no new checkout, login, or database.
 
-O kit detalha layout, tokens, labels, estados, responsividade, fontes e critérios de revisão. O briefing para criar/editar o arquivo é uma instrução de trabalho; só o contexto extraído do Figma poderá aprovar a especificação visual.
+The kit details layout, tokens, labels, states, responsiveness, sources, and review criteria. The brief for creating/editing the file is a work instruction; only context extracted from Figma can approve the visual specification.
 
-## Integração real implementada
+## Real integration implemented
 
-O cliente .NET conecta ao servidor MCP desktop e executa:
+The .NET client connects to the desktop MCP server and runs:
 
 ```text
 initialize → notifications/initialized → tools/list
            → get_metadata → get_design_context → get_screenshot
 ```
 
-Descobre schemas, transmite `nodeId`, aceita JSON/SSE, propaga sessão/versão e rejeita erros, ferramentas ausentes, argumentos desconhecidos e respostas grandes. Não executa código recebido.
+It discovers schemas, passes `nodeId`, accepts JSON/SSE, propagates session/version, and rejects errors, missing tools, unknown arguments, and oversized responses. It does not execute received code.
 
-Pré-requisitos reais: Figma desktop com MCP habilitado e o arquivo correto aberto. Consulte [FIGMA.md](FIGMA.md) e o [guia oficial](https://developers.figma.com/docs/figma-mcp-server/local-server-installation/). Conectar o plugin Figma ao Codex não inicia automaticamente o servidor desktop deste cliente.
+Real prerequisites: Figma desktop with MCP enabled and the correct file open. See [FIGMA.md](FIGMA.md) and the [official guide](https://developers.figma.com/docs/figma-mcp-server/local-server-installation/). Connecting the Figma plugin to Codex does not automatically start this client's desktop server.
 
-Na raiz do repositório:
+From the repository root:
 
 ```bash
 dotnet build 08-sdd-figma-mcp/src/FigmaMcp.csproj
 dotnet run --project 08-sdd-figma-mcp/src -- capture --node 0:1 --out 08-sdd-figma-mcp/runs/capture
 ```
 
-O nó0:1 veio do link; seu tipo ainda precisa ser confirmado. Se for página, use metadados para selecionar os frames relevantes, sem presumir que a página inteira seja um design de alta fidelidade.
+Node 0:1 came from the link; its type still needs confirmation. If it is a page, use metadata to select relevant frames instead of assuming the whole page is a high-fidelity design.
 
-`capture` exige contexto textual e screenshot real com dados de imagem válidos; grava `capture.json`, `SPEC.visual-source.md` e screenshots. Não cria o arquivo Figma. Criação/edição do canvas deve ocorrer pelo conector autorizado; essa parte da entrega está pendente.
+`capture` requires textual context and a real screenshot with valid image data; it writes `capture.json`, `SPEC.visual-source.md`, and screenshots. It does not create the Figma file. Canvas creation/editing must happen through the authorized connector; that part of the delivery is pending.
 
 ## Figma + RAG → SPEC → agents
 
-Depois de capturar os frames:
+After capturing the frames:
 
 ```bash
 dotnet run --project 08-sdd-figma-mcp/src -- spec --capture 08-sdd-figma-mcp/runs/capture/capture.json --cpu
 ```
 
-O comando reutiliza o workflow do lab07, acrescenta a fonte `FIGMA`, consulta negócio, chama TL/Front/Back e grava propostas. Exige que o requisito de Front e a proposta referenciem o design; não aprova fidelidade visual automaticamente. `SPEC.visual-source.md` preserva contexto/metadados do MCP e checklist de revisão. A fonte canônica continua na [SPEC do kit](../specs/lab-08-figma-mcp/SPEC.md).
+The command reuses Lab 07's workflow, adds the `FIGMA` source, consults business sources, calls TL/Front/Back, and saves proposals. It requires the Front requirement and proposal to reference the design; it does not approve visual fidelity automatically. `SPEC.visual-source.md` preserves MCP context/metadata and a review checklist. The canonical source remains the [kit SPEC](../specs/lab-08-figma-mcp/SPEC.md).
 
-Opções: `capture`, `spec`, `demo`; `--node`, `--mcp-url`, `--capture`, `--out`, `--lab`, `--offline`, `--cpu`, `--model`, `--url`, `--help`. Saídas padrão em `runs/<horário>/`, ignoradas pelo Git; pastas não vazias são recusadas.
+Options: `capture`, `spec`, `demo`; `--node`, `--mcp-url`, `--capture`, `--out`, `--lab`, `--offline`, `--cpu`, `--model`, `--url`, `--help`. Default output goes to `runs/<timestamp>/`, ignored by Git; nonempty folders are rejected.
 
-O cliente standalone usa `http://127.0.0.1:3845/mcp`. Não implementa OAuth do servidor remoto. O plugin Codex usa outra conexão, com autenticação e suporte a ferramentas de canvas, conforme o [guia remoto](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/).
+The standalone client uses `http://127.0.0.1:3845/mcp`. It does not implement OAuth for the remote server. The Codex plugin uses a different connection, with authentication and canvas-tool support, as described in the [remote guide](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/).
 
-## Demonstração offline e testes
+## Offline demo and tests
 
 ```bash
 dotnet run --project 08-sdd-figma-mcp/src -- demo
 dotnet run --project 08-sdd-figma-mcp/tests
 ```
 
-`demo` combina **fixture fictícia, identificada como `FIGMA-FIXTURE`, e replay de agents**. Não acessa Figma/Ollama, não contém IDs reais nem screenshot e não substitui a entrega no Figma. Testes MCP usam um transporte fictício e conferem protocolo, schemas, erros e limites sem sockets. O cálculo e frontend de referência podem ser executados no lab07 enquanto a integração visual real está pendente.
+`demo` combines a **fictional fixture, identified as `FIGMA-FIXTURE`, with agent replay**. It does not access Figma/Ollama, contain real IDs or screenshots, or replace delivery in Figma. MCP tests use a fake transport and check the protocol, schemas, errors, and limits without sockets. The reference calculation and frontend can run in Lab 07 while real visual integration is pending.
 
-## Kit e dados
+## Kit and data
 
-Leia [SPECKIT.md](SPECKIT.md), [SPEC](SPEC.md), [guia Figma](FIGMA.md) e [VALIDATION.md](VALIDATION.md). Kit completo da demanda: constituição, pesquisa, esclarecimentos, plano, dados, contrato de design, tarefas, checklist, análise/convergência e quickstart. CLI oficial Spec Kit não foi instalado/executado.
+Read [SPECKIT.md](SPECKIT.md), [SPEC](SPEC.md), [Figma guide](FIGMA.md), and [VALIDATION.md](VALIDATION.md). The complete request kit includes the constitution, research, clarifications, plan, data, design contract, tasks, checklist, analysis/convergence, and quickstart. The official Spec Kit CLI was not installed or run.
 
-Contexto e screenshot do Figma ficam em disco. No modo de geração real, o contexto textual do design, documentos de negócio e demanda seguem ao endpoint Ollama configurado; screenshots não são enviados ao modelo por este lab. Endpoint remoto recebe esses textos. Propostas não são executadas automaticamente. Timeout MCP30s por solicitação, limite4MiB por resposta; captura inválida ou divergência mantém o gate visual bloqueado.
+Figma context and screenshots are stored on disk. In real generation mode, textual design context, business documents, and the request are sent to the configured Ollama endpoint; this lab does not send screenshots to the model. A remote endpoint receives that text. Proposals are not run automatically. MCP timeout is 30 seconds per request; response limit is 4 MiB. Invalid capture or mismatch keeps the visual gate blocked.

@@ -1,17 +1,17 @@
-# Validação — <nome do trabalho>
+# Validation — <work name>
 
-Vincule cada execução a um REQ/AC da SPEC. Registre a data, o ambiente relevante e a evidência; não marque como aprovado sem execução.
+Link each run to a REQ/AC in the SPEC. Record the date, relevant environment, and evidence; do not mark anything as passed unless it was actually run.
 
-| ID | Requisito/cenário | Tipo | Comando ou procedimento | Resultado | Evidência/observação |
+| ID | Requirement/scenario | Type | Command or procedure | Result | Evidence/notes |
 |---|---|---|---|---|---|
-| | | Manual/Automatizado | | Pendente | |
+| | | Manual/Automated | | Pending | |
 
-## Defeitos e exceções
+## Defects and exceptions
 
-| ID | Requisito | Descrição | Severidade | Estado/aceitação |
+| ID | Requirement | Description | Severity | Status/acceptance |
 |---|---|---|---|---|
 
-## Resumo
-- Critérios aprovados:
-- Critérios pendentes:
-- Limitações conhecidas:
+## Summary
+- Passed criteria:
+- Pending criteria:
+- Known limitations:

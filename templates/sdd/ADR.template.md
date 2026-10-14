@@ -1,19 +1,19 @@
-# ADR-<n>: <decisão>
+# ADR-<n>: <decision>
 
-- **Estado:** Proposta | Aceita | Rejeitada | Substituída
-- **Data:** <AAAA-MM-DD>
-- **Responsáveis:**
-- **Requisitos relacionados:** <REQ-n/NFR-n>
+- **Status:** Proposed | Accepted | Rejected | Superseded
+- **Date:** <YYYY-MM-DD>
+- **Owners:**
+- **Related requirements:** <REQ-n/NFR-n>
 
-## Contexto
-Qual problema ou decisão precisa ser resolvida? Quais restrições se aplicam?
+## Context
+What problem or decision needs to be addressed? Which constraints apply?
 
-## Opções consideradas
-1. <opção e trade-offs>
-2. <opção e trade-offs>
+## Options considered
+1. <option and trade-offs>
+2. <option and trade-offs>
 
-## Decisão
-O que foi escolhido e por quê?
+## Decision
+What was chosen, and why?
 
-## Consequências
-Impactos, riscos, custos, migrações e como validar a decisão.
+## Consequences
+Impacts, risks, costs, migrations, and how to validate the decision.

@@ -1,5 +1,5 @@
-# Demanda
+# Request
 
-Como atendente, quero simular um pedido com desconto numa tela especificada no Figma, para visualizar o valor final e os erros de validação de forma consistente no desktop e no celular.
+As a service representative, I want to simulate a discounted order in a screen specified in Figma, so I can see the final amount and validation errors consistently on desktop and mobile.
 
-O Figma especifica a apresentação, componentes e estados. A documentação de negócio do lab 07 especifica cálculo e limites. O TL consulta as duas fontes, resolve lacunas e delega implementação Front/Back.
+Figma specifies presentation, components, and states. Lab 07 business documentation specifies the calculation and limits. The TL consults both sources, resolves gaps, and delegates implementation to Front/Back.

@@ -1,85 +1,84 @@
 # KISS AI Labs
 
-[**Visite a página do projeto →**](https://ueidesantos.github.io/kiss-ai-labs/) — apresentação, laboratórios e histórico de evolução.
+[**Visit the project site →**](https://ueidesantos.github.io/kiss-ai-labs/) — overview, labs, and project history.
 
-![KISS AI Labs: lab 09 em destaque — uma IA desenvolve, outra revisa](assets/kiss-ai-labs-ai-squad.png)
+![KISS AI Labs: Lab 09 highlighted — one AI builds, another reviews](assets/kiss-ai-labs-ai-squad.png)
 
-**Laboratório prático de IA local em .NET e Python: da primeira chamada a um LLM à recuperação semântica sobre seus documentos.**
+**Hands-on local AI labs in .NET and Python: from your first call to an LLM to semantic search across your documents.**
 
-Aprenda construindo aplicações pequenas em C#/.NET 11 e Python: converse com modelos pelo Ollama, exponha ferramentas via MCP, revise diffs do Git e faça perguntas sobre arquivos Markdown com RAG. O lab 06 acrescenta persistência de embeddings em SQLite-vec. Cada laboratório mostra o fluxo no código e tem uma especificação para orientar a implementação.
+Learn by building small C#/.NET 11 and Python applications: chat with models through Ollama, expose tools through MCP, review Git diffs, and ask questions about Markdown files with RAG. Lab 06 adds SQLite-vec persistence for embeddings. Each lab walks through the code, shows what's happening under the hood, and includes a specification to guide implementation.
 
-[Começar agora](#comece-aqui) · [Trilha de aprendizado](#trilha-de-aprendizado) · [Demo RAG](#demonstração-principal-rag-local) · [Roadmap](#roadmap) · [Contribuir](#como-contribuir)
+[Get started](#get-started) · [Learning path](#learning-path) · [RAG demo](#featured-demo-local-rag) · [Roadmap](#roadmap) · [Contribute](#contributing)
 
-> **Fábrica de software com agents:** o repositório inclui um fluxo de desenvolvimento guiado por especificações (SDD), os papéis da equipe e templates reutilizáveis. Consulte [AGENTS.md](AGENTS.md) e [templates/sdd](templates/sdd/).
+> **Agent-driven software factory:** This repository includes a specification-driven development (SDD) workflow, team roles, and reusable templates. See [AGENTS.md](AGENTS.md) and [templates/sdd](templates/sdd/).
 
-> **KISS — Keep It Simple, Stupid.** Exemplos pequenos, chamadas HTTP explícitas e poucas peças para entender cada etapa. A complexidade deve servir ao conceito que o laboratório ensina.
+> **KISS — Keep It Simple, Stupid.** Small examples, explicit HTTP calls, and only a few moving parts make each step easy to understand. Complexity should serve the concept a lab teaches.
 
-## Destaque: Lab 09 — uma IA desenvolve, outra revisa
+## Featured: Lab 09 — one AI builds, another reviews
 
-O [KISS AI Squad](09-ai-squad/README.md) combina SDD, RAG de negócio e propostas Front/Back com **revisão adversarial por outro modelo**. Testes determinísticos e achados graves bloqueiam a entrega; uma rodada de correção permite reavaliar a candidata. Inclui painel, demonstração offline identificada e publicação opcional em draft PR. Os agentes trabalham com propostas estruturadas e templates controlados.
+[KISS AI Squad](09-ai-squad/README.md) combines SDD, business RAG, and Front/Back proposals with **adversarial review by another model**. Deterministic tests and critical findings block delivery; one correction round allows the candidate to be reevaluated. It includes a dashboard, a clearly labeled offline demo, and optional draft PR publishing. Agents work from structured proposals and controlled templates.
 
-[Executar o lab 09](09-ai-squad/README.md) · [Entender o Spec Kit](09-ai-squad/SPECKIT.md) · [Consultar validações](09-ai-squad/VALIDATION.md)
+[Run Lab 09](09-ai-squad/README.md) · [Learn about Spec Kit](09-ai-squad/SPECKIT.md) · [Review validation results](09-ai-squad/VALIDATION.md)
 
-### Lab 08: Figma como especificação
+### Lab 08: Figma as a specification
 
-O [lab 08](08-sdd-figma-mcp/README.md) conecta design, documentação de negócio e desenvolvimento guiado por SPEC. O TL usa contexto Figma via MCP e RAG para delegar Front/Back. Inclui cliente .NET 11, kit detalhado e demonstração offline; o [design está disponível no Figma](https://www.figma.com/community/file/1691245874203095002/kissproject-4-codex?fuid=999015154036575904), com entrega por link aceita pelo usuário. A captura MCP e a conformidade visual ainda não foram validadas. O [lab 07](07-sdd-agents-business-rag/README.md) fornece a aplicação funcional e o fluxo de coordenação.
+[Lab 08](08-sdd-figma-mcp/README.md) connects design, business documentation, and specification-driven development. The TL uses Figma context through MCP and RAG to delegate Front/Back work. It includes a .NET 11 client, a detailed kit, and an offline demo. The [design is available in Figma](https://www.figma.com/community/file/1691245874203095002/kissproject-4-codex?fuid=999015154036575904), with delivery by link accepted by the user. MCP capture and visual conformance have not yet been validated. [Lab 07](07-sdd-agents-business-rag/README.md) provides the working application and coordination workflow.
 
-## Para quem é
+## Who this is for
 
-- **Desenvolvedores .NET** que querem integrar IA a aplicações usando C#, HTTP e JSON.
-- **Estudantes e pessoas em transição para engenharia de IA** que querem entender geração, ferramentas e recuperação semântica por meio de código executável.
-- **Quem aprende experimentando** e prefere ler um programa pequeno, mudar uma entrada e observar o resultado.
+- **.NET developers** who want to integrate AI into applications using C#, HTTP, and JSON.
+- **Students and people transitioning into AI engineering** who want to understand generation, tools, and semantic search through runnable code.
+- **Hands-on learners** who prefer reading a small program, changing an input, and seeing what happens.
 
-Conhecimentos básicos de C#, terminal e HTTP ajudam a acompanhar os exemplos. Os projetos são didáticos; servem como ponto de partida para experimentos e discussões técnicas.
+Basic C#, terminal, and HTTP knowledge helps you follow along. These projects are educational; use them as a starting point for experiments and technical discussions.
 
-## O que você vai aprender
+## What you'll learn
 
-| Conceito | Experiência prática |
+| Concept | Hands-on experience |
 |---|---|
-| Inferência local | Chamar o Ollama com `HttpClient` e receber respostas em streaming |
-| Ferramentas para IA | Implementar um servidor MCP didático com JSON-RPC sobre stdio |
-| Contexto aplicado a uma tarefa | Enviar um diff do Git ao modelo para apoiar uma revisão de código |
-| Recuperação semântica | Gerar embeddings e ordenar documentos por similaridade de cosseno |
-| RAG | Combinar pergunta e documentos recuperados para gerar uma resposta |
-| Limites e rastreabilidade | Comparar Top-K e conferir os arquivos apresentados como fontes |
-| Desenvolvimento orientado por especificação | Relacionar requisitos de `SPEC.md` ao comportamento da aplicação |
+| Local inference | Call Ollama with `HttpClient` and receive streamed responses |
+| Tools for AI | Implement a teaching MCP server with JSON-RPC over stdio |
+| Task-specific context | Send a Git diff to a model to help review code |
+| Semantic search | Generate embeddings and rank documents by cosine similarity |
+| RAG | Combine a question with retrieved documents to generate an answer |
+| Limits and traceability | Compare Top-K values and inspect the files shown as sources |
+| Specification-driven development | Connect `SPEC.md` requirements to application behavior |
 
-Esses exercícios ajudam a praticar decisões que aparecem no trabalho com IA: qual contexto enviar, onde os dados são processados, como integrar ferramentas e como avaliar uma resposta. Para transformar um lab em um projeto de portfólio, registre a pergunta usada, o resultado observado, as limitações e as decisões de implementação.
+These exercises let you practice decisions that come up in AI work: what context to send, where data is processed, how to integrate tools, and how to evaluate a response. To turn a lab into a portfolio project, record the prompt, observed result, limitations, and implementation decisions.
 
-## Trilha de aprendizado
+## Learning path
 
-Siga a sequência **00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09**. Cada laboratório é independente e tem seu próprio guia.
+Follow the sequence **00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09**. Each lab is self-contained and has its own guide.
 
-| Etapa | Laboratório | O que você constrói | Tecnologias e pré-requisitos específicos |
+| Stage | Lab | What you build | Technologies and specific prerequisites |
 |---|---|---|---|
-| 00 — Fundamentos | [Hello Ollama](00-hello-ollama/README.md) | Console que conversa com um LLM e exibe a resposta em streaming | .NET 11, `HttpClient`, Ollama e modelo de geração |
-| 01 — Ferramentas | [MCP Spotify](01-mcp-spotify/README.md) | Servidor com ferramentas para buscar músicas e consultar a reprodução atual | .NET 11, JSON-RPC/stdio, acesso à Spotify Web API e token |
-| 02 — Aplicação prática | [AI Code Reviewer](02-ai-code-reviewer/README.md) | Revisor de diffs que sugere possíveis problemas no terminal | .NET 11, Git, Ollama e modelo de geração |
-| 03 — Conhecimento local | [RAG Local](03-rag-local-memory/README.md) | Consulta semântica a Markdown, com Top-K e listagem de fontes | .NET 11, Ollama, modelos de embedding e geração; vetores em memória |
-| 04 — Contexto e ruído | [RAG com Top-K Configurável](04-rag-top-k/README.md) | Comparação de vários valores de K com os mesmos embeddings e ranking | .NET 11, Ollama, documentos Markdown pequenos |
-| 05 — Código-fonte | [RAG sobre Código-Fonte](05-rag-source-code/README.md) | Busca semântica de regras e classes em `.cs`, com arquivos e linhas como fontes | .NET 11, Ollama, embeddings em memória |
-| 06 — Persistência | [RAG Local com SQLite-vec](06-rag-sqlite-vec/README.md) | Indexação e consulta separadas, com vetores persistidos em SQLite; validação nativa pendente | Python, Ollama, SQLite-vec |
-| 07 — Fábrica KISS | [SDD + agents + RAG](07-sdd-agents-business-rag/README.md) | Kit completo da demanda, TL delegando Front/Back e simulador de descontos | .NET 11, ASP.NET Core, HTML/JS, Ollama opcional |
-| 08 — Design como especificação | [Figma MCP + SDD + agents](08-sdd-figma-mcp/README.md) | Capturar especificação no Figma, combinar negócio e delegar; gate Figma real pendente | .NET 11, MCP, Figma, RAG e agents |
+| 00 — Foundations | [Hello Ollama](00-hello-ollama/README.md) | A console app that chats with an LLM and streams the response | .NET 11, `HttpClient`, Ollama, and a generation model |
+| 01 — Tools | [MCP Spotify](01-mcp-spotify/README.md) | A server with tools to search for music and check current playback | .NET 11, JSON-RPC/stdio, Spotify Web API access, and a token |
+| 02 — Practical app | [AI Code Reviewer](02-ai-code-reviewer/README.md) | A diff reviewer that suggests possible issues in the terminal | .NET 11, Git, Ollama, and a generation model |
+| 03 — Local knowledge | [Local RAG](03-rag-local-memory/README.md) | Semantic search over Markdown, with Top-K and source listing | .NET 11, Ollama, embedding and generation models; in-memory vectors |
+| 04 — Context and noise | [RAG with Configurable Top-K](04-rag-top-k/README.md) | Compare several K values using the same embeddings and ranking | .NET 11, Ollama, small Markdown documents |
+| 05 — Source code | [RAG over Source Code](05-rag-source-code/README.md) | Semantic search over `.cs` rules and classes, with files and lines as sources | .NET 11, Ollama, in-memory embeddings |
+| 06 — Persistence | [Local RAG with SQLite-vec](06-rag-sqlite-vec/README.md) | Separate indexing and querying, with vectors persisted in SQLite; native validation pending | Python, Ollama, SQLite-vec |
+| 07 — KISS factory | [SDD + agents + RAG](07-sdd-agents-business-rag/README.md) | Complete request kit, TL delegating Front/Back, and discount simulator | .NET 11, ASP.NET Core, HTML/JS, Ollama optional |
+| 08 — Design as a specification | [Figma MCP + SDD + agents](08-sdd-figma-mcp/README.md) | Capture a spec in Figma, combine it with business context, and delegate; real Figma gate pending | .NET 11, MCP, Figma, RAG, and agents |
+| 09 — Independent review | [KISS AI Squad](09-ai-squad/README.md) | One model proposes, another reviews; tests, correction, and draft PR | .NET 11; two distinct Ollama models or the offline demo |
 
-| 09 — Revisão independente | [KISS AI Squad](09-ai-squad/README.md) | Um modelo propõe, outro revisa; testes, correção e draft PR | .NET 11; dois modelos Ollama distintos ou demo offline |
+**Start with 00** to get up and running with the Ollama API. **Explore 03** to kick the tires on a complete demo of asking questions about documents. Lab 01 is the external integration example; Labs 00, 02, 03, 04, and 05 can use models running on your machine.
 
-**Comece pelo 00** para conhecer a API do Ollama. **Explore o 03** para uma demonstração completa de perguntas sobre documentos. O lab 01 é o exemplo com integração externa; os labs 00, 02, 03, 04 e 05 podem usar modelos executados na sua máquina.
+Lab 06 is implemented locally; native extension validation and publication are pending. Check the [validation record](06-rag-sqlite-vec/VALIDATION.md) before running it.
 
-O lab 06 está implementado localmente, com validação da extensão nativa e publicação pendentes. Confira o [registro de validação](06-rag-sqlite-vec/VALIDATION.md) antes de executá-lo.
+## Get started
 
-## Comece aqui
+### Prerequisites
 
-### Pré-requisitos
+- Git to clone the repository and run the diff reviewer.
+- [.NET SDK](https://dotnet.microsoft.com/download) with `net11.0` support, the target framework for these projects.
+- [Ollama](https://ollama.com/) installed and running for Labs 00, 02, 03, 04, 05, and 06.
+- Enough disk space and memory for your chosen models. Response time depends on the model and hardware.
+- For Lab 06, Python 3.10 or newer and the SQLite-vec extension, as described in its [guide](06-rag-sqlite-vec/README.md).
+- For Lab 01, configure the Spotify token as described in the [MCP Spotify guide](01-mcp-spotify/README.md).
 
-- Git para clonar o repositório e executar o revisor de diffs.
-- [.NET SDK](https://dotnet.microsoft.com/download) com suporte a `net11.0`, o framework usado nos projetos.
-- [Ollama](https://ollama.com/) instalado e em execução para os labs 00, 02, 03, 04, 05 e 06.
-- Espaço em disco e memória compatíveis com os modelos escolhidos. O tempo de resposta depende do modelo e do hardware.
-- Para o lab 06, Python 3.10 ou superior e a extensão SQLite-vec, conforme seu [guia](06-rag-sqlite-vec/README.md).
-- Para o lab 01, configure o token do Spotify conforme o [guia do MCP Spotify](01-mcp-spotify/README.md).
-
-### Sua primeira conversa local
+### Your first local conversation
 
 ```bash
 git clone https://github.com/ueidesantos/kiss-ai-labs.git
@@ -90,75 +89,75 @@ ollama pull llama3.2
 dotnet run --project 00-hello-ollama/src -- --prompt "Explique RAG em três frases."
 ```
 
-O console mostra o modelo, o endpoint e a resposta gerada. A partir daqui, execute os comandos desta página **na raiz do repositório**. Mantenha o Ollama em execução; o endpoint padrão dos exemplos é `http://localhost:11434`.
+The console shows the model, endpoint, and generated response. From here on, run the commands on this page **from the repository root**. Keep Ollama running; the examples use `http://localhost:11434` by default.
 
-## Demonstração principal: RAG Local
+## Featured demo: Local RAG
 
-**Pergunte sobre documentos locais e acompanhe quais arquivos foram recuperados.** O lab 03 usa notas de exemplo sobre segurança de credenciais, retenção e implantação para mostrar o caminho entre uma pergunta e uma resposta contextualizada.
+**Ask questions about local documents and see which files were retrieved.** Lab 03 uses sample notes on credential security, retention, and deployment to show how a question becomes a contextualized answer.
 
 ```text
-Arquivos Markdown → embeddings via Ollama → vetores em memória
-                                                    │
-Pergunta → embedding → similaridade de cosseno → Top-K documentos
-                                                    │
-                        Pergunta + contexto → Ollama → resposta
-                                                    + lista de fontes
+Markdown files → embeddings via Ollama → in-memory vectors
+                                                  │
+Question → embedding → cosine similarity → Top-K documents
+                                                  │
+                       Question + context → Ollama → answer
+                                                  + source list
 ```
 
-### Execute a demonstração
+### Run the demo
 
-Depois do setup inicial, baixe o modelo de embeddings e faça uma pergunta:
+After the initial setup, download the embedding model and ask a question:
 
 ```bash
 ollama pull nomic-embed-text
 dotnet run --project 03-rag-local-memory/src -- --question "Como protegemos credenciais?" --top-k 1
 ```
 
-Observe no terminal os arquivos recuperados, seus valores de similaridade, a resposta e a lista de fontes com identificadores como `[S1]`, caminhos e prévias do texto. Para conferir o conteúdo da demonstração, leia a [nota de segurança de credenciais](03-rag-local-memory/docs/seguranca.md): ela orienta a usar variáveis de ambiente ou um gerenciador de segredos e a evitar credenciais no código versionado. A redação da resposta e o ranking dependem do modelo; esse é o conteúdo de referência, não uma transcrição de execução.
+In the terminal, inspect the retrieved files, their similarity scores, the answer, and the source list with identifiers such as `[S1]`, paths, and text previews. For the demo content, read the [credential security note](03-rag-local-memory/docs/seguranca.md): it recommends environment variables or a secrets manager and keeping credentials out of version-controlled code. The answer wording and ranking depend on the model; this is reference content, not a transcript of a run.
 
-Compare a mesma pergunta recuperando mais documentos:
+Compare the same question while retrieving more documents:
 
 ```bash
 dotnet run --project 03-rag-local-memory/src -- --question "Como protegemos credenciais?" --top-k 3
 ```
 
-O que mudou no contexto enviado ao modelo? Os documentos adicionais ajudaram ou trouxeram informação irrelevante? Esse experimento torna o efeito do Top-K visível. Para comparar `1,3,5` na mesma execução e inspecionar todo o contexto enviado, siga o [lab 04 — RAG com Top-K Configurável](04-rag-top-k/README.md).
+What changed in the context sent to the model? Did the additional documents help, or did they add irrelevant information? This experiment makes the effect of Top-K visible. To compare `1,3,5` in one run and inspect all the context sent, follow [Lab 04 — RAG with Configurable Top-K](04-rag-top-k/README.md).
 
-Para usar seus próprios arquivos Markdown:
+To use your own Markdown files:
 
 ```bash
 dotnet run --project 03-rag-local-memory/src -- --docs ./meus-documentos --question "Qual é a política de retenção?" --top-k 2
 ```
 
-### Escopo atual do RAG
+### Current RAG scope
 
-- Cada arquivo Markdown é indexado inteiro; ainda não há divisão em chunks.
-- Os embeddings são gerados novamente a cada execução e ficam em memória, sem banco vetorial.
-- `--top-k` controla quantos documentos vão para o contexto. Ainda não há filtro mínimo de similaridade.
-- O programa lista as fontes recuperadas. A correspondência entre citações escritas pelo modelo e essa lista não é validada automaticamente; confira o conteúdo dos arquivos.
+- Each Markdown file is indexed in full; chunking is not implemented yet.
+- Embeddings are regenerated on each run and held in memory; there is no vector database.
+- `--top-k` controls how many documents go into the context. There is no minimum similarity filter yet.
+- The program lists the retrieved sources. It does not automatically validate citations written by the model against that list; check the file contents yourself.
 
-[Leia o guia completo](03-rag-local-memory/README.md) · [Consulte a especificação](03-rag-local-memory/SPEC.md)
+[Read the full guide](03-rag-local-memory/README.md) · [Read the specification](03-rag-local-memory/SPEC.md)
 
-## Onde os dados são processados
+## Where data is processed
 
-Nos labs com Ollama, os prompts e os textos necessários à tarefa são enviados ao endpoint configurado. No RAG, o conteúdo dos documentos é enviado para gerar embeddings, e os documentos selecionados compõem o contexto de geração. Com endpoint e modelos locais, esse processamento ocorre na sua máquina; ao configurar um endpoint remoto, os textos seguem para esse servidor.
+In the Ollama labs, prompts and the text needed for the task are sent to the configured endpoint. In RAG, document content is sent to generate embeddings, and selected documents become part of the generation context. With a local endpoint and local models, processing happens on your machine; if you configure a remote endpoint, the text goes to that server.
 
-O MCP Spotify faz chamadas externas à Spotify Web API. A revisão de código e as respostas do RAG são sugestões do modelo e precisam ser conferidas com o diff e os documentos originais.
+MCP Spotify makes external calls to the Spotify Web API. Code reviews and RAG answers are model suggestions; check them against the diff and original documents.
 
-## Estrutura e builds
+## Structure and builds
 
-Cada laboratório segue uma estrutura simples:
+Each lab follows a simple structure:
 
 ```text
 NN-nome-do-lab/
-├── SPEC.md     # Problema, requisitos, limites e critérios de aceite
-├── README.md   # Setup, execução e conceitos do exercício
-└── src/        # Código-fonte da aplicação
+├── SPEC.md     # Problem, requirements, limits, and acceptance criteria
+├── README.md   # Setup, running the exercise, and concepts
+└── src/        # Application source code
 ```
 
-Para mudanças que envolvam mais de um laboratório ou uma funcionalidade nova, a fábrica SDD define papéis, gates e rastreabilidade em [AGENTS.md](AGENTS.md). Crie uma pasta `specs/<id-do-trabalho>/` usando os arquivos de [templates/sdd](templates/sdd/); para mudanças pequenas nos labs, mantenha o `SPEC.md` junto ao laboratório.
+For changes spanning multiple labs or a new feature, the SDD factory defines roles, gates, and traceability in [AGENTS.md](AGENTS.md). Create `specs/<work-id>/` using the files in [templates/sdd](templates/sdd/); for small lab changes, keep `SPEC.md` with the lab.
 
-Alguns labs também incluem `assets/` e documentos de exemplo. Para compilar todos os projetos, execute na raiz:
+Some labs also include `assets/` and sample documents. To build all projects, run these commands from the repository root:
 
 ```bash
 dotnet build 00-hello-ollama/src/HelloOllama.csproj
@@ -172,50 +171,49 @@ dotnet build 07-sdd-agents-business-rag/tests/LabTests.csproj
 dotnet build 08-sdd-figma-mcp/tests/McpTests.csproj
 ```
 
-Compilar não exige modelos carregados nem token do Spotify; executar cada cenário exige seus pré-requisitos. O lab 04 inclui um teste de integração HTTP sem modelos: `pwsh -File 04-rag-top-k/tests/validate.ps1`. O lab 05 também possui teste HTTP: `pwsh -File 05-rag-source-code/tests/validate.ps1`. O repositório ainda não possui pipeline de CI nem testes abrangendo todos os labs.
+Building does not require loaded models or a Spotify token; running each scenario does require its prerequisites. Lab 04 includes an HTTP integration test that needs no models: `pwsh -File 04-rag-top-k/tests/validate.ps1`. Lab 05 also has an HTTP test: `pwsh -File 05-rag-source-code/tests/validate.ps1`. The repository does not yet have a CI pipeline or tests covering every lab.
 
-O lab 06 tem uma suíte offline com SQLite-vec real: `python 06-rag-sqlite-vec/tests/test_rag.py`. Instale seu `requirements.txt` antes. Se testes nativos forem omitidos, o comando retorna 1 para indicar validação incompleta.
+Lab 06 has an offline suite using real SQLite-vec: `python 06-rag-sqlite-vec/tests/test_rag.py`. Install its `requirements.txt` first. If native tests are skipped, the command returns 1 to indicate incomplete validation.
 
 ## Roadmap
 
-O [backlog](BACKLOG.md) reúne os laboratórios mantidos na trilha e suas dependências. O estado atual é:
+The [backlog](BACKLOG.md) lists the labs maintained in this learning path and their dependencies. Current status:
 
-| Estado | Entrega | Próximo aprendizado |
+| Status | Deliverable | Next learning step |
 |---|---|---|
-| Disponível no lab 03 | RAG em memória, Top-K configurável e listagem de fontes | Entender o fluxo completo e conferir o contexto recuperado |
-| Disponível no [lab 04](04-rag-top-k/README.md) | Comparação de Top-K na mesma execução, com contexto completo e fontes | Avaliar relevância e ruído com embeddings reutilizados |
-| Disponível no [lab 05](05-rag-source-code/README.md) | RAG sobre código-fonte em C#/.NET | Localizar regras, classes e validações em arquivos `.cs` |
-| Implementado; validação e publicação pendentes | [Persistência com Python e SQLite-vec — lab 06](06-rag-sqlite-vec/README.md) | Reutilizar embeddings em uma base local |
-| Núcleo testado; integração real/publicação pendentes | [SDD + agents + RAG — lab 07](07-sdd-agents-business-rag/README.md) | Especificar, delegar e validar uma demanda KISS com rastreabilidade |
-| Cliente MCP testado com mocks; design disponível por link | [Figma como especificação — lab 08](08-sdd-figma-mcp/README.md) | Derivar requisitos visuais do design e coordenar Front/Back |
+| Available in Lab 03 | In-memory RAG, configurable Top-K, and source listing | Understand the full flow and inspect retrieved context |
+| Available in [Lab 04](04-rag-top-k/README.md) | Compare Top-K values in one run, with full context and sources | Evaluate relevance and noise while reusing embeddings |
+| Available in [Lab 05](05-rag-source-code/README.md) | RAG over C#/.NET source code | Find rules, classes, and validations in `.cs` files |
+| Implemented; validation and publication pending | [Persistence with Python and SQLite-vec — Lab 06](06-rag-sqlite-vec/README.md) | Reuse embeddings in a local database |
+| Core tested; real integration/publication pending | [SDD + agents + RAG — Lab 07](07-sdd-agents-business-rag/README.md) | Specify, delegate, and validate a KISS request with traceability |
+| MCP client tested with mocks; design available by link | [Figma as a specification — Lab 08](08-sdd-figma-mcp/README.md) | Derive visual requirements from the design and coordinate Front/Back |
+| Implemented; see the evidence | [KISS AI Squad — Lab 09](09-ai-squad/README.md) | Separate development and adversarial model review, then validate the candidate |
 
-| Implementado; consulte as evidências | [KISS AI Squad — lab 09](09-ai-squad/README.md) | Separar desenvolvimento e revisão adversarial entre modelos e validar a candidata |
+### Repository improvements
 
-### Evolução do repositório
+1. **Quality:** automate builds with GitHub Actions, add useful tests, and publish a badge linked to the workflow once it exists.
+2. **Demos:** record real outputs, screenshots, or short videos for Lab 03, including the model used and observed limitations.
+3. **Contributions:** create issue and PR templates and organize roadmap tracking.
+4. **Sharing:** publish tutorials and case studies with reproducible steps and links to the relevant labs.
 
-1. **Qualidade:** automatizar os builds com GitHub Actions, adicionar testes úteis e publicar um badge ligado ao workflow quando ele existir.
-2. **Demonstrações:** registrar saídas reais, screenshots ou vídeos curtos do lab 03, incluindo modelo utilizado e limitações observadas.
-3. **Contribuição:** criar templates de issues e PRs e organizar o acompanhamento do roadmap.
-4. **Compartilhamento:** publicar tutoriais e estudos de caso com passos reproduzíveis e links para os respectivos labs.
+## Contributing
 
-## Como contribuir
+Found a bug or have an idea? [Open an issue](https://github.com/ueidesantos/kiss-ai-labs/issues) with the lab, goal, and steps to reproduce the behavior. For runtime issues, include your operating system, SDK version, model, and error message—never include tokens or credentials.
 
-Encontrou um erro ou tem uma ideia? [Abra uma issue](https://github.com/ueidesantos/kiss-ai-labs/issues) com o laboratório, o objetivo e os passos para reproduzir o comportamento. Em problemas de execução, inclua sistema operacional, versão do SDK, modelo utilizado e mensagem de erro, sem tokens ou credenciais.
+To propose a change or a new lab:
 
-Para propor uma alteração ou um novo lab:
+1. Check the [backlog](BACKLOG.md) and issues to understand the scope.
+2. Describe the problem and acceptance criteria in `SPEC.md`.
+3. Keep the example small, with an easy-to-follow main flow.
+4. Document prerequisites, run commands, usage examples, and limitations in the lab README.
+5. Build the project and describe what you validated in the PR, including any step you could not run.
 
-1. Consulte o [backlog](BACKLOG.md) e as issues para verificar o escopo.
-2. Descreva o problema e os critérios de aceite em `SPEC.md`.
-3. Mantenha o exemplo pequeno, com o fluxo principal fácil de acompanhar.
-4. Documente pré-requisitos, comando de execução, exemplo de uso e limites no README do lab.
-5. Compile o projeto e descreva no PR o que foi validado, incluindo qualquer etapa que não pôde ser executada.
+Other useful contributions include fixing instructions, improving error messages, and sharing experiments that compare models or retrieval results.
 
-Também são contribuições úteis: corrigir instruções, melhorar mensagens de erro e compartilhar experimentos que comparem modelos ou resultados de recuperação.
+## Next step
 
-## Próximo passo
+Run [Hello Ollama](00-hello-ollama/README.md) to get started, or try the [RAG demo](#featured-demo-local-rag) with one of your questions. As you explore a lab, record what changed between attempts: question, model, retrieved context, and answer quality.
 
-Execute o [Hello Ollama](00-hello-ollama/README.md) para começar ou experimente a [demo de RAG](#demonstração-principal-rag-local) com uma pergunta sua. Ao explorar um lab, registre o que mudou entre as tentativas: pergunta, modelo, contexto recuperado e qualidade da resposta.
+## License
 
-## Licença
-
-Use como quiser para estudar.
+Use it for learning.

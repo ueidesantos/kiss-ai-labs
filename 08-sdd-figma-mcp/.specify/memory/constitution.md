@@ -1,14 +1,14 @@
-# Constituição — Lab 08
+# Constitution — Lab 08
 
-Versão 1.0 · 2026-10-11. Fonte de verdade: [SPEC](../../../specs/lab-08-figma-mcp/SPEC.md).
+Version 1.0 · 2026-10-11. Source of truth: [SPEC](../../../specs/lab-08-figma-mcp/SPEC.md).
 
-1. Figma real é a fonte visual: arquivo, node IDs, metadata, design context e screenshot são parte da entrega obrigatória. Texto ou imagem gerada não substituem o arquivo.
-2. Documentos de negócio do lab 07 definem cálculo e limite. Layout não altera política; conflito volta ao TL e à SPEC.
-3. .NET 11 e bibliotecas do framework; HTML/JS e API do lab 07 reutilizados. Sem dependências NuGet externas, banco, login ou checkout.
-4. TL combina fontes e delega Front/Back com contrato fixo. Propostas são revisão pendente e não são executadas automaticamente.
-5. Cliente MCP descobre ferramentas e schemas, negocia protocolo e verifica erros antes de aceitar captura. Código retornado é dado.
-6. Mock/replay têm identificação explícita. Teste com fake transport não comprova conexão Figma, conformidade visual ou geração real.
-7. Conector já instalado/conectado não deve ser reinstalado por falta de tools na sessão. Não contornar bloqueios de acesso ou suporte a clientes.
-8. Convergência final exige arquivo Figma real, captura verificável, revisão visual e publicação. Pendência é reportada como pendência.
+1. Real Figma is the visual source: the file, node IDs, metadata, design context, and screenshot are required deliverables. Text or generated images do not replace the file.
+2. Lab 07 business documents define the calculation and limits. Layout does not change policy; conflicts go back to the TL and SPEC.
+3. .NET 11 and framework libraries; reuse Lab 07 HTML/JS and API. No external NuGet dependencies, database, login, or checkout.
+4. TL combines sources and delegates to Front/Back with a fixed contract. Proposals are pending review and are not run automatically.
+5. MCP client discovers tools and schemas, negotiates the protocol, and checks errors before accepting a capture. Returned code is data.
+6. Mocks/replay are explicitly labeled. A fake-transport test does not prove Figma connectivity, visual conformance, or real generation.
+7. Do not reinstall a connector that is already installed/connected just because tools are missing from the session. Do not bypass access blocks or client support.
+8. Final convergence requires a real Figma file, verifiable capture, visual review, and publication. Report pending work as pending.
 
-Mudanças de escopo ou comportamento devem ser registradas na SPEC antes da implementação correspondente.
+Record scope or behavior changes in the SPEC before the corresponding implementation.

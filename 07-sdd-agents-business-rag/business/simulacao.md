@@ -1,7 +1,7 @@
-# Processo de simulação — B3
+# Simulation process — B3
 
-O atendente informa o valor do pedido e o desconto percentual numa página.
-Ao clicar em Simular, a página envia os dados para a API de cálculo.
-A página mostra o valor final ou a mensagem de validação retornada.
-Durante a solicitação, indica que está calculando e impede envio duplicado.
-A simulação não grava pedidos, não cobra valores e não exige autenticação.
+The service representative enters the order amount and discount percentage on a page.
+When they click Simulate, the page sends the data to the calculation API.
+The page displays the final amount or the returned validation message.
+While the request is running, the page indicates that it is calculating and prevents duplicate submissions.
+The simulation does not save orders, charge amounts, or require authentication.

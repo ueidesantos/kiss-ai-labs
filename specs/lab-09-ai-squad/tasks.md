@@ -1,16 +1,16 @@
-# Tarefas e rastreabilidade
+# Tasks and traceability
 
-| ID | Responsável | Entrega | Requisito | Evidência |
+| ID | Owner | Deliverable | Requirement | Evidence |
 |---|---|---|---|---|
-| T01 | Coordenador | Demanda e kit SDD alinhados | REQ-1..8 | Coerência documental |
-| T02 | Back | Domínio decimal, limites e inválidos | REQ-4 | Testes determinísticos |
-| T03 | Front/UX | Simulador e painel | REQ-5 | Estados desktop/mobile |
-| T04 | Back | Fontes RAG com integridade | REQ-2 | Fontes no relatório |
-| T05 | Back | Dois modelos e contratos restritos | REQ-1,3 | Identidade distinta e falhas fechadas |
-| T06 | Back/QA | Build/testes da candidata | REQ-3,4 | Logs e resultados |
-| T07 | QA | Revisão adversarial, correção e nova revisão | REQ-4,6 | Histórico, gate grave e parada |
-| T08 | Coordenador | Publicador opt-in com manifesto | REQ-7 | Recusa de gate/integridade inválidos |
-| T09 | UX | Lab09 principal na capa | REQ-8 | Inspeção visual |
-| T10 | Coordenador/QA | Consolidar evidências | REQ-1..8 | Convergência com limitações |
+| T01 | Coordinator | Align request and SDD kit | REQ-1..8 | Documentation consistency |
+| T02 | Back | Decimal domain, limits, and invalid inputs | REQ-4 | Deterministic tests |
+| T03 | Front/UX | Simulator and dashboard | REQ-5 | Desktop/mobile states |
+| T04 | Back | RAG sources with integrity | REQ-2 | Sources in report |
+| T05 | Back | Two models and restricted contracts | REQ-1,3 | Distinct identity and fail-closed behavior |
+| T06 | Back/QA | Candidate build/tests | REQ-3,4 | Logs and results |
+| T07 | QA | Adversarial review, correction, and new review | REQ-4,6 | History, severe gate, and stopping behavior |
+| T08 | Coordinator | Opt-in publisher with manifest | REQ-7 | Rejects invalid gate/integrity |
+| T09 | UX | Lab 09 as main cover feature | REQ-8 | Visual inspection |
+| T10 | Coordinator/QA | Consolidate evidence | REQ-1..8 | Convergence with limitations |
 
-Conclusão depende de evidência em [convergence.md](convergence.md), não apenas da existência dos arquivos.
+Completion depends on evidence in [convergence.md](convergence.md), not just the presence of files.

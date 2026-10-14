@@ -1,25 +1,25 @@
-# Análise de consistência
+# Consistency analysis
 
-Data: 2026-10-11. Fonte de verdade: [SPEC](SPEC.md). Resultado: desenho e implementação de referência alinhados no core; integrações reais pendentes.
+Date: 2026-10-11. Source of truth: [SPEC](SPEC.md). Result: reference design and implementation align in the core; real integrations remain pending.
 
-| Requisito | Implementação | Verificação disponível |
+| Requirement | Implementation | Available verification |
 |---|---|---|
-| REQ-1 | `src/Workflow.cs` / Retrieval; business Markdown | Ranking, normalização, corpus vazio; checks .NET |
-| REQ-2 | Plan/ValidatePlan e SPEC canônica | Refs, requisitos, papéis e contrato; checks .NET |
-| REQ-3 | `app/index.html` | Seis testes Node; labels, contrato, estados e BRL com DOM/fetch simulados |
-| REQ-4 | DiscountCalculator/DiscountEndpoint | Decimal, limites, erros e resposta via HttpContext em memória |
-| REQ-5 | Workflow.RunAsync / papéis e tarefas individuais | Mock HTTP verifica sequência e contexto; não execução de modelo real |
-| REQ-6 | Persistência de artefatos e review.json | Replay, refs, modo e propostas não executadas |
+| REQ-1 | `src/Workflow.cs` / Retrieval; business Markdown | Ranking, normalization, empty corpus; .NET checks |
+| REQ-2 | Plan/ValidatePlan and canonical SPEC | Refs, requirements, roles, and contract; .NET checks |
+| REQ-3 | `app/index.html` | Six Node tests; labels, contract, states, and BRL with simulated DOM/fetch |
+| REQ-4 | DiscountCalculator/DiscountEndpoint | Decimal, limits, errors, and response through in-memory HttpContext |
+| REQ-5 | Workflow.RunAsync / roles and individual tasks | Mock HTTP verifies sequence and context; no real model execution |
+| REQ-6 | Artifact persistence and review.json | Replay, refs, mode, and proposals not run |
 
-## Distinções necessárias
+## Necessary distinctions
 
-- B1/B2/B3 identificam documentos na SPEC. S1/S2/S3 são IDs runtime atribuídos na ordem dos arquivos; não presumir equivalência por número.
-- RAG é lexical TF-IDF/cosseno. Não há embeddings ou vector database neste lab.
-- A SPEC runtime é candidata e a [SPEC desta pasta](SPEC.md) continua canônica.
-- Propostas e cenários sugeridos não são evidências de execução. A aplicação de referência foi implementada separadamente nesta entrega.
-- O frontend não aplica arredondamento do negócio; formata strings retornadas pela API.
-- Spec Kit é a referência de processo do kit autorado; não houve instalação ou execução do CLI/skills oficiais.
+- B1/B2/B3 identify documents in the SPEC. S1/S2/S3 are runtime IDs assigned by file order; do not assume number-based equivalence.
+- RAG uses lexical TF-IDF/cosine similarity. This lab has neither embeddings nor a vector database.
+- Runtime SPEC is a candidate; the [SPEC in this folder](SPEC.md) remains canonical.
+- Proposals and suggested scenarios are not execution evidence. The reference app was implemented separately for this delivery.
+- The frontend does not apply business rounding; it formats strings returned by the API.
+- Spec Kit is the process reference for this authored kit; its official CLI/skills were not installed or run.
 
-## Pendências
+## Pending
 
-HTTP/navegador real, Ollama real e publicação GitHub não possuem evidência de sucesso por restrições de rede. Não foi identificada contradição de escopo que impeça revisar o core. A [convergência](convergence.md) preserva essas limitações como pendências.
+Real HTTP/browser, real Ollama, and GitHub publication have no successful evidence due to network restrictions. No scope contradiction was found that blocks review of the core. [Convergence](convergence.md) retains these as pending limitations.
