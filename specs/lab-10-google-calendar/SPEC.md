@@ -142,7 +142,7 @@ Approved solution: .NET 11 console app, interactive input, direct loopback Ollam
 | Implement the app, docs, main README and site feature | REQ-1–REQ-7 | Implementation agent / Coordinator | Gate 2 | Complete |
 | Build and record synthetic/live-flow limitations | All | Coordinator / QA | Implementation | Build complete; live flow pending |
 | Run separate adversarial AI review and resolve findings | REQ-8 | Independent reviewer / implementation agent | Implementation and validation | Complete; findings fixed |
-| Commit and push reviewed changes | REQ-9 | Coordinator | Required gates complete | In progress |
+| Commit and push reviewed changes | REQ-9 | Coordinator | Required gates complete | Complete — pushed to `main`; GitHub Pages verified. |
 
 ## 12. Validation plan and evidence
 
@@ -156,7 +156,7 @@ Approved solution: .NET 11 console app, interactive input, direct loopback Ollam
 | AC-6 / REQ-6 | Manual | Exercise missing/invalid URL, empty input, and stopped Ollama endpoint | Pending |
 | AC-7 / REQ-7 | Manual | Follow the full synthetic walkthrough and verify no message is sent | Pending |
 | AC-8 / REQ-8 | Independent review | Separate AI review and follow-up check of fixes | Pass — no blocking/high findings remained; medium/low findings were fixed and the reviewer confirmed the fixes. See [VALIDATION.md](VALIDATION.md). |
-| AC-9 / REQ-9 | Delivery | Confirm commit exists on the intended remote branch | Pending |
+| AC-9 / REQ-9 | Delivery | Confirm commit exists on the intended remote branch and verify the published project site | Pass — commit `b2e45ab` is on `main`; the public page returns HTTP 200 with the Lab 10 feature and image. |
 
 ## 13. Risks, questions, and deferred ideas
 
