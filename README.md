@@ -2,19 +2,27 @@
 
 [**Visit the project site →**](https://ueidesantos.github.io/kiss-ai-labs/) — overview, labs, and project history.
 
-![KISS AI Labs: Lab 09 highlighted — one AI builds, another reviews](assets/kiss-ai-labs-ai-squad.png)
+![Lab 10 — recruiter researches two candidate profiles and tailors invitations; both candidates book through Google Calendar; the cover highlights Lab 10 above smaller earlier labs and shows the Tracer AI, Figma, AI agent, human review, and GitHub path](assets/lab-10-calendar-agent.png)
 
 **Hands-on local AI labs in .NET and Python: from your first call to an LLM to semantic search across your documents.**
 
 Learn by building small C#/.NET 11 and Python applications: chat with models through Ollama, expose tools through MCP, review Git diffs, and ask questions about Markdown files with RAG. Lab 06 adds SQLite-vec persistence for embeddings. Each lab walks through the code, shows what's happening under the hood, and includes a specification to guide implementation.
 
-[Get started](#get-started) · [Learning path](#learning-path) · [RAG demo](#featured-demo-local-rag) · [Roadmap](#roadmap) · [Contribute](#contributing)
+[Run Lab 10](10-ai-recruiter-calendar/README.md) · [Get started](#get-started) · [Learning path](#learning-path) · [RAG demo](#featured-demo-local-rag) · [Roadmap](#roadmap) · [Contribute](#contributing)
 
 > **Agent-driven software factory:** This repository includes a specification-driven development (SDD) workflow, team roles, and reusable templates. See [AGENTS.md](AGENTS.md) and [templates/sdd](templates/sdd/).
 
 > **KISS — Keep It Simple, Stupid.** Small examples, explicit HTTP calls, and only a few moving parts make each step easy to understand. Complexity should serve the concept a lab teaches.
 
-## Featured: Lab 09 — one AI builds, another reviews
+## Featured: Lab 10 — Google Calendar booking with .NET
+
+**The reusable delivery path is Tracer AI → Figma → AI Tech Lead Agent → AI Dev Agent → AI Adversarial Review Agent → Human Review → GitHub.** Lab 10 uses that path as project context; its single .NET app focuses on Google Calendar booking. The recruiter shares relevant candidate skills and experience already gathered, reviews and sends the tailored Brazilian Portuguese invite, and the candidate books an available time. The app does not browse the web or collect candidate information automatically.
+
+[Run Lab 10](10-ai-recruiter-calendar/README.md) · [Read the approved SPEC](specs/lab-10-google-calendar/SPEC.md) · [See the design decision](specs/lab-10-google-calendar/ADR-001.md)
+
+The booking page is configured by the recruiter in Google Calendar and shared by link. Anyone with that link can view the booking page, so the recruiter should review its title and account/profile details before sharing. The lab uses fictional data and does not represent an approved production deployment for the SAM recruiter.
+
+## Lab 09 — one AI builds, another reviews
 
 [KISS AI Squad](09-ai-squad/README.md) combines SDD, business RAG, and Front/Back proposals with **adversarial review by another model**. Deterministic tests and critical findings block delivery; one correction round allows the candidate to be reevaluated. It includes a dashboard, a clearly labeled offline demo, and optional draft PR publishing. Agents work from structured proposals and controlled templates.
 
@@ -48,7 +56,7 @@ These exercises let you practice decisions that come up in AI work: what context
 
 ## Learning path
 
-Follow the sequence **00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09**. Each lab is self-contained and has its own guide.
+Follow the sequence **00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10**. Each lab is self-contained and has its own guide.
 
 | Stage | Lab | What you build | Technologies and specific prerequisites |
 |---|---|---|---|
@@ -62,6 +70,7 @@ Follow the sequence **00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08
 | 07 — KISS factory | [SDD + agents + RAG](07-sdd-agents-business-rag/README.md) | Complete request kit, TL delegating Front/Back, and discount simulator | .NET 11, ASP.NET Core, HTML/JS, Ollama optional |
 | 08 — Design as a specification | [Figma MCP + SDD + agents](08-sdd-figma-mcp/README.md) | Capture a spec in Figma, combine it with business context, and delegate; real Figma gate pending | .NET 11, MCP, Figma, RAG, and agents |
 | 09 — Independent review | [KISS AI Squad](09-ai-squad/README.md) | One model proposes, another reviews; tests, correction, and draft PR | .NET 11; two distinct Ollama models or the offline demo |
+| 10 — Recruiter workflow | [AI Recruiter Outreach + Google Calendar](10-ai-recruiter-calendar/README.md) | A local model drafts a recruiter-reviewed candidate invite with a Google Calendar booking link | .NET 11, Ollama, and a Google Calendar appointment schedule link |
 
 **Start with 00** to get up and running with the Ollama API. **Explore 03** to kick the tires on a complete demo of asking questions about documents. Lab 01 is the external integration example; Labs 00, 02, 03, 04, and 05 can use models running on your machine.
 
@@ -188,6 +197,7 @@ The [backlog](BACKLOG.md) lists the labs maintained in this learning path and th
 | Core tested; real integration/publication pending | [SDD + agents + RAG — Lab 07](07-sdd-agents-business-rag/README.md) | Specify, delegate, and validate a KISS request with traceability |
 | MCP client tested with mocks; design available by link | [Figma as a specification — Lab 08](08-sdd-figma-mcp/README.md) | Derive visual requirements from the design and coordinate Front/Back |
 | Implemented; see the evidence | [KISS AI Squad — Lab 09](09-ai-squad/README.md) | Separate development and adversarial model review, then validate the candidate |
+| Build verified; live booking not tested | [Google Calendar booking with .NET — Lab 10](10-ai-recruiter-calendar/README.md) | Draft a candidate invitation with the recruiter’s booking link |
 
 ### Repository improvements
 
