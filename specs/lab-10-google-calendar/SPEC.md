@@ -14,7 +14,7 @@ KISS AI Labs needs a small, hands-on example of an AI agent supporting a recruit
 
 Deliver a minimal .NET lab where a recruiter provides a few vacancy/candidate details and a Google Calendar booking-page link. A local AI model prepares a concise invitation in Brazilian Portuguese. The recruiter reviews, copies, and sends it through a channel they choose. The candidate follows the link and books an available interview slot; Google Calendar handles availability, conflicts, and the booking event.
 
-The prototype must demonstrate the user's requested workflow without inventing production recruiting rules or automating contact. The recruiter may provide relevant skills and experience gathered from a candidate's public professional profile; the app does not search the web. Lab 09's separate-model workflow plus a human review gate will be used before the reviewed work is pushed to GitHub.
+The prototype must demonstrate the user's requested workflow without inventing production recruiting rules or automating contact. The recruiter may provide only non-sensitive professional context, such as relevant skills and experience gathered from a candidate's public professional profile; the app does not search the web. It must not read email, access contacts, or sensitive information. Its Google Calendar use is limited to the appointment-schedule booking link and does not read private events. Lab 09's separate-model workflow plus a human review gate will be used before the reviewed work is pushed to GitHub.
 
 Reusable delivery path: Tracer AI → Figma → AI Tech Lead Agent → AI Dev Agent → AI Adversarial Review Agent → Human Review → GitHub. Lab 10 demonstrates the Google Calendar booking step within that path.
 
@@ -43,6 +43,7 @@ Reusable delivery path: Tracer AI → Figma → AI Tech Lead Agent → AI Dev Ag
 - Automatic candidate screening, ranking, consent inference, reminders, rescheduling, or cancellation.
 - Implementing or deploying the production SAM AI Agent Recruiter workflow.
 - Automated web search, scraping, or retrieval of candidate profile data.
+- Reading email, accessing contact lists, processing sensitive information, or accessing private calendar events; Calendar use is limited to the appointment-schedule booking link.
 - Real candidate data in the demo, screenshots, prompts included in the repository, or validation evidence.
 
 ## 5. Functional requirements
@@ -68,6 +69,7 @@ Reusable delivery path: Tracer AI → Figma → AI Tech Lead Agent → AI Dev Ag
 | NFR-3 | Do not write candidate or vacancy inputs to files, logs, telemetry, or committed output. | Inspect implementation and run output. |
 | NFR-4 | Require a control-character-free HTTPS Google Calendar booking URL in a supported host/path format, reject userinfo, and preserve it as literal text rather than asking the model to recreate it. URL format validation does not establish that the schedule is active. | Inspect configuration validation and generated draft. |
 | NFR-5 | Do not claim a real booking-page or Google account flow was validated unless it was tested with a dedicated account. | Record commands, account used, and limitations. |
+| NFR-6 | Do not read email or contacts, access sensitive information, or read private calendar events. Limit Calendar use to the recruiter-provided booking-page URL; instruct the recruiter to enter only non-sensitive professional context. | Inspect integrations and input guidance. |
 
 ## 7. Acceptance criteria
 
@@ -157,6 +159,7 @@ Approved solution: .NET 11 console app, interactive input, direct loopback Ollam
 | AC-7 / REQ-7 | Manual | Follow the full synthetic walkthrough and verify no message is sent | Pending |
 | AC-8 / REQ-8 | Independent review | Separate AI review and follow-up check of fixes | Pass — no blocking/high findings remained; medium/low findings were fixed and the reviewer confirmed the fixes. See [VALIDATION.md](VALIDATION.md). |
 | AC-9 / REQ-9 | Delivery | Confirm commit exists on the intended remote branch and verify the published project site | Pass — commit `b2e45ab` is on `main`; the public page returns HTTP 200 with the Lab 10 feature and image. |
+| NFR-6 | Privacy boundary | Documentation/code review of the site, README, and integrations | Pass — copy states that the app does not read email, access contacts or sensitive information, and limits Calendar use to the booking-page link. |
 
 ## 13. Risks, questions, and deferred ideas
 

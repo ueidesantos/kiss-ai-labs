@@ -1,20 +1,21 @@
 # Lab 10 — AI Recruiter Invitation + Google Calendar
 
-![Lab 10 — recruiter uses skills and experience from two candidate profiles to tailor invitations, then candidates book interviews through Google Calendar; the development path includes AI agents and a human review before GitHub](../assets/lab-10-calendar-agent.png)
+![Lab 10: recruiter provides non-sensitive professional context; candidates book through Google Calendar. The app does not access email, contacts, or sensitive information.](../assets/lab-10-calendar-agent.png)
 
 The reusable delivery path is **Tracer AI → Figma → AI Tech Lead Agent → AI Dev Agent → AI Adversarial Review Agent → Human Review → GitHub**. Lab 10 brings that path to an interview booking scenario: a local AI drafts a short invitation in Brazilian Portuguese, and Google Calendar lets an interested candidate choose an available time.
 
-The recruiter can include relevant skills and experience already gathered from the candidate’s public professional profile in the “why this candidate is a good fit” field. A local AI uses that context to draft a more relevant invitation. The recruiter reviews every fact, chooses a communication channel, and sends the message manually. The candidate accepts by booking a time through the Google Calendar appointment-schedule link. The app does not browse the web or fetch candidate profiles.
+The recruiter may provide only non-sensitive professional context, such as relevant skills and experience already gathered from a candidate’s public profile. A local AI uses that context to draft a relevant invitation. The recruiter reviews every fact, chooses a communication channel, and sends the message manually. The candidate accepts by booking a time through the Google Calendar appointment-schedule link. The app does not read email, access contacts, search the web, fetch candidate profiles, or access sensitive information. Its Calendar integration is limited to the booking-page URL; it does not read private calendar events.
 
 ![Lab 10 workflow: recruiter prepares an invitation, candidate picks an available time, and Google Calendar records the booking](../assets/lab-10-calendar-workflow.png)
 
 ## What it demonstrates
 
-- Interactive collection of role details and recruiter-provided candidate-fit context, including relevant skills or experience; candidate first name and company name are optional.
+- Interactive collection of role details and non-sensitive recruiter-provided professional context, such as relevant skills or experience; candidate first name and company name are optional. Do not enter sensitive information.
 - Local text generation through Ollama’s `/api/generate` endpoint.
 - Exact insertion of the Google Calendar booking-page URL by the app, outside the model prompt.
 - Human review and manual copy/send through a channel chosen by the recruiter.
 - Candidate self-booking on Google Calendar’s appointment schedule page.
+- No email reading, contact access, private calendar access, or sensitive-information access; Calendar use is limited to the booking-page link.
 
 ## Prerequisites
 

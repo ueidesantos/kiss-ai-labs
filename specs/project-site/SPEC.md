@@ -31,13 +31,14 @@ Roles: UX and frontend implementation. Authorized scope: improve clarity, naviga
 - REQ-9: Explain acronyms and dependencies; distinguish experiments from production solutions; show limitations for 06, 07, and 08 alongside the cards.
 - REQ-10: Keep eleven cards and feature Lab 10 with its updated cover; use a primary CTA to choose a learning path, a secondary CTA for Lab 00, evidence links, and consistent metadata.
 - REQ-11: Provide a dedicated, publicly accessible Open Graph thumbnail and complete social metadata so sharing the site link in WhatsApp shows a Lab 10 preview.
+- REQ-12: Lab 10 descriptions must state that the app does not read email, access contacts or sensitive information, and uses Google Calendar only for the booking-page link.
 
 Acceptance: About Me is the last menu link and last section in `main`; three entry paths; eleven cards; anchors and assets valid; no overflow at 320/390/768/1440 px; preserve keyboard support and reduced-motion behavior. Evidence is in MARKETING-REVIEW.md. The coordinator verifies deployment.
 
 
 ## Lab 10 site update — 2026-10-20
 
-At the user's request, feature Lab 10 and add it to the catalog. The cover depicts the recruiter reviewing candidate profile, skills, and experience; a tailored invitation; candidate booking through Google Calendar; and the reusable Tracer AI → Figma → AI Tech Lead Agent → AI Dev Agent → AI Adversarial Review Agent → Human Review → GitHub trail. The .NET app does not browse candidate profiles or integrate with the other workflow components; it uses recruiter-provided context and focuses on Google Calendar booking.
+At the user's request, feature Lab 10 and add it to the catalog. The cover depicts a recruiter preparing invitations and candidates booking through Google Calendar; the reusable Tracer AI → Figma → AI Tech Lead Agent → AI Dev Agent → AI Adversarial Review Agent → Human Review → GitHub trail. The .NET app uses only recruiter-provided non-sensitive professional context and the booking-page link; it does not read email, access contacts, access sensitive information, browse candidate profiles, or integrate with the other workflow components.
 
 ## Social sharing preview — 2026-10-20
 
